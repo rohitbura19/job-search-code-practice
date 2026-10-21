@@ -1,0 +1,6 @@
+> Code: `d1/JobScheduling.java`. Test: `JobSchedulingTest` (brute-force comparison + performance).
+
+### D1. Maximum Profit in Job Scheduling (weighted interval scheduling)
+There are `n` jobs, job `i` runs from `start[i]` to `end[i]` and pays `profit[i]`. Choose jobs that do not overlap (a job may start exactly when another one ends) so that the total profit is maximal. `start = [1,2,3,3], end = [3,4,5,6], profit = [50,10,40,70] -> 120` (jobs 1 and 4); `start = [1,2,3,4,6], end = [3,5,10,6,9], profit = [20,20,100,70,60] -> 150`; `start = [1,1,1], end = [2,3,4], profit = [5,6,4] -> 6`.
+
+Interviewer follow-up: why does the greedy "earliest end first" from Activity Selection FAIL here (give a counter-example)? Why is brute force 2^n? Define the DP state precisely and say why sorting by END time is what makes the "last compatible job" a prefix. Why binary search, and is it an upper bound or a lower bound (what do touching intervals `[1,3]` and `[3,5]` imply)? Complexity? Return the chosen jobs, not just the profit. What if jobs can use up to `m` machines? What if the times are huge (10^9) and there are 5·10^4 jobs? Compare with the merge-intervals problem from the early sheets (what is the difference in goal and technique)?

@@ -44,3 +44,4 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
 ## Days
 
 <!-- The routine appends one line per day below. -->
+- [2026-10-21 wed](daily-practice/2026-10-21-wed/) - Add Binary + Excel column, Pascal, streams stats/collections views, Quickselect, build tree from traversals, weighted job scheduling, Spring validation + ProblemDetail + ETag, nearby chargers HLD/LLD (geo index), offline sync HLD, lambdas, enum state machine

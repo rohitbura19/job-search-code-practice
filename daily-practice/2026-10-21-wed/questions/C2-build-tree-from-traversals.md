@@ -1,0 +1,6 @@
+> Code: `c2/BuildTree.java` (`TreeNode` is given). Test: `BuildTreeTest` (the deep-chain test is @Disabled: bonus for an iterative version).
+
+### C2. Construct Binary Tree from Preorder and Inorder Traversal
+Given the preorder and inorder traversals of a binary tree with UNIQUE values, rebuild the tree. `preorder = [3,9,20,15,7]`, `inorder = [9,3,15,20,7]` gives the tree with root 3, left child 9, right child 20 whose children are 15 and 7. `[-1], [-1] -> -1`.
+
+Interviewer follow-up: why does preorder give the root and inorder give the left/right split? Why does a plain scan for the root in `inorder` make it O(n²) for a skewed tree and what does a value-to-index map do? Why must the code build the LEFT subtree before the right one when it consumes preorder with a single moving index? Do the same from postorder + inorder (what changes: the root is the LAST element, and you must build the RIGHT subtree first). Why can preorder + postorder NOT identify a tree uniquely, and what extra condition fixes it? What happens with duplicate values? A tree of 200,000 nodes in a chain: what happens, and what is the iterative fix? Serialise and deserialise a tree with `#` markers: which traversal is enough then?
