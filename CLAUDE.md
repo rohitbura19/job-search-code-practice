@@ -10,7 +10,7 @@ Run these checks before writing anything:
 | Check | Command | If it fails |
 |---|---|---|
 | Java 21+ | `java -version` | Stop |
-| Repo is clean and on main | `git status -sb` | Stop |
+| Working tree clean, up to date with main | `git fetch origin main && git status -sb` | Stop |
 | Can push to main | `git push --dry-run origin HEAD:main` | Stop - the Claude GitHub app likely lacks write access to this repo |
 | Maven Central reachable | `curl -sI https://repo.maven.apache.org/maven2/ \| head -1` | Continue; verify with javac (step 3) |
 | Today's folder not already there | `ls daily-practice/` | Stop - already done today |
