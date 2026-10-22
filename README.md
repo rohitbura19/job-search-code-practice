@@ -45,3 +45,4 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
 
 <!-- The routine appends one line per day below. -->
 - [2026-10-21 wed](daily-practice/2026-10-21-wed/) - Add Binary + Excel column, Pascal, streams stats/collections views, Quickselect, build tree from traversals, weighted job scheduling, Spring validation + ProblemDetail + ETag, nearby chargers HLD/LLD (geo index), offline sync HLD, lambdas, enum state machine
+- [2026-10-22 thu](daily-practice/2026-10-22-thu/) - Move Zeroes + Remove Duplicates II, Valid Parentheses + min insertions, collectors (groupingBy/partitioningBy/teeing), Course Schedule II (Kahn), Coin Change I/II, Sliding Window Maximum, Spring JPA + validation + ProblemDetail (meter readings), notification guard HLD/LLD (sliding-window limiter), wallet transfer HLD, core Java predictions, immutable Money (OOP)

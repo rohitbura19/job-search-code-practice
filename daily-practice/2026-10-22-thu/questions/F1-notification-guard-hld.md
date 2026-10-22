@@ -1,0 +1,7 @@
+# F1. HLD: notification guard for a super-app (rate limit, dedupe, quiet hours)
+
+Feature of a large consumer app (orders, payments, chat, marketing all send push / email / SMS). Build the service every outbound notification passes through. Rules: at most `N` sends per user per channel in a sliding window; the same `(user, dedupeKey)` is dropped for a TTL after it was sent; non-urgent notifications are held during the user's quiet hours (local time); urgent ones (OTP, fraud alert) skip quiet hours but not the rate limit.
+
+Scale: 5,000 services-side producers, 20,000 notifications/s peak (marketing blasts reach 200,000/s for a minute), 80 million users, decision latency p99 under 15 ms, a dropped OTP is a P1, a duplicate promo is only annoying.
+
+Cover in 25 minutes: requirements and non-goals, API (sync `decide` vs async publish), data model and store (Redis keys, TTL, atomic Lua script or token bucket vs sliding log vs sliding counter: memory and accuracy), sharding by `userId`, what happens when Redis is down (fail open or closed, per notification class), held messages (delay queue, re-evaluate at quiet-hours end, expiry), idempotency of the producer retry, observability (decision counters by reason), abuse and priority isolation (a marketing blast must not starve OTP: separate topics and quotas), GDPR / preference storage, trade-offs. Draw it in `my-designs/F1-notification-guard.md`.

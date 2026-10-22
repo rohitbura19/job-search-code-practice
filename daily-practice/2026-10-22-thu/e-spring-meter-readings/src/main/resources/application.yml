@@ -1,0 +1,6 @@
+# TODO (paper, then compare with answers):
+#   spring.jpa.open-in-view: ?        # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?  # which value in production, and what do you use instead (Flyway / Liquibase)?
+#   spring.jackson.deserialization.fail-on-unknown-properties: ?   # strict or lenient for a public API?
+#   spring.datasource.hikari.maximum-pool-size: ?                  # how do you size it?
+#   server.error.include-message / include-stacktrace: ?           # what must never reach a client?

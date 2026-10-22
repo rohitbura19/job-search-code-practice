@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    open-in-view: false            # no lazy loading in the view layer: a connection is held only for the service/repository call
+    # hibernate.ddl-auto: validate   # prod: the schema belongs to Flyway/Liquibase and Hibernate only validates it; left off here so @DataJpaTest can create the H2 schema
+  jackson.deserialization.fail-on-unknown-properties: true   # strict catches client typos; cost: every new response field breaks old strict clients on round trip
+  datasource.hikari.maximum-pool-size: 10   # start near cores * 2 + disks, measure; a bigger pool moves the queue into the database
+server.error:
+  include-message: never           # never leak exception text or stack traces
+  include-stacktrace: never
