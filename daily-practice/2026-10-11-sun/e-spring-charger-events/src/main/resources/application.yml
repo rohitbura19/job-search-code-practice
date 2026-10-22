@@ -1,0 +1,3 @@
+# GIVEN. Only what the tests need; the real datasource / Kafka settings are a paper exercise (see questions/E-charger-events-api.md).
+spring:
+  application.name: charger-events

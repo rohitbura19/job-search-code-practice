@@ -44,5 +44,8 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
 ## Days
 
 <!-- The routine appends one line per day below. -->
+- [2026-10-11 sun](daily-practice/2026-10-11-sun/) - Contains Duplicate II, Valid Parentheses, Collectors, Merge Intervals + meeting rooms, Course Schedule II (Kahn), Sliding Window Maximum, Spring Boot + Kafka idempotent listener, notification service HLD/LLD, ConcurrentHashMap, Liskov/composition
+- [2026-10-12 mon](daily-practice/2026-10-12-mon/) - Reverse linked list, binary search (lower bound, on the answer), Collectors, islands + union-find, coin change DP, two-heap median, rate limiter HLD/LLD, live session push HLD, ThreadPoolExecutor, overloading and singletons
+- [2026-10-13 tue](daily-practice/2026-10-13-tue/) - Tree diameter, stock profit (greedy/cooldown), Collectors + LRU, longest substring window, Combination Sum, Trapping Rain Water, Spring cache/RestClient/validation, OTA rollout HLD/LLD, try/finally + String pool, immutability + DIP
 - [2026-10-21 wed](daily-practice/2026-10-21-wed/) - Add Binary + Excel column, Pascal, streams stats/collections views, Quickselect, build tree from traversals, weighted job scheduling, Spring validation + ProblemDetail + ETag, nearby chargers HLD/LLD (geo index), offline sync HLD, lambdas, enum state machine
 - [2026-10-22 thu](daily-practice/2026-10-22-thu/) - Move Zeroes + Remove Duplicates II, Valid Parentheses + min insertions, collectors (groupingBy/partitioningBy/teeing), Course Schedule II (Kahn), Coin Change I/II, Sliding Window Maximum, Spring JPA + validation + ProblemDetail (meter readings), notification guard HLD/LLD (sliding-window limiter), wallet transfer HLD, core Java predictions, immutable Money (OOP)

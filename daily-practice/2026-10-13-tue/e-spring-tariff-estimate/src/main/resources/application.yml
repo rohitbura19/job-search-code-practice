@@ -1,0 +1,4 @@
+# GIVEN (the full YAML with cache / problemdetails / resilience4j / actuator is a paper exercise, see questions/E-tariff-estimate-service.md)
+fx:
+  base-url: https://fx.example.com
+  timeout: 2s
