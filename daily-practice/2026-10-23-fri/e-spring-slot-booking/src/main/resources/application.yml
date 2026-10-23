@@ -1,0 +1,6 @@
+# TODO (paper, then compare with answers/):
+#   spring.jpa.open-in-view: ?                     # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?               # production value, and the tool you use instead
+#   spring.mvc.problemdetails.enabled: ?           # what does it change for errors raised by Spring MVC itself (missing parameter, bad JSON)?
+#   spring.datasource.hikari.maximum-pool-size: ?  # how do you size it, and what happens to reserve() under contention if it is too small?
+#   spring.jpa.properties.hibernate.jdbc.time_zone: ?  # why UTC for Instants

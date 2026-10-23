@@ -1,0 +1,18 @@
+spring:
+  jpa:
+    open-in-view: false            # no lazy loading in the view layer; connection is released at the end of the service call
+    hibernate:
+      ddl-auto: validate           # production: schema owned by Flyway/Liquibase migrations, Hibernate only checks it
+    properties:
+      hibernate.jdbc.time_zone: UTC   # Instants are stored and read in UTC, whatever the JVM/db zone
+  mvc:
+    problemdetails:
+      enabled: true                # MVC's own errors (missing parameter, malformed JSON, 405) also become application/problem+json
+  datasource:
+    hikari:
+      maximum-pool-size: 20        # about (cores * 2) + disks for a DB; more only queues work inside the database. A pool that is too small
+                                   # makes callers wait for a connection while holding no row lock (reserve() is one short statement)
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
