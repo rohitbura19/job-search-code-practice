@@ -1,0 +1,6 @@
+# TODO (paper, then compare with answers/):
+#   catalog.default-page-size / catalog.max-page-size: ?   # what happens to a request for size=100000, and why clamp instead of reject?
+#   spring.jpa.open-in-view: ?                              # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?                        # production value and the tool that owns the schema
+#   spring.mvc.problemdetails.enabled: ?                    # which errors does it turn into problem+json?
+#   spring.data.web.pageable.max-page-size: ?               # when does this setting apply, and when does it not (this controller)?

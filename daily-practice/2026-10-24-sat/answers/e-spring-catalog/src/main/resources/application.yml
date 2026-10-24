@@ -1,0 +1,21 @@
+catalog:
+  default-page-size: 20            # used when the client sends no size
+  max-page-size: 100               # a client asking for size=100000 is clamped, never trusted
+spring:
+  jpa:
+    open-in-view: false            # the connection goes back to the pool when the service method returns; lazy loading in the view fails fast
+    hibernate:
+      ddl-auto: validate           # production: Flyway/Liquibase own the schema
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  data:
+    web:
+      pageable:
+        max-page-size: 100         # only matters if a controller takes a Pageable argument directly; this controller does not
+  mvc:
+    problemdetails:
+      enabled: true                # missing/invalid parameters, malformed JSON and 405 become application/problem+json
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
