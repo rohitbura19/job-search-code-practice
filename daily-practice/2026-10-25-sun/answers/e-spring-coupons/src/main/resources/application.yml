@@ -1,0 +1,18 @@
+coupon:
+  max-percent-off: 50              # the record has the same defaults; listing them documents the knobs ops may change per environment
+  max-redemptions-cap: 10000
+spring:
+  jpa:
+    open-in-view: false            # the connection returns to the pool when the service method ends; lazy loading in the view fails fast
+    hibernate:
+      ddl-auto: validate           # production: Flyway/Liquibase own the schema
+  mvc:
+    problemdetails:
+      enabled: true                # missing/invalid parameters, malformed JSON and 405 become application/problem+json
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true   # strict: a misspelt field is a 400, not a silently ignored discount
+server:
+  error:
+    include-message: never
+    include-stacktrace: never

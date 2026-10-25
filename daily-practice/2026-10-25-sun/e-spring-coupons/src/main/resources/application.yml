@@ -1,0 +1,6 @@
+# TODO (paper, then compare with answers/):
+#   coupon.max-percent-off / coupon.max-redemptions-cap: ?   # defaults live in the record; why still list them here?
+#   spring.jpa.open-in-view: ?                                # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?                          # production value and the tool that owns the schema
+#   spring.mvc.problemdetails.enabled: ?                      # which errors does it turn into problem+json?
+#   spring.jackson.deserialization.fail-on-unknown-properties: ?   # lenient or strict for a public API, and why?
