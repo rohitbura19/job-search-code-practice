@@ -45,3 +45,8 @@ Some notes on the questions:
 
 - The sample sheet's rules for Q3 contradict its expected output. The question file states the only reading of the rules that gives 130 for 100 and 50.
 - The examples in every question were checked with a small script.
+
+## Solutions and revision pack
+
+- [solutions/q01-car/](solutions/q01-car/) - Q01 base solution plus 5 follow-ups (8 directions, undo, multiple cars, vehicle types, go-to-target BFS) with diagrams.
+- [IDFC_Revision_Pack.pdf](IDFC_Revision_Pack.pdf) / [.txt](IDFC_Revision_Pack.txt) - all 15 questions and the Q01 solution in one printable file.
