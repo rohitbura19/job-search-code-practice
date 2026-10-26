@@ -41,6 +41,10 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
    `mvn test` or `mvn test -Dtest=ClassNameTest`.
 3. Compare with `answers/` and fill in the score card in the day's README.
 
+## Quick DSA practice
+
+- [dsa-quick-practice/](dsa-quick-practice/) - all DSA questions from the daily kits as single-file templates (short statement + empty method + examples), grouped by pattern. No tests.
+
 ## Company prep
 
 - [IDFC FIRST Bank](idfc-interview-prep/) - 15 IDFC-style problem statements (car on XY plane, library fines, card discount, highest card, lift move(), log retention, academic tracker, ticker board, mini Instagram, max heap, people with secret, first 1 binary search, banking SQL, ECS vs Fargate, Account class)
