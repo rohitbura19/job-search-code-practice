@@ -1,0 +1,6 @@
+# TODO (paper, then compare with answers/):
+#   refund.max-refund-paise / refund.auto-approve-up-to-paise: ?   # defaults live in the record; why still list them here?
+#   spring.data.web.pageable.default-page-size / max-page-size: ?   # the controller test expects 20 and 50; what happens to ?size=100000 without a cap?
+#   spring.jpa.open-in-view: ?                                      # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?                                # production value and the tool that owns the schema
+#   spring.mvc.problemdetails.enabled: ?                            # which errors does it turn into problem+json?
