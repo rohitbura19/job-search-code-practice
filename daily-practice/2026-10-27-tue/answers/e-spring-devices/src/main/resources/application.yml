@@ -1,0 +1,7 @@
+spring:
+  jackson:
+    default-property-inclusion: non_null   # a null lastSeen is omitted, not "lastSeen": null
+  jpa:
+    open-in-view: false                    # no lazy loading in the view layer; a DB connection is not held for the whole request
+    hibernate:
+      ddl-auto: validate                   # production: schema owned by Flyway/Liquibase; tests override with create-drop
