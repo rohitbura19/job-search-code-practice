@@ -1,0 +1,6 @@
+# F2. Time-series telemetry ingestion with downsampling (HLD, 12 min out loud + 5 min self-review)
+
+Feature of a big IoT platform: 2 million devices send a reading (temperature, power, state of charge) every 10 seconds. Dashboards need the last 24 h at full resolution, 90 days at 1-minute resolution and 3 years at 1-hour resolution; alerts must fire within 30 s of a threshold breach. Design the ingestion and storage path.
+
+Cover: protocol and gateway (MQTT/HTTP batch, device auth, back-pressure), the log between ingestion and storage (Kafka partitioned by deviceId), late and out-of-order data and duplicates (device timestamp vs receive timestamp, idempotent writes), the storage engine choice (time-series DB / columnar store vs a relational table; partitioning by time, compression, cardinality limits), downsampling (rollup jobs vs streaming aggregation, what to keep: min/max/avg/count so averages stay correct), the alert path (stream processor with per-device state, hysteresis, not polling the store), query API (resolution chosen by time range, caching), and numbers: 200k writes/s, 17B points/day, 100 B/point raw.
+Say out loud: why you store `sum` and `count` and not `avg` in a rollup, and what you do when a device sends a reading two days late.

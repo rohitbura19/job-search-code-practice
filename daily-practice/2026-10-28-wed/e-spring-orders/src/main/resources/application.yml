@@ -1,0 +1,4 @@
+# TODO (paper, then compare with answers/): the controller test relies on the first one.
+#   orders.max-page-size: ?                         # the upper bound used to clamp ?size=
+#   spring.jpa.open-in-view: ?                      # why false for an API?
+#   spring.jpa.hibernate.ddl-auto: ?                # production value, and who owns the schema instead
