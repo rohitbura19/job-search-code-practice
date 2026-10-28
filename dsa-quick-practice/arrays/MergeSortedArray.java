@@ -10,7 +10,19 @@ import java.util.Arrays;
 public class MergeSortedArray {
 
     static void merge(int[] a, int m, int[] b, int n) {
-        // TODO
+        // reverse order merge
+
+        m--;// A
+        n--;// B
+        int ind = a.length-1;
+
+        while(ind >m && n >=0){
+            if(b[n] > a[m]){
+                a[ind--] = b[n--];
+            }else{
+                a[ind--] = a[m--];
+            }
+        }
     }
 
     public static void main(String[] args) {

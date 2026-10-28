@@ -1,0 +1,12 @@
+{
+  "TriggerFile": "C:\\Users\\Rohit Bura\\Desktop\\Code\\job-search-code-practice\\discussion\\discussion.md",
+  "PollSeconds": 10,
+  "IdleStopMinutes": 120,
+  "TimeoutMinutes": 30,
+  "Branch": "main",
+  "Push": true,
+  "Notify": true,
+  "MaxDiffChars": 40000,
+  "MavenOpts": "-Xmx768m -XX:TieredStopAtLevel=1",
+  "AllowedTools": "Read,Write,Edit,MultiEdit,Glob,Grep,Bash(mvn:*),Bash(java:*),Bash(javac:*)"
+}

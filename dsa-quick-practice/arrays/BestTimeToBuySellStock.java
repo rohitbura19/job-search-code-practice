@@ -9,8 +9,18 @@ package arrays;
 public class BestTimeToBuySellStock {
 
     static int maxProfit(int[] prices) {
-        // TODO
-        return 0;
+
+        int result = 0;
+
+        int maxRight = prices[prices.length-1];
+        for(int i=prices.length-2;i>=0;i--){
+            if(prices[i] > maxRight){
+                maxRight = prices[i];
+            }else{
+                result = Math.max(result, maxRight - prices[i]);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {

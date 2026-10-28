@@ -1,5 +1,6 @@
 package arrays;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Pascal's Triangle  [Easy | Row by row]
@@ -10,7 +11,39 @@ import java.util.List;
 public class PascalsTriangle {
 
     static List<List<Integer>> generate(int numRows) {
-        // TODO
+        
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        List<Integer> prev = null;
+
+        for(int i=0;i<numRows;i++){
+            List<Integer> temp = new ArrayList<>();
+
+            temp.add(1);
+
+
+            if(i>1){
+                prev = result.get(result.size()-1);
+                for(int j=0;j<prev.size()-2;j++){
+                    int first = prev.get(j);
+                    int second = prev.get(j+1);
+                    temp.add(first + second);
+                }
+            }
+
+
+
+            if(i>0){
+                temp.add(1);
+            }
+
+            result.add(temp);
+
+
+        }
+
+        if(result.size()> 0)return result;
         return List.of();
     }
 

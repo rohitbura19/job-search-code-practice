@@ -11,8 +11,7 @@ import java.util.Arrays;
 public class RemoveDuplicatesII {
 
     static int removeDuplicates(int[] nums) {
-        // TODO
-        return 0;
+        return (int) Arrays.stream(nums).distinct().count();
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,6 @@
 package arrays;
 
-import java.util.Arrays;
+import java.util.*;
 
 // Intersection of Two Arrays II  [Easy | Hashing or sort + two pointers]
 // Return the common elements, each as many times as it appears in both, ascending.
@@ -11,7 +11,70 @@ import java.util.Arrays;
 public class IntersectionOfArraysII {
 
     static int[] intersect(int[] a, int[] b) {
-        // TODO
+
+
+        Map<Integer, Integer> map = new HashMap<>();
+        List<Integer> result = new ArrayList<>();
+
+        for(int i:a){
+            if(map.containsKey(i)){
+                map.put(i, map.get(i)  + 1);
+            }else{
+                map.put(i, 1);
+            }
+        }
+
+        for(int i:b){
+            if(map.containsKey(i)){
+                int temp = map.get(i);
+                if(temp> 0){
+                    map.put(i, temp -1);
+                    result.add(i);
+                }else{
+                    map.remove(i);
+                }
+            }
+        }
+
+
+        if(result.size()> 0){
+            return result.stream().mapToInt(Integer::intValue).sorted().toArray();
+        }
+
+        
+        
+
+        // Map<Integer, Integer> map = new HashMap<>();
+
+        // List<Integer> result = new ArrayList<>();
+
+        // for(int i:a){
+        //     if(map.containsKey(i)){
+        //         map.put(i, map.get(i) + 1);
+        //     }else{
+        //         map.put(i, 1);
+        //     }
+        // }
+
+        
+
+        // for(int i:b){
+        //     if(map.containsKey(i)){
+        //         int temp = map.get(i);
+        //         if(temp>= 1){
+        //             map.put(i, temp - 1);
+        //             result.add(i);
+        //         }else{
+        //             map.remove(i);
+        //         }
+        //     }
+        // }
+
+
+        // if(result.size() > 0){
+        //     return result.stream().mapToInt(Integer::intValue).sorted().toArray();
+        // }
+
         return new int[0];
     }
 
