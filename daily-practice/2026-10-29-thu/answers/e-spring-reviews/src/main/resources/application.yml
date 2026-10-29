@@ -1,0 +1,7 @@
+reviews:
+  max-page-size: 50                        # upper bound for ?size; the controller clamps to it
+spring:
+  jpa:
+    open-in-view: false                    # no lazy loading in the view layer; a DB connection is not held for the whole request
+    hibernate:
+      ddl-auto: validate                   # production: schema owned by Flyway/Liquibase; tests override with create-drop
