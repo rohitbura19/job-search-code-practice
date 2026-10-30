@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    open-in-view: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      ack-mode: record
+stock:
+  low-threshold: 5
+  max-page-size: 50
+  topics:
+    reserved: stock.reserved
+    low-stock: stock.low
+    restock: stock.restock

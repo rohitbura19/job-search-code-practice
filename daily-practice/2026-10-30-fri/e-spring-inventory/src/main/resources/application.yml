@@ -1,0 +1,5 @@
+# TODO (the test StockPropsTest.applicationYmlHasTheRequiredKeys checks these):
+#  spring.jpa.open-in-view=false
+#  spring.kafka: bootstrap-servers localhost:9092; producer: String key/value serializers, acks=all, idempotence on;
+#                consumer: String key/value deserializers, auto-offset-reset earliest, enable-auto-commit false; listener ack-mode record
+#  stock: low-threshold 5, max-page-size 50, topics: reserved stock.reserved, low-stock stock.low, restock stock.restock
