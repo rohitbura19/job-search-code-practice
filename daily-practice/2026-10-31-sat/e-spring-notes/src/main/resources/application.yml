@@ -1,0 +1,5 @@
+# TODO (NotesPropsTest.applicationYmlHasTheRequiredKeys checks these):
+#  spring.jpa.open-in-view=false
+#  spring.mvc.problemdetails.enabled=true
+#  spring.jackson.deserialization.fail-on-unknown-properties=true
+#  notes: max-per-owner 100, max-page-size 50

@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    open-in-view: false
+  mvc:
+    problemdetails:
+      enabled: true
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+notes:
+  max-per-owner: 100
+  max-page-size: 50
