@@ -1,0 +1,6 @@
+spring:
+  jpa:
+    open-in-view: false
+reading:
+  max-tags: 5
+  max-page-size: 50

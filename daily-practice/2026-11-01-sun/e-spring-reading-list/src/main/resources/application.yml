@@ -1,0 +1,2 @@
+# TODO: spring.jpa.open-in-view = false (the service returns DTOs inside its transaction);
+#       reading.max-tags = 5, reading.max-page-size = 50
