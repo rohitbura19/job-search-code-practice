@@ -1,0 +1,7 @@
+## Principal-engineer closing round (10 min, speak out loud)
+
+1. In E, the relay publishes row 41, crashes, restarts and publishes row 41 again. Two alerts for the same site now sit in the topic. Where exactly do you make the consumer safe, what is the idempotency key, and what does it cost? Then: the outbox table has 800M rows and the relay query slows down. What do you change (partial index, partitioning, retention)?
+2. In F1, a government moves the DST date three weeks before the change. 300k chargers are on firmware that has the old rule. List what you can do from the cloud without a firmware release, and what the user sees on the app in the meantime.
+3. In F2, finance finds the wallet service credited 4,000 top-ups twice. The webhook had been retried over 2 days. Reconstruct how it could happen with a unique constraint in place (hint: what was the idempotency key, and was the insert and the response in the same unit of work?), then design the fix and the one-off correction using compensating entries.
+4. In D1, the two strings are 10^6 characters long and you need an answer, not the exact distance, when the distance is likely small. What do you change? Then in C1, the "top 10 chargers right now" over a firehose of 2M events/sec across 50 nodes: which structure, and what accuracy guarantee do you quote?
+5. In your Enphase command/notification pipeline, if the charger loses power mid-firmware or mid-schedule update, what state does the charger boot into, and how does the cloud learn the truth (desired vs reported)?
