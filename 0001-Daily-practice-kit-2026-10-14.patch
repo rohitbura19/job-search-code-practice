@@ -1,0 +1,3293 @@
+From 68cb49d6e97a2241bd254f20711ebd3c0d5e956e Mon Sep 17 00:00:00 2001
+From: Rohit Bura <rohitbura19@gmail.com>
+Date: Tue, 3 Nov 2026 18:26:09 +0000
+Subject: [PATCH] Daily practice kit 2026-10-14
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01FkM9KrzEr3k7FcmydZvhuU
+---
+ README.md                                     |   1 +
+ daily-practice/2026-10-14-wed/README.md       |  42 +++
+ .../answers/A1-merge-sorted-array.md          |  13 +
+ .../answers/A2-single-number.md               |  17 ++
+ .../answers/B1-telemetry-streams.md           |  27 ++
+ .../answers/C1-top-k-frequent.md              |  22 ++
+ .../answers/C2-redundant-connection.md        |  25 ++
+ .../answers/D1-edit-distance.md               |  23 ++
+ .../answers/E-outbox-kafka-jwt.md             | 152 ++++++++++
+ .../answers/F-hld-references.md               |  40 +++
+ .../answers/G-schedule-engine-lld.md          |  71 +++++
+ .../2026-10-14-wed/answers/H1-boxing-traps.md |  16 ++
+ .../answers/H2-init-order-decorator.md        |  11 +
+ .../2026-10-14-wed/e-spring-outbox/pom.xml    |  54 ++++
+ .../src/main/java/practice/e/Alert.java       |  29 ++
+ .../main/java/practice/e/AlertController.java |  20 ++
+ .../src/main/java/practice/e/AlertEvent.java  |  11 +
+ .../main/java/practice/e/AlertRepository.java |   6 +
+ .../main/java/practice/e/AlertRequest.java    |  10 +
+ .../main/java/practice/e/AlertResponse.java   |  11 +
+ .../main/java/practice/e/AlertService.java    |  31 ++
+ .../java/practice/e/OutboxApplication.java    |  12 +
+ .../src/main/java/practice/e/OutboxEvent.java |  23 ++
+ .../src/main/java/practice/e/OutboxProps.java |   4 +
+ .../src/main/java/practice/e/OutboxRelay.java |  37 +++
+ .../java/practice/e/OutboxRepository.java     |  15 +
+ .../java/practice/e/AlertControllerTest.java  |  67 +++++
+ .../java/practice/e/AlertServiceTest.java     |  80 ++++++
+ .../test/java/practice/e/OutboxRelayTest.java | 127 ++++++++
+ .../my-designs/F1-smart-charging-schedules.md |  22 ++
+ .../my-designs/F2-prepaid-wallet.md           |  22 ++
+ .../my-designs/G-classes-sketch.md            |   8 +
+ daily-practice/2026-10-14-wed/pom.xml         |  49 ++++
+ .../2026-10-14-wed/questions/00-warmup.md     |   5 +
+ .../questions/A1-merge-sorted-array.md        |   6 +
+ .../questions/A2-single-number.md             |   6 +
+ .../questions/B1-telemetry-streams.md         |  14 +
+ .../questions/C1-top-k-frequent.md            |   6 +
+ .../questions/C2-redundant-connection.md      |   6 +
+ .../questions/D1-edit-distance.md             |   6 +
+ .../questions/E-outbox-kafka-jwt.md           | 108 +++++++
+ .../F1-smart-charging-schedules-hld.md        |  15 +
+ .../questions/F2-prepaid-wallet-hld.md        |   8 +
+ .../questions/G-schedule-engine-lld.md        |   9 +
+ .../questions/H1-boxing-traps.md              |  28 ++
+ .../questions/H2-init-order-decorator.md      |  24 ++
+ .../2026-10-14-wed/questions/closing-round.md |   7 +
+ .../d20261014/a1/MergeSortedArray.java        |  10 +
+ .../practice/d20261014/a2/SingleNumber.java   |  17 ++
+ .../java/practice/d20261014/b1/Reading.java   |   7 +
+ .../practice/d20261014/b1/TelemetryStats.java |  26 ++
+ .../practice/d20261014/c1/TopKFrequent.java   |  10 +
+ .../main/java/practice/d20261014/c2/Dsu.java  |  15 +
+ .../d20261014/c2/RedundantConnection.java     |  10 +
+ .../practice/d20261014/d1/EditDistance.java   |  10 +
+ .../main/java/practice/d20261014/g/AllOf.java |   9 +
+ .../d20261014/g/ChargingConstraint.java       |   8 +
+ .../java/practice/d20261014/g/Schedule.java   |  23 ++
+ .../practice/d20261014/g/ScheduleHolder.java  |  11 +
+ .../java/practice/d20261014/g/Window.java     |  15 +
+ .../practice/d20261014/h1/H1Predictions.java  |  21 ++
+ .../practice/d20261014/h1/H1Snippets.java     |  74 +++++
+ .../practice/d20261014/h2/H2Predictions.java  |  11 +
+ .../practice/d20261014/h2/H2Snippets.java     |  45 +++
+ .../d20261014/h2/LoggingNotifier.java         |  13 +
+ .../practice/d20261014/h2/MetricNotifier.java |  12 +
+ .../java/practice/d20261014/h2/Notifier.java  |   6 +
+ .../d20261014/h2/RetryingNotifier.java        |  12 +
+ .../d20261014/a1/MergeSortedArrayTest.java    |  77 +++++
+ .../d20261014/a2/SingleNumberTest.java        |  95 ++++++
+ .../d20261014/b1/TelemetryStatsTest.java      |  74 +++++
+ .../d20261014/c1/TopKFrequentTest.java        |  75 +++++
+ .../java/practice/d20261014/c2/DsuTest.java   |  45 +++
+ .../d20261014/c2/RedundantConnectionTest.java |  77 +++++
+ .../d20261014/d1/EditDistanceTest.java        |  75 +++++
+ .../practice/d20261014/g/ScheduleTest.java    | 270 ++++++++++++++++++
+ .../d20261014/h1/H1PredictionsTest.java       |  27 ++
+ .../d20261014/h2/H2PredictionsTest.java       |  21 ++
+ .../d20261014/h2/NotifierDecoratorTest.java   |  97 +++++++
+ 79 files changed, 2644 insertions(+)
+ create mode 100644 daily-practice/2026-10-14-wed/README.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/A1-merge-sorted-array.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/A2-single-number.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/B1-telemetry-streams.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/C1-top-k-frequent.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/C2-redundant-connection.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/D1-edit-distance.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/E-outbox-kafka-jwt.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/F-hld-references.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/G-schedule-engine-lld.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/H1-boxing-traps.md
+ create mode 100644 daily-practice/2026-10-14-wed/answers/H2-init-order-decorator.md
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/pom.xml
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/Alert.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertController.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertEvent.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRepository.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRequest.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertResponse.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertService.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxApplication.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxEvent.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxProps.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRelay.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRepository.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertControllerTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertServiceTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/OutboxRelayTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/my-designs/F1-smart-charging-schedules.md
+ create mode 100644 daily-practice/2026-10-14-wed/my-designs/F2-prepaid-wallet.md
+ create mode 100644 daily-practice/2026-10-14-wed/my-designs/G-classes-sketch.md
+ create mode 100644 daily-practice/2026-10-14-wed/pom.xml
+ create mode 100644 daily-practice/2026-10-14-wed/questions/00-warmup.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/A1-merge-sorted-array.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/A2-single-number.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/B1-telemetry-streams.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/C1-top-k-frequent.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/C2-redundant-connection.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/D1-edit-distance.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/E-outbox-kafka-jwt.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/F1-smart-charging-schedules-hld.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/F2-prepaid-wallet-hld.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/G-schedule-engine-lld.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/H1-boxing-traps.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/H2-init-order-decorator.md
+ create mode 100644 daily-practice/2026-10-14-wed/questions/closing-round.md
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a1/MergeSortedArray.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a2/SingleNumber.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/Reading.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/TelemetryStats.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c1/TopKFrequent.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/Dsu.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/RedundantConnection.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/d1/EditDistance.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/AllOf.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ChargingConstraint.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Schedule.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ScheduleHolder.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Window.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Predictions.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Snippets.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Predictions.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Snippets.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/LoggingNotifier.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/MetricNotifier.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/Notifier.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/RetryingNotifier.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a1/MergeSortedArrayTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a2/SingleNumberTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/b1/TelemetryStatsTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c1/TopKFrequentTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/DsuTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/RedundantConnectionTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/d1/EditDistanceTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/g/ScheduleTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h1/H1PredictionsTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/H2PredictionsTest.java
+ create mode 100644 daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/NotifierDecoratorTest.java
+
+diff --git a/README.md b/README.md
+index 989b24c..ae5fa07 100644
+--- a/README.md
++++ b/README.md
+@@ -55,6 +55,7 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
+ - [2026-10-11 sun](daily-practice/2026-10-11-sun/) - Contains Duplicate II, Valid Parentheses, Collectors, Merge Intervals + meeting rooms, Course Schedule II (Kahn), Sliding Window Maximum, Spring Boot + Kafka idempotent listener, notification service HLD/LLD, ConcurrentHashMap, Liskov/composition
+ - [2026-10-12 mon](daily-practice/2026-10-12-mon/) - Reverse linked list, binary search (lower bound, on the answer), Collectors, islands + union-find, coin change DP, two-heap median, rate limiter HLD/LLD, live session push HLD, ThreadPoolExecutor, overloading and singletons
+ - [2026-10-13 tue](daily-practice/2026-10-13-tue/) - Tree diameter, stock profit (greedy/cooldown), Collectors + LRU, longest substring window, Combination Sum, Trapping Rain Water, Spring cache/RestClient/validation, OTA rollout HLD/LLD, try/finally + String pool, immutability + DIP
++- [2026-10-14 wed](daily-practice/2026-10-14-wed/) - In-place merge, XOR bit tricks, telemetry collectors, top-K frequent, union-find, edit distance DP, outbox + Kafka relay, smart-charging schedule (DST) HLD/LLD, wallet ledger HLD, boxing traps, init order, decorators
+ - [2026-10-21 wed](daily-practice/2026-10-21-wed/) - Add Binary + Excel column, Pascal, streams stats/collections views, Quickselect, build tree from traversals, weighted job scheduling, Spring validation + ProblemDetail + ETag, nearby chargers HLD/LLD (geo index), offline sync HLD, lambdas, enum state machine
+ - [2026-10-22 thu](daily-practice/2026-10-22-thu/) - Move Zeroes + Remove Duplicates II, Valid Parentheses + min insertions, collectors (groupingBy/partitioningBy/teeing), Course Schedule II (Kahn), Coin Change I/II, Sliding Window Maximum, Spring JPA + validation + ProblemDetail (meter readings), notification guard HLD/LLD (sliding-window limiter), wallet transfer HLD, core Java predictions, immutable Money (OOP)
+ - [2026-10-23 fri](daily-practice/2026-10-23-fri/) - Majority Element I/II (Boyer-Moore), House Robber I/II, collectors (groupingBy/teeing/partitioningBy), Top K Frequent Words, LIS + Russian Doll, Largest Rectangle in Histogram, Spring JPA atomic update + service + ProblemDetail (slot booking), delayed job scheduler HLD/LLD, leaderboard HLD, core Java predictions, composite directory tree (OOP)
+diff --git a/daily-practice/2026-10-14-wed/README.md b/daily-practice/2026-10-14-wed/README.md
+new file mode 100644
+index 0000000..507d67b
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/README.md
+@@ -0,0 +1,42 @@
++# Wed 14 Oct 2026 - practice
++
++Topics: in-place merge, bit manipulation, top-K, union-find, edit distance (2D DP), telemetry streams, transactional outbox + retry/DLT + JWT, smart-charging schedules (time zones), prepaid wallet ledger, boxing traps, initialization order.
++
++## Order for today
++1. **Minimum set (about 65 min):** `questions/00-warmup.md` (10 min) -> **C1** with a 15 min timer -> **E** (25 min, Spring project: AlertService and OutboxRelay tests) -> **H1** predictions (10 min) -> closing question 1 out loud (5 min).
++2. Extended set: A1, A2, B1, C2, D1, F1, F2, G, H2 and the rest of the closing round.
++
++| Item | Question | Where you write code / answer | Test |
++|---|---|---|---|
++| Warm-up | questions/00-warmup.md | paper | - |
++| A1 | questions/A1-merge-sorted-array.md | a1/MergeSortedArray.java | MergeSortedArrayTest |
++| A2 | questions/A2-single-number.md | a2/SingleNumber.java | SingleNumberTest |
++| B1 | questions/B1-telemetry-streams.md | b1/TelemetryStats.java | TelemetryStatsTest |
++| C1 | questions/C1-top-k-frequent.md | c1/TopKFrequent.java | TopKFrequentTest |
++| C2 | questions/C2-redundant-connection.md | c2/Dsu.java, c2/RedundantConnection.java | DsuTest, RedundantConnectionTest |
++| D1 | questions/D1-edit-distance.md | d1/EditDistance.java | EditDistanceTest |
++| E | questions/E-outbox-kafka-jwt.md | e-spring-outbox/ (AlertService, OutboxRelay, AlertController); JPA, consumer, security, YAML on paper | AlertServiceTest, OutboxRelayTest, AlertControllerTest |
++| F1 | questions/F1-smart-charging-schedules-hld.md | my-designs/F1-smart-charging-schedules.md | say it out loud |
++| F2 | questions/F2-prepaid-wallet-hld.md | my-designs/F2-prepaid-wallet.md | say it out loud |
++| G | questions/G-schedule-engine-lld.md | my-designs/G-classes-sketch.md, then g/Schedule.java, AllOf.java, ScheduleHolder.java | ScheduleTest |
++| H1 | questions/H1-boxing-traps.md | h1/H1Predictions.java (read H1Snippets.java) | H1PredictionsTest |
++| H2 | questions/H2-init-order-decorator.md | h2/H2Predictions.java (read H2Snippets.java), h2/LoggingNotifier.java, RetryingNotifier.java, MetricNotifier.java | H2PredictionsTest, NotifierDecoratorTest |
++| Close | questions/closing-round.md | out loud | - |
++
++Code paths are under `src/main/java/practice/d20261014/`. Run the main kit with `mvn test`; run the Spring project with `mvn test` inside `e-spring-outbox/` (the relay timeout test waits about 5 seconds).
++
++## Score card
++
++| Section | Done? | Tests green without hints? | Minutes | Weak point to revisit |
++|---|---|---|---|---|
++| Warm-up | | - | | |
++| A1 / A2 | | | | |
++| B1 | | | | |
++| C1 / C2 | | | | |
++| D1 | | | | |
++| E | | | | |
++| F1 / F2 | | - | | |
++| G | | | | |
++| H1 / H2 | | | | |
++
++Minutes actually spent: ____
+diff --git a/daily-practice/2026-10-14-wed/answers/A1-merge-sorted-array.md b/daily-practice/2026-10-14-wed/answers/A1-merge-sorted-array.md
+new file mode 100644
+index 0000000..b43db2e
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/A1-merge-sorted-array.md
+@@ -0,0 +1,13 @@
++# Answers: A1-merge-sorted-array
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++```java
++static void merge(int[] a, int m, int[] b, int n) {
++    int i = m - 1, j = n - 1, k = m + n - 1;           // three pointers, all from the end
++    while (j >= 0)                                      // when b is exhausted, a's prefix is already in place
++        a[k--] = (i >= 0 && a[i] > b[j]) ? a[i--] : b[j--];
++}
++```
++Verified: `[1,2,2,3,5,6]`, and `m = 0` gives `[1,2,3]`. O(m+n) time, O(1) space. The trick: the largest values go to the end, where there is free space, so nothing unread is overwritten. Filling from the front would clobber unread elements of `a`. Without spare room, allocate the output, or use a gap-method merge. External merge: stream both files with buffered readers, write the output sequentially, memory is O(buffers). k lists: min-heap of the k heads, O(N log k).
+diff --git a/daily-practice/2026-10-14-wed/answers/A2-single-number.md b/daily-practice/2026-10-14-wed/answers/A2-single-number.md
+new file mode 100644
+index 0000000..57c66fc
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/A2-single-number.md
+@@ -0,0 +1,17 @@
++# Answers: A2-single-number
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++```java
++static int singleNumber(int[] nums) { int x = 0; for (int n : nums) x ^= n; return x; }   // a^a = 0, a^0 = a, commutative
++
++static int[] twoSingles(int[] nums) {
++    int xor = 0; for (int n : nums) xor ^= n;          // = a ^ b, and a != b so xor != 0
++    int low = xor & -xor;                              // lowest set bit: a and b differ here
++    int a = 0, b = 0;
++    for (int n : nums) if ((n & low) == 0) a ^= n; else b ^= n;   // split into two groups, pairs stay together
++    return new int[]{a, b};
++}
++```
++Verified: `4` and `[5, 3]`. Three times: count each bit position modulo 3 (`ones/twos` state machine, or loop over 32 bits summing and taking `% 3`). Power of two: `n > 0 && (n & (n - 1)) == 0`.
+diff --git a/daily-practice/2026-10-14-wed/answers/B1-telemetry-streams.md b/daily-practice/2026-10-14-wed/answers/B1-telemetry-streams.md
+new file mode 100644
+index 0000000..099aac5
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/B1-telemetry-streams.md
+@@ -0,0 +1,27 @@
++# Answers: B1-telemetry-streams
++
++(Spoilers. Open only after your attempt.)
++
++**Reference** (verified against sample data; outputs shown)
++```java
++Map<String, Reading> latest = readings.stream().collect(toMap(Reading::deviceId, Function.identity(),
++    BinaryOperator.maxBy(Comparator.comparing(Reading::ts)), TreeMap::new));
++// {d1=230.0, d2=95.0, d3=50.0}
++
++Map<String, Map<String, Double>> avg = readings.stream().collect(groupingBy(Reading::metric, TreeMap::new,
++    groupingBy(Reading::deviceId, TreeMap::new, averagingDouble(Reading::value))));
++// {temp={d1=77.5, d2=92.5, d3=50.0}, volt={d1=230.0}}
++
++Map<String, Set<String>> tags = readings.stream().collect(groupingBy(Reading::metric, TreeMap::new,
++    flatMapping(r -> r.tags().stream(), toCollection(TreeSet::new))));
++// {temp=[garage, indoor, outdoor], volt=[grid]}
++
++List<String> hot = readings.stream().collect(groupingBy(Reading::deviceId, TreeMap::new,
++        filtering(r -> r.metric().equals("temp") && r.value() > 80, counting())))
++    .entrySet().stream().filter(e -> e.getValue() >= 2).map(Map.Entry::getKey).toList();
++// [d2]
++
++Set<String> active = readings.stream().filter(r -> r.ts().isAfter(cutoff)).map(Reading::deviceId).collect(toSet());
++List<String> silent = known.stream().filter(id -> !active.contains(id)).toList();     // [d2, d3, d4] with the sample cutoff
++```
++Notes: `filtering` keeps the group key even when nothing matches (value 0), a `filter` before `groupingBy` drops that key entirely, which matters for "devices with zero alerts". A device that never reported at all (d4) only appears in the silent list because we start from the known-ids set, not from the readings. Top K: size-K min-heap (`PriorityQueue`) gives O(n log K) and O(K) memory. Reading at or before `t`: `TreeMap<Instant, Reading>.floorEntry(t)`, O(log n); for expiry use `headMap(cutoff).clear()`. `Arrays.asList` is a fixed-size list backed by the array (set allowed, add/remove throw `UnsupportedOperationException`). `subList` is a view: structural changes to the parent afterwards make any later use of the view throw `ConcurrentModificationException`. `EnumMap` for enum keys is faster and smaller than `HashMap`.
+diff --git a/daily-practice/2026-10-14-wed/answers/C1-top-k-frequent.md b/daily-practice/2026-10-14-wed/answers/C1-top-k-frequent.md
+new file mode 100644
+index 0000000..3f91903
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/C1-top-k-frequent.md
+@@ -0,0 +1,22 @@
++# Answers: C1-top-k-frequent
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++```java
++@SuppressWarnings("unchecked")
++static int[] topKFrequent(int[] nums, int k) {
++    Map<Integer, Integer> cnt = new HashMap<>();
++    for (int x : nums) cnt.merge(x, 1, Integer::sum);
++    List<Integer>[] bucket = new List[nums.length + 1];          // index = frequency (max possible = n)
++    for (var e : cnt.entrySet()) {
++        if (bucket[e.getValue()] == null) bucket[e.getValue()] = new ArrayList<>();
++        bucket[e.getValue()].add(e.getKey());
++    }
++    int[] res = new int[k]; int idx = 0;
++    for (int f = bucket.length - 1; f >= 1 && idx < k; f--)       // walk from the highest frequency down
++        if (bucket[f] != null) for (int x : bucket[f]) if (idx < k) res[idx++] = x;
++    return res;
++}
++```
++Verified: `[1, 2]` and `[1]`. O(n) time, O(n) space. Heap version: keep a min-heap of size k keyed by count, O(n log k), best when k is small and you want streaming-friendly code. Quickselect: average O(n), worst O(n²), mutates the array. Pick the heap in production for readability unless profiling says otherwise. Stream with bounded memory: Misra-Gries / Space-Saving (k counters, guarantees every element above n/k is present) or Count-Min Sketch plus a small heap; both are approximate with known error. Distributed: NO, a global top K item can be absent from every local top K (it is just below the cut on each machine). Either send each machine's counts partitioned by hash of the key (so each key's total lands on one machine, then take top K per partition and merge), or use a mergeable sketch.
+diff --git a/daily-practice/2026-10-14-wed/answers/C2-redundant-connection.md b/daily-practice/2026-10-14-wed/answers/C2-redundant-connection.md
+new file mode 100644
+index 0000000..c1ef7c0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/C2-redundant-connection.md
+@@ -0,0 +1,25 @@
++# Answers: C2-redundant-connection
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++```java
++static class DSU {
++    final int[] p, r;
++    DSU(int n) { p = new int[n + 1]; r = new int[n + 1]; for (int i = 0; i <= n; i++) p[i] = i; }
++    int find(int x) { while (p[x] != x) { p[x] = p[p[x]]; x = p[x]; } return x; }   // path halving, iterative: no stack overflow
++    boolean union(int a, int b) {
++        int ra = find(a), rb = find(b);
++        if (ra == rb) return false;                       // already connected: this edge closes a cycle
++        if (r[ra] < r[rb]) { int t = ra; ra = rb; rb = t; }
++        p[rb] = ra; if (r[ra] == r[rb]) r[ra]++;          // attach the shorter tree under the taller one
++        return true;
++    }
++}
++static int[] redundant(int[][] edges) {
++    DSU d = new DSU(edges.length);
++    for (int[] e : edges) if (!d.union(e[0], e[1])) return e;     // the first edge that joins two already-joined nodes
++    return new int[0];
++}
++```
++Verified: `[2, 3]` and `[1, 4]`. O(n α(n)) which is effectively O(n). Dynamic components: start with `count = n`, decrement on each successful `union`. Directed graph version (Redundant Connection II) has two failure modes, a node with two parents and a cycle, and needs candidate edge elimination. Keep the iterative `find`; the textbook recursive one overflows on a long chain.
+diff --git a/daily-practice/2026-10-14-wed/answers/D1-edit-distance.md b/daily-practice/2026-10-14-wed/answers/D1-edit-distance.md
+new file mode 100644
+index 0000000..334c41d
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/D1-edit-distance.md
+@@ -0,0 +1,23 @@
++# Answers: D1-edit-distance
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++- State: `dp[i][j]` = edit distance between the first `i` chars of `a` and the first `j` chars of `b`. Base: `dp[i][0] = i`, `dp[0][j] = j`. Transition: if the chars match, `dp[i-1][j-1]`; else `1 + min(replace dp[i-1][j-1], delete dp[i-1][j], insert dp[i][j-1])`.
++```java
++static int editDistance(String a, String b) {
++    if (a.length() < b.length()) return editDistance(b, a);       // keep rows short: O(min) space
++    int[] prev = new int[b.length() + 1], cur = new int[b.length() + 1];
++    for (int j = 0; j <= b.length(); j++) prev[j] = j;
++    for (int i = 1; i <= a.length(); i++) {
++        cur[0] = i;
++        for (int j = 1; j <= b.length(); j++) {
++            if (a.charAt(i - 1) == b.charAt(j - 1)) cur[j] = prev[j - 1];
++            else cur[j] = 1 + Math.min(prev[j - 1], Math.min(prev[j], cur[j - 1]));
++        }
++        int[] t = prev; prev = cur; cur = t;
++    }
++    return prev[b.length()];
++}
++```
++Verified: 3, 5, and `("", "abc") = 3`. Time O(n·m), space O(min(n, m)). To print operations you need the full table (or Hirschberg's divide and conquer to keep linear space); the traceback from `(n, m)` is: matching chars go diagonal, else follow whichever neighbour equals `dp - 1`. Verified trace for `horse -> ros`: `replace h->r @0, delete r @2, delete e @4`. Bounded distance k: only the diagonal band `|i - j| <= k` can matter, so O(n·k) time (Ukkonen's cutoff), which is how fast fuzzy matching is done. Product use: spell correction, fuzzy search suggestions, deduplicating device or site names. In practice you do not scan the whole dictionary: BK-tree, a trie with a DP row carried down each branch, or n-gram candidate generation first, then edit distance only to rank the candidates.
+diff --git a/daily-practice/2026-10-14-wed/answers/E-outbox-kafka-jwt.md b/daily-practice/2026-10-14-wed/answers/E-outbox-kafka-jwt.md
+new file mode 100644
+index 0000000..dbe5258
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/E-outbox-kafka-jwt.md
+@@ -0,0 +1,152 @@
++# Answers: E-outbox-kafka-jwt
++
++(Spoilers. Open only after your attempt.)
++
++**Reference**
++```java
++@Entity @Table(name = "alert")
++public class Alert {
++    @Id private UUID id = UUID.randomUUID();
++    @Column(nullable = false) private String siteId;
++    @Enumerated(EnumType.STRING) private Severity severity;
++    @Column(nullable = false, length = 500) private String message;
++    private Instant createdAt;
++}
++
++@Entity @Table(name = "outbox_event", indexes = @Index(name = "idx_outbox_unsent", columnList = "sentAt, id"))
++public class OutboxEvent {
++    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
++    private String aggregateId;
++    @JdbcTypeCode(SqlTypes.JSON) @Column(columnDefinition = "jsonb", nullable = false) private String payload;
++    private Instant createdAt;
++    private Instant sentAt;
++}
++// In Postgres a partial index is better: CREATE INDEX idx_outbox_unsent ON outbox_event (id) WHERE sent_at IS NULL;
++
++public interface OutboxRepository extends JpaRepository<OutboxEvent, Long> {
++    @Query(value = "select * from outbox_event where sent_at is null order by id limit :n for update skip locked",
++           nativeQuery = true)
++    List<OutboxEvent> lockBatch(@Param("n") int n);
++}
++
++public record AlertRequest(@NotBlank String siteId, @NotNull Alert.Severity severity,
++                           @NotBlank @Size(max = 500) String message) {}
++
++@ConfigurationProperties(prefix = "outbox") @Validated
++public record OutboxProps(@NotBlank String topic, @DefaultValue("100") @Positive int batchSize) {}
++
++@Service
++public class AlertService {
++    private final AlertRepository alerts; private final OutboxRepository outbox;
++    private final ObjectMapper mapper; private final Clock clock;
++    // constructor injection omitted
++
++    @Transactional                                   // Alert row and outbox row commit or roll back together
++    public Alert create(AlertRequest r) {
++        Alert a = new Alert(); a.setSiteId(r.siteId()); a.setSeverity(r.severity());
++        a.setMessage(r.message()); a.setCreatedAt(clock.instant());
++        alerts.save(a);
++        OutboxEvent e = new OutboxEvent();
++        e.setAggregateId(a.getSiteId()); e.setCreatedAt(clock.instant());
++        try { e.setPayload(mapper.writeValueAsString(AlertEvent.from(a))); }
++        catch (JsonProcessingException ex) { throw new IllegalStateException(ex); }   // rolls back both rows
++        outbox.save(e);
++        return a;
++    }
++}
++
++@Component
++public class OutboxRelay {
++    private final KafkaTemplate<String, String> kafka; private final OutboxRepository repo;
++    private final OutboxProps props; private final Clock clock; private final Counter failures;
++    public OutboxRelay(KafkaTemplate<String, String> kafka, OutboxRepository repo, OutboxProps props,
++                       Clock clock, MeterRegistry registry) {
++        this.kafka = kafka; this.repo = repo; this.props = props; this.clock = clock;
++        this.failures = Counter.builder("outbox.relay.failures").register(registry);
++    }
++
++    @Scheduled(fixedDelayString = "PT0.5S")
++    @Transactional                                    // the row locks live until this method returns
++    public void relay() {
++        for (OutboxEvent e : repo.lockBatch(props.batchSize())) {
++            try {
++                kafka.send(props.topic(), e.getAggregateId(), e.getPayload()).get(5, TimeUnit.SECONDS);
++                e.setSentAt(clock.instant());         // dirty-checking flushes the UPDATE at commit
++            } catch (InterruptedException ie) {
++                Thread.currentThread().interrupt(); failures.increment(); break;
++            } catch (ExecutionException | TimeoutException ex) {
++                failures.increment(); log.warn("relay failed for outbox {}", e.getId(), ex);
++                break;                                // stop: skipping would reorder messages for the same key
++            }
++        }
++    }
++}
++
++@Component
++public class AlertConsumer {
++    @RetryableTopic(attempts = "4", backoff = @Backoff(delay = 1000, multiplier = 2.0),
++                    exclude = IllegalArgumentException.class, dltStrategy = DltStrategy.FAIL_ON_ERROR)
++    @KafkaListener(topics = "alerts", groupId = "alert-notifier")
++    public void on(String payload) { /* parse; must be idempotent: key on the alert id */ }
++
++    @DltHandler
++    public void dlt(String payload, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
++        log.error("dead letter from {}: {}", topic, payload);
++        dltCounter.increment();
++    }
++}
++
++@RestController @RequestMapping("/api/v1/alerts")
++public class AlertController {
++    private final AlertService service;
++    @PostMapping
++    @PreAuthorize("hasAuthority('SCOPE_alerts:write')")    // needs @EnableMethodSecurity; URL rule below also enforces it
++    public ResponseEntity<AlertResponse> create(@Valid @RequestBody AlertRequest r) {
++        Alert a = service.create(r);
++        return ResponseEntity.created(URI.create("/api/v1/alerts/" + a.getId())).body(AlertResponse.from(a));
++    }
++}
++
++@Configuration @EnableMethodSecurity
++public class SecurityConfig {
++    @Bean SecurityFilterChain chain(HttpSecurity http) throws Exception {
++        return http
++            .csrf(c -> c.disable())                                          // no cookies/session: a bearer token is not sent automatically by browsers
++            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
++            .authorizeHttpRequests(a -> a
++                .requestMatchers("/actuator/health/**").permitAll()
++                .requestMatchers(HttpMethod.POST, "/api/v1/alerts").hasAuthority("SCOPE_alerts:write")
++                .anyRequest().authenticated())
++            .oauth2ResourceServer(o -> o.jwt(Customizer.withDefaults()))
++            .build();
++    }
++}
++```
++```yaml
++spring:
++  security.oauth2.resourceserver.jwt.issuer-uri: https://auth.example.com/realms/prod
++  jpa.open-in-view: false
++  kafka:
++    producer:
++      acks: all
++      properties.enable.idempotence: true
++    consumer:
++      group-id: alert-notifier
++      auto-offset-reset: earliest
++outbox:
++  topic: alerts
++  batch-size: 100
++management:
++  endpoints.web.exposure.include: health,metrics,prometheus
++  endpoint.health.probes.enabled: true
++```
++Gotchas:
++- **Why one transaction**: if you saved the alert and then sent to Kafka directly, a crash between the two loses the event (dual-write problem). With the outbox, the event is durable the moment the alert is; the relay delivers it at least once.
++- **Crash after send, before commit**: the row is still unsent, so it is published again after restart. This is at-least-once, so the consumer MUST be idempotent (dedupe on the alert id, unique constraint or conditional write).
++- **`SKIP LOCKED`**: without it, 3 pods all select the same top 100 rows and either block on each other's locks or publish duplicates. With it, each pod takes a different slice of unlocked rows. The trade-off: ordering across pods is no longer strict, which is why per-key order needs one relay per partition of keys, or CDC.
++- **Open transaction during network I/O** pins a DB connection for up to `batch x 5 s` in the worst case. Keep batches small, or split into claim (short tx marks rows `IN_FLIGHT` with a lease), send, then mark `SENT`. Debezium reading the WAL removes polling and the lock entirely at the cost of running Kafka Connect.
++- **Why stop at the first failure**: skipping row 7 and publishing row 8 for the same site reorders its events.
++- **`@RetryableTopic`** creates `alerts-retry-0/1/2` and `alerts-dlt`; the main topic is unblocked while a message waits for its retry, so ordering for that key is lost. A blocking `DefaultErrorHandler` + `ExponentialBackOff` retries in place and preserves ordering but stalls the partition. Choose by whether order matters more than throughput. Non-retryable exceptions (bad payload) should go straight to the DLT.
++- **Outbox cleanup**: a nightly job deleting rows with `sent_at < now() - 7 days` in small batches, or partition by day and drop partitions.
++- **CSRF** protects cookie-authenticated browser sessions; a bearer-token API where nothing is sent automatically has no such attack surface.
++- Scheduling note: `@Scheduled` runs on every pod. Here that is deliberate (SKIP LOCKED makes it safe), which is why it works without ShedLock.
+diff --git a/daily-practice/2026-10-14-wed/answers/F-hld-references.md b/daily-practice/2026-10-14-wed/answers/F-hld-references.md
+new file mode 100644
+index 0000000..5822fc4
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/F-hld-references.md
+@@ -0,0 +1,40 @@
++# Answers: F1 + F2 (HLD references) and principal-level discussions
++
++(Spoilers. Open only after your attempt.)
++
++## Reference — F1
++```
++App --PUT /chargers/{id}/schedule (rules, zone, expectedVersion)--> Schedule Service --> schedule table (version++)
++     --> update IoT shadow "desired" = {version, zone, rules[]}     (AWS IoT Core, MQTT)
++Charger (connected or later) <-- shadow delta -- applies rules locally, stores them in flash
++Charger --> shadow "reported" = {version, appliedAt}  --> IoT rule --> SQS --> Status Consumer --> schedule_state(chargerId, appliedVersion)
++Charger evaluates schedule itself using its local clock + zone rules (no cloud tick)
++App shows: desiredVersion == reportedVersion ? "Applied" : "Pending (charger offline?)"
++```
++- **Evaluate on the device.** A cloud scheduler that sends "start" and "stop" commands to 1M devices at 23:00 is a thundering herd and fails entirely when the charger is offline. Instead the cloud delivers the rules once and the charger decides on its own.
++- **Store local rules, not instants.** "23:00 to 06:00 Europe/Berlin" is the user's intent; converting to UTC breaks twice a year. Store `{days, start, end, ianaZone}`; the device ships tz rules (or you ship the next few transition instants with the document and refresh them periodically).
++- **Desired vs reported state.** The cloud only writes the desired document with a monotonically increasing `version`. The device acks by reporting the version it applied. Edits use optimistic concurrency (`expectedVersion`) so two phones cannot overwrite each other silently. Offline device: the shadow keeps the latest desired state and delivers a delta on reconnect; intermediate versions are skipped, only the latest matters.
++- **Windows crossing midnight** belong to the day they START on ("Mon 23:00 to 06:00" ends Tuesday 06:00). The evaluator must check today's and yesterday's windows. DST: a window inside a spring-forward gap loses real time, a window across a fall-back repeat gains an hour; decide and document the rule (use the wall-clock as the user means it).
++- **Conflicts**: model as constraints that are AND-ed: user schedule allows, tariff says not peak, grid event not curtailing. Anything saying "no" wins; safety (curtailment) outranks user comfort. Return the reason so the app can explain "paused by utility event".
++- **Herd control**: 1M devices reporting at exactly 23:00 floods ingestion. Devices add random jitter (0 to 120 s) to any report triggered by a schedule edge, and report only on change, not on every tick.
++- **Clock drift**: devices sync NTP; if the clock is untrusted (no sync since boot) the device falls back to a safe default (charge allowed, or last known) and reports it.
++- **Metrics**: percentage of chargers whose reported version equals desired within 5 minutes, p95 time-to-apply, devices stuck pending > 24 h, schedule-edge report burst rate, count of DST-day support tickets.
++
++## Reference — F2
++```
++Gateway webhook --> Wallet API: verify signature --> insert ledger entries (idempotent on gateway_txn_id) --> update balance cache
++Session Service --> POST /wallets/{id}/holds (idempotencyKey = sessionId) --> capture at session end (actual cost) / release
++Ledger (append-only): entry(id, walletId, amount_minor, direction, type, idempotencyKey UNIQUE, refType, refId, createdAt)
++Balance = SUM(entries) ; wallet.balance_cached updated in the same transaction
++```
++- **Append-only double-entry ledger.** Each business event writes balanced debit and credit entries (driver wallet vs operator revenue vs gateway clearing). Nothing is ever updated or deleted, so any balance can be reproduced and audited; a refund is a new compensating entry. A single `balance` column that is updated in place gives no audit trail and no way to explain a discrepancy.
++- **Exactly-once credit**: unique constraint on `(type, gateway_txn_id)`. The webhook handler inserts; on a duplicate-key error it returns 200 (already processed). Always verify the HMAC signature and check the amount and currency against your own pending top-up record. Respond 2xx only after the commit.
++- **No negative balance, atomically**: `UPDATE wallet SET balance = balance - :amt, version = version + 1 WHERE id = :id AND balance >= :amt`; zero rows updated means insufficient funds. This is correct and simple; the ledger entry insert is in the same transaction.
++- **Hold/capture** for sessions: at session start place a hold of an estimated amount (reduces available balance, not the ledger balance); at session end capture the real cost (hold released, ledger debit written) or release it. Holds carry an expiry so a crashed session cannot lock funds forever.
++- **Money**: integer minor units (paise) plus currency code. Never floating point.
++- **Reconciliation**: nightly job joins ledger top-ups against the gateway settlement file by `gateway_txn_id`; differences become tickets: missing on our side (webhook lost -> fetch status via API and credit), missing on theirs (refund or fraud).
++- **Hot wallet** (a fleet account with thousands of concurrent sessions): the single row serialises. Split into N sub-balances, or switch the fleet account to a post-paid invoiced model with credit limits.
++- **Metrics**: webhook duplicate rate, unmatched reconciliation count and value, hold-to-capture lag, expired holds, wallet debit latency p99, ledger sum vs cached balance drift (should be zero).
++
++## Principal-level discussion: make F1 more efficient
++(The sheet gives these as questions only, with no written reference. Compare with the F1 reference above: template + overrides with a version pointer, rate-limited fan-out, tz data as separately versioned config with a fallback for old firmware, schedule as a pure function of (rules, now), supersede by version so only the latest desired state is delivered, jittered and batched status writes with latest-state-only storage.)
+diff --git a/daily-practice/2026-10-14-wed/answers/G-schedule-engine-lld.md b/daily-practice/2026-10-14-wed/answers/G-schedule-engine-lld.md
+new file mode 100644
+index 0000000..31b2ed0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/G-schedule-engine-lld.md
+@@ -0,0 +1,71 @@
++# Answers: G-schedule-engine-lld
++
++(Spoilers. Open only after your attempt.)
++
++**Reference** (compiled and run; every test line below is real output)
++```java
++record Window(Set<DayOfWeek> days, LocalTime start, LocalTime end) {
++    Window {                                                      // compact constructor validates once
++        days = Set.copyOf(days);
++        if (days.isEmpty()) throw new IllegalArgumentException("no days");
++        if (start.equals(end)) throw new IllegalArgumentException("start == end is ambiguous; use two rules for 24h");
++    }
++    boolean crossesMidnight() { return end.isBefore(start); }
++}
++
++final class Schedule {                                            // immutable value object
++    private final long version; private final ZoneId zone; private final List<Window> windows;
++    Schedule(long version, ZoneId zone, List<Window> windows) { this.version = version; this.zone = zone; this.windows = List.copyOf(windows); }
++
++    private Instant startOf(LocalDate d, Window w) { return d.atTime(w.start()).atZone(zone).toInstant(); }
++    private Instant endOf(LocalDate d, Window w) {
++        return (w.crossesMidnight() ? d.plusDays(1) : d).atTime(w.end()).atZone(zone).toInstant();
++    }
++    boolean isAllowed(Instant now) {                              // pure function of (rules, now)
++        LocalDate today = now.atZone(zone).toLocalDate();
++        for (int back = 0; back <= 1; back++) {                   // a window that started yesterday may still be running
++            LocalDate d = today.minusDays(back);
++            for (Window w : windows) {
++                if (!w.days().contains(d.getDayOfWeek())) continue;     // a window belongs to the day it STARTS on
++                if (!now.isBefore(startOf(d, w)) && now.isBefore(endOf(d, w))) return true;   // [start, end)
++            }
++        }
++        return false;
++    }
++    Optional<Instant> nextBoundary(Instant now) {                 // next start/end instant strictly after now (within 8 days)
++        LocalDate today = now.atZone(zone).toLocalDate(); Instant best = null;
++        for (int off = -1; off <= 8; off++) {
++            LocalDate d = today.plusDays(off);
++            for (Window w : windows) {
++                if (!w.days().contains(d.getDayOfWeek())) continue;
++                for (Instant t : new Instant[]{startOf(d, w), endOf(d, w)})
++                    if (t.isAfter(now) && (best == null || t.isBefore(best))) best = t;
++            }
++        }
++        return Optional.ofNullable(best);
++    }
++}
++
++interface ChargingConstraint { boolean allows(Instant t); }                      // Specification pattern
++record AllOf(List<ChargingConstraint> parts) implements ChargingConstraint {     // Composite: all must say yes
++    public boolean allows(Instant t) { return parts.stream().allMatch(c -> c.allows(t)); }
++}
++```
++(`Schedule`, `Window` and the tests were compiled and run; the small `AllOf` composite at the end is straightforward but was not run.)
++
++Verified results (America/New_York, windows as stated):
++- Spring forward (Sun 8 Mar 2026): window Sun 01:30 to 03:30 local is only ONE real hour. `06:29Z` false, `06:30Z` true, `07:29Z` true, `07:30Z` false.
++- Window Sun 02:30 to 04:00 on that day: 02:30 does not exist; Java moves the start forward by the gap, so the first boundary is `07:30Z` (03:30 EDT).
++- Fall back (Sun 1 Nov 2026): window Sun 00:30 to 02:30 lasts THREE real hours (180 minutes counted by stepping minute by minute).
++- Midnight crossing, Mon and Tue 23:00 to 06:00: Tue 02:00 allowed (Mon window), Wed 02:00 allowed (Tue window), Thu 02:00 NOT allowed (Wed is not a start day).
++- `new Window(MONDAY, 12:00, 12:00)` is rejected with a clear message instead of silently meaning "empty" or "24 h".
++
++DST decisions to state out loud: `LocalDateTime.atZone` resolves a gap by shifting forward and an overlap by choosing the earlier offset; that is a deliberate, documented choice, not an accident. Compute boundaries from the local date and zone each time, never by adding 24 h to an `Instant`.
++
++Patterns: Value Object (immutable `Schedule`, `Window`), Specification + Composite (`ChargingConstraint`, `AllOf`) so tariff and curtailment plug in without touching schedules, Strategy (how to resolve gap/overlap if the product wants another rule), Factory (build from the shadow JSON and validate), State (device reports `PENDING -> APPLIED`).
++
++Concurrency: the object is immutable, so it is safely shared across threads. On the device, replacing the active schedule is a single atomic reference swap (`AtomicReference<Schedule>` or a volatile field), and the version check (`incoming.version() > current.version()`) makes late or duplicate deliveries harmless. A timer thread sleeps until `nextBoundary` and re-evaluates; on a clock jump it re-evaluates from scratch (pure function), never trusts a saved flag.
++
++Test plan: table-driven tests for every weekday and boundary (start inclusive, end exclusive); the DST cases above for several zones, including a zone with a 30-minute shift (Australia/Lord_Howe) and one with no DST (Asia/Kolkata); a leap day; overlapping windows (union behaviour); `nextBoundary` when nothing is scheduled returns empty; property test comparing `isAllowed` against a brute-force minute-by-minute oracle over a year; version-ordering test (older version ignored); an explicit `Instant` parameter or injected `Clock` so no test sleeps.
++
++Principal-level changes to discuss: `nextBoundary` returns the next start or end even when two windows touch (one ends at 06:00, another begins at 06:00); merge windows first so you do not wake for a no-op change; precompute the next 30 days of transition instants on the cloud and ship them, so a tiny device does not need a full tz database; the 8-day scan is simple but wasteful, an indexed list of boundaries per weekday makes it O(rules); keep the schedule JSON versioned (`schemaVersion`) so old firmware can ignore unknown fields.
+diff --git a/daily-practice/2026-10-14-wed/answers/H1-boxing-traps.md b/daily-practice/2026-10-14-wed/answers/H1-boxing-traps.md
+new file mode 100644
+index 0000000..18ef1d0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/H1-boxing-traps.md
+@@ -0,0 +1,16 @@
++# Answers: H1-boxing-traps
++
++(Spoilers. Open only after your attempt.)
++
++**Reference** (all outputs verified by running the code)
++- Line 1: `true false true`. `Integer.valueOf` caches -128..127 (the range guaranteed by the spec, the upper bound can be raised with `-XX:AutoBoxCacheMax`), so 127 is one shared object and 128 is two. `==` compares references; always use `equals` for boxed values. The cache exists to save allocations for small, very common values.
++- Line 2: `false true true`. `Long.equals(Integer)` is false because the argument is boxed to `Integer` and `equals` checks the class. `L == 127` unboxes to a primitive comparison, so true.
++- Line 3: `NullPointerException`. With an `int` operand in the ternary, the whole expression has type `int`, so `nul` is unboxed. Line 4 is fine and gives `null`: both operands are `Integer`, no unboxing.
++- Line 5: `a 97`. If one operand is `char` and the other an int CONSTANT that fits in `char`, the result type is `char`; with a non-constant `int` variable it promotes to `int` and prints 97.
++- Line 6: `1.0`. Binary numeric promotion applies in a ternary with two numeric operands, so the `1` became a `double`. (`true ? 1 : "x"` prints `1` since there is no numeric promotion with a String.)
++- Line 7: `true`. After erasure there is one `ArrayList` class.
++- Line 8: `sh += 1` compiles (compound assignment has an implicit narrowing cast, value 2); `sh = sh + 1` does not (int to short, lossy).
++- Line 9: `false -2147483648 -2147483648`. Floating point is binary, use `BigDecimal` for money; `abs(MIN_VALUE)` overflows; `MAX_VALUE + 1` wraps.
++- Line 10: `-3 -1 1 -4 15`. Integer division truncates toward zero; `%` keeps the sign of the dividend; `floorMod` is the mathematical modulus (use it for ring-buffer or hash indexes); `>>` is arithmetic (sign extends), `>>>` is logical.
++- Erasure: generic type arguments are removed at compile time and casts inserted. So you cannot: `new T()`, `new T[10]`, `instanceof List<String>`, overload `m(List<String>)` and `m(List<Integer>)`, use primitives as type arguments, or catch a generic exception type. PECS: "Producer Extends, Consumer Super": read from `List<? extends Number>`, write into `List<? super Integer>` (this is the signature shape of `Collections.copy`).
++- `HashMap<Integer,String>.get(5L)` compiles (the parameter is `Object`) and returns `null` because a `Long` never equals an `Integer`. A classic production bug when an id comes out of JSON as a `Long`/`Integer` mix.
+diff --git a/daily-practice/2026-10-14-wed/answers/H2-init-order-decorator.md b/daily-practice/2026-10-14-wed/answers/H2-init-order-decorator.md
+new file mode 100644
+index 0000000..06ac697
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/answers/H2-init-order-decorator.md
+@@ -0,0 +1,11 @@
++# Answers: H2-init-order-decorator
++
++(Spoilers. Open only after your attempt.)
++
++**Reference** (output verified by running the code)
++- Output, in order: `P-static`, `C-static`, `P-inst`, `P-ctor`, `C-show v=0`, `C-inst`, `C-ctor v=7`. Class initialization first (superclass static, then subclass static, once per class load), then for the instance: superclass instance initializers and fields, superclass constructor body, subclass instance initializers and field initializers, subclass constructor body. Because `P`'s constructor runs BEFORE `C`'s field initializers, the virtual call `show()` dispatches to `C.show` while `v` still holds its default `0`.
++- Rule violated: never call an overridable method from a constructor (Effective Java; the subclass runs against a half-constructed object). Fixes: make the method `final` or `private`; do the work in a static factory (`create()`) after construction; or use lazy initialization / an explicit `init()` called by the factory. Constructors should only assign fields.
++- Static blocks run at class initialization: first `new`, first static method call, first non-constant static field access, `Class.forName(name)` (with initialize = true), or initialization of a subclass. Not on merely referencing a `static final` compile-time constant or on `Foo.class`.
++- Spring: the constructor of the abstract parent runs before field or setter injection of the subclass, so an `@Autowired` field is still `null` there (use constructor injection or `@PostConstruct` instead).
++- Decorator: `LoggingNotifier(Notifier inner)`, `RetryingNotifier(Notifier inner, ...)`, `MetricNotifier(Notifier inner)`, each implementing `Notifier`; compose `new Metric(new Retry(new Logging(real)))` in any order, add or drop a behaviour without a new class per combination. Inheritance gives 2^n subclasses for n optional behaviours, couples you to the parent's internals, and cannot be rearranged at runtime. This is also what Spring AOP proxies and `@Retryable`/`@Timed` do under the hood.
++- A second `new C()` in the same JVM prints the same lines without `P-static` and `C-static`.
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/pom.xml b/daily-practice/2026-10-14-wed/e-spring-outbox/pom.xml
+new file mode 100644
+index 0000000..bb43d89
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/pom.xml
+@@ -0,0 +1,54 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
++  <modelVersion>4.0.0</modelVersion>
++  <parent>
++    <groupId>org.springframework.boot</groupId>
++    <artifactId>spring-boot-starter-parent</artifactId>
++    <version>3.3.5</version>
++    <relativePath/>
++  </parent>
++  <groupId>practice</groupId>
++  <artifactId>e-spring-outbox</artifactId>
++  <version>1.0</version>
++  <name>E - transactional outbox relay (unit-test practice, no DB or broker)</name>
++
++  <properties>
++    <java.version>21</java.version>
++  </properties>
++
++  <dependencies>
++    <dependency>
++      <groupId>org.springframework.boot</groupId>
++      <artifactId>spring-boot-starter-web</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>org.springframework.boot</groupId>
++      <artifactId>spring-boot-starter-validation</artifactId>
++    </dependency>
++    <dependency>
++      <!-- KafkaTemplate and SendResult types (mocked in the tests, no broker); brings spring-tx for @Transactional -->
++      <groupId>org.springframework.kafka</groupId>
++      <artifactId>spring-kafka</artifactId>
++    </dependency>
++    <dependency>
++      <!-- MeterRegistry, Counter, SimpleMeterRegistry -->
++      <groupId>io.micrometer</groupId>
++      <artifactId>micrometer-core</artifactId>
++    </dependency>
++    <dependency>
++      <groupId>org.springframework.boot</groupId>
++      <artifactId>spring-boot-starter-test</artifactId>
++      <scope>test</scope>
++    </dependency>
++  </dependencies>
++
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>org.springframework.boot</groupId>
++        <artifactId>spring-boot-maven-plugin</artifactId>
++      </plugin>
++    </plugins>
++  </build>
++</project>
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/Alert.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/Alert.java
+new file mode 100644
+index 0000000..65823b8
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/Alert.java
+@@ -0,0 +1,29 @@
++package practice.e;
++
++import java.time.Instant;
++import java.util.UUID;
++
++/**
++ * GIVEN. Plain object here so no database is needed. The JPA mapping (@Entity, @Id, @Column(nullable = false),
++ * @Enumerated(EnumType.STRING), ...) is a paper question in questions/E.
++ */
++public class Alert {
++    public enum Severity { INFO, WARN, CRITICAL }
++
++    private UUID id = UUID.randomUUID();
++    private String siteId;
++    private Severity severity;
++    private String message;
++    private Instant createdAt;
++
++    public UUID getId() { return id; }
++    public void setId(UUID id) { this.id = id; }
++    public String getSiteId() { return siteId; }
++    public void setSiteId(String siteId) { this.siteId = siteId; }
++    public Severity getSeverity() { return severity; }
++    public void setSeverity(Severity severity) { this.severity = severity; }
++    public String getMessage() { return message; }
++    public void setMessage(String message) { this.message = message; }
++    public Instant getCreatedAt() { return createdAt; }
++    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertController.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertController.java
+new file mode 100644
+index 0000000..e7ed0b0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertController.java
+@@ -0,0 +1,20 @@
++package practice.e;
++
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++/**
++ * TODO - POST /api/v1/alerts
++ *  - validated body (AlertRequest), calls service.create
++ *  - 201 Created, Location header ".../api/v1/alerts/{id}", body AlertResponse.from(alert)
++ * (On paper: also @PreAuthorize("hasAuthority('SCOPE_alerts:write')") and the SecurityConfig; Spring Security is not on this classpath.)
++ */
++@RestController
++@RequestMapping("/api/v1/alerts")
++public class AlertController {
++    private final AlertService service;
++
++    public AlertController(AlertService service) { this.service = service; }
++
++    // TODO: the endpoint
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertEvent.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertEvent.java
+new file mode 100644
+index 0000000..e1b0f39
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertEvent.java
+@@ -0,0 +1,11 @@
++package practice.e;
++
++import java.util.UUID;
++
++/** GIVEN. The JSON that goes into the outbox payload (createdAt as an ISO string so a plain ObjectMapper can write it). */
++public record AlertEvent(UUID id, String siteId, String severity, String message, String createdAt) {
++    public static AlertEvent from(Alert a) {
++        return new AlertEvent(a.getId(), a.getSiteId(), a.getSeverity().name(), a.getMessage(),
++                a.getCreatedAt() == null ? null : a.getCreatedAt().toString());
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRepository.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRepository.java
+new file mode 100644
+index 0000000..42a4820
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRepository.java
+@@ -0,0 +1,6 @@
++package practice.e;
++
++/** GIVEN. Stands in for the Spring Data repository (mocked in the tests). */
++public interface AlertRepository {
++    Alert save(Alert alert);
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRequest.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRequest.java
+new file mode 100644
+index 0000000..ef3810e
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertRequest.java
+@@ -0,0 +1,10 @@
++package practice.e;
++
++import jakarta.validation.constraints.NotBlank;
++import jakarta.validation.constraints.NotNull;
++import jakarta.validation.constraints.Size;
++
++/** GIVEN. */
++public record AlertRequest(@NotBlank String siteId,
++                           @NotNull Alert.Severity severity,
++                           @NotBlank @Size(max = 500) String message) {}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertResponse.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertResponse.java
+new file mode 100644
+index 0000000..cb49a09
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertResponse.java
+@@ -0,0 +1,11 @@
++package practice.e;
++
++import java.time.Instant;
++import java.util.UUID;
++
++/** GIVEN. */
++public record AlertResponse(UUID id, String siteId, Alert.Severity severity, String message, Instant createdAt) {
++    public static AlertResponse from(Alert a) {
++        return new AlertResponse(a.getId(), a.getSiteId(), a.getSeverity(), a.getMessage(), a.getCreatedAt());
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertService.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertService.java
+new file mode 100644
+index 0000000..f25dfc3
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/AlertService.java
+@@ -0,0 +1,31 @@
++package practice.e;
++
++import com.fasterxml.jackson.databind.ObjectMapper;
++import org.springframework.stereotype.Service;
++
++import java.time.Clock;
++
++/**
++ * TODO - write create():
++ *  - one transaction: add the annotation that makes the Alert row and the outbox row commit or roll back together
++ *  - build an Alert from the request (siteId, severity, message, createdAt = clock.instant()) and save it
++ *  - build an OutboxEvent: aggregateId = siteId, createdAt = clock.instant(),
++ *    payload = JSON of AlertEvent.from(alert) written with the mapper;
++ *    if the JSON cannot be written throw IllegalStateException (so the transaction rolls back)
++ *  - save the outbox row and return the alert
++ */
++@Service
++public class AlertService {
++    private final AlertRepository alerts;
++    private final OutboxRepository outbox;
++    private final ObjectMapper mapper;
++    private final Clock clock;
++
++    public AlertService(AlertRepository alerts, OutboxRepository outbox, ObjectMapper mapper, Clock clock) {
++        this.alerts = alerts; this.outbox = outbox; this.mapper = mapper; this.clock = clock;
++    }
++
++    public Alert create(AlertRequest r) {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxApplication.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxApplication.java
+new file mode 100644
+index 0000000..f52e98c
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxApplication.java
+@@ -0,0 +1,12 @@
++package practice.e;
++
++import org.springframework.boot.SpringApplication;
++import org.springframework.boot.autoconfigure.SpringBootApplication;
++import org.springframework.scheduling.annotation.EnableScheduling;
++
++/** GIVEN. Only here so @WebMvcTest has a configuration to start from; the app is not meant to be run (no database). */
++@SpringBootApplication
++@EnableScheduling
++public class OutboxApplication {
++    public static void main(String[] args) { SpringApplication.run(OutboxApplication.class, args); }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxEvent.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxEvent.java
+new file mode 100644
+index 0000000..02521c8
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxEvent.java
+@@ -0,0 +1,23 @@
++package practice.e;
++
++import java.time.Instant;
++
++/** GIVEN. Plain object (the @Entity/@Index/jsonb mapping is a paper question). sentAt == null means not yet published. */
++public class OutboxEvent {
++    private Long id;
++    private String aggregateId;     // Kafka key = siteId
++    private String payload;         // JSON
++    private Instant createdAt;
++    private Instant sentAt;
++
++    public Long getId() { return id; }
++    public void setId(Long id) { this.id = id; }
++    public String getAggregateId() { return aggregateId; }
++    public void setAggregateId(String aggregateId) { this.aggregateId = aggregateId; }
++    public String getPayload() { return payload; }
++    public void setPayload(String payload) { this.payload = payload; }
++    public Instant getCreatedAt() { return createdAt; }
++    public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
++    public Instant getSentAt() { return sentAt; }
++    public void setSentAt(Instant sentAt) { this.sentAt = sentAt; }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxProps.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxProps.java
+new file mode 100644
+index 0000000..bb730ee
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxProps.java
+@@ -0,0 +1,4 @@
++package practice.e;
++
++/** GIVEN. On paper this is a @ConfigurationProperties(prefix = "outbox") @Validated record with @DefaultValue("100"). */
++public record OutboxProps(String topic, int batchSize) {}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRelay.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRelay.java
+new file mode 100644
+index 0000000..b79cbbf
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRelay.java
+@@ -0,0 +1,37 @@
++package practice.e;
++
++import io.micrometer.core.instrument.Counter;
++import io.micrometer.core.instrument.MeterRegistry;
++import org.springframework.kafka.core.KafkaTemplate;
++import org.springframework.stereotype.Component;
++
++import java.time.Clock;
++
++/**
++ * TODO - write relay():
++ *  - run every 500 ms, after the previous run finished (annotation), inside a transaction (annotation)
++ *  - take the batch from repo.lockBatch(props.batchSize())
++ *  - for each row: kafka.send(props.topic(), row.getAggregateId(), row.getPayload()), wait at most 5 seconds for the ack,
++ *    then set sentAt = clock.instant() (the transaction flushes the UPDATE)
++ *  - on the FIRST failure (send failed, or the ack timed out): count it in 'failures' and stop the batch
++ *    (skipping would reorder events of the same site); rows after it stay untouched
++ *  - if the thread is interrupted: restore the interrupt flag, count a failure and stop
++ */
++@Component
++public class OutboxRelay {
++    private final KafkaTemplate<String, String> kafka;
++    private final OutboxRepository repo;
++    private final OutboxProps props;
++    private final Clock clock;
++    private final Counter failures;
++
++    public OutboxRelay(KafkaTemplate<String, String> kafka, OutboxRepository repo, OutboxProps props,
++                       Clock clock, MeterRegistry registry) {
++        this.kafka = kafka; this.repo = repo; this.props = props; this.clock = clock;
++        this.failures = Counter.builder("outbox.relay.failures").register(registry);
++    }
++
++    public void relay() {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRepository.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRepository.java
+new file mode 100644
+index 0000000..0297a04
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/main/java/practice/e/OutboxRepository.java
+@@ -0,0 +1,15 @@
++package practice.e;
++
++import java.util.List;
++
++/**
++ * GIVEN. Stands in for the Spring Data repository (mocked in the tests).
++ * On paper: it would extend JpaRepository<OutboxEvent, Long> and lockBatch would be the native
++ * "... where sent_at is null order by id limit :n for update skip locked" query.
++ */
++public interface OutboxRepository {
++    OutboxEvent save(OutboxEvent event);
++
++    /** The next n unsent rows in id order. */
++    List<OutboxEvent> lockBatch(int n);
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertControllerTest.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertControllerTest.java
+new file mode 100644
+index 0000000..50a31ee
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertControllerTest.java
+@@ -0,0 +1,67 @@
++package practice.e;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
++import org.springframework.boot.test.mock.mockito.MockBean;
++import org.springframework.http.HttpHeaders;
++import org.springframework.http.MediaType;
++import org.springframework.test.web.servlet.MockMvc;
++
++import java.time.Instant;
++import java.util.UUID;
++
++import static org.hamcrest.Matchers.endsWith;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.Mockito.verifyNoInteractions;
++import static org.mockito.Mockito.when;
++import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
++import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
++
++/** E - POST /api/v1/alerts: status, Location and validation. The service is mocked. Run: mvn test */
++@WebMvcTest(AlertController.class)
++class AlertControllerTest {
++
++    @Autowired MockMvc mvc;
++    @MockBean AlertService service;            // Spring Boot 3.4+: @MockitoBean
++
++    static final UUID ID = UUID.fromString("11111111-2222-3333-4444-555555555555");
++
++    static Alert saved() {
++        Alert a = new Alert();
++        a.setId(ID); a.setSiteId("site-1"); a.setSeverity(Alert.Severity.WARN);
++        a.setMessage("low voltage"); a.setCreatedAt(Instant.parse("2026-10-14T10:00:00Z"));
++        return a;
++    }
++
++    @Test @DisplayName("valid body -> 201, Location .../api/v1/alerts/{id}, body has the alert")
++    void created() throws Exception {
++        when(service.create(any(AlertRequest.class))).thenReturn(saved());
++        mvc.perform(post("/api/v1/alerts").contentType(MediaType.APPLICATION_JSON)
++                .content("{\"siteId\":\"site-1\",\"severity\":\"WARN\",\"message\":\"low voltage\"}"))
++           .andExpect(status().isCreated())
++           .andExpect(header().string(HttpHeaders.LOCATION, endsWith("/api/v1/alerts/" + ID)))
++           .andExpect(jsonPath("$.id").value(ID.toString()))
++           .andExpect(jsonPath("$.siteId").value("site-1"))
++           .andExpect(jsonPath("$.severity").value("WARN"));
++    }
++
++    @Test @DisplayName("blank siteId, missing severity, 501-character message -> 400 and the service is never called")
++    void invalid() throws Exception {
++        mvc.perform(post("/api/v1/alerts").contentType(MediaType.APPLICATION_JSON)
++                .content("{\"siteId\":\" \",\"message\":\"" + "x".repeat(501) + "\"}"))
++           .andExpect(status().isBadRequest());
++        verifyNoInteractions(service);
++    }
++
++    @Test @DisplayName("unknown severity value and malformed JSON -> 400")
++    void malformed() throws Exception {
++        mvc.perform(post("/api/v1/alerts").contentType(MediaType.APPLICATION_JSON)
++                .content("{\"siteId\":\"s\",\"severity\":\"BOGUS\",\"message\":\"m\"}"))
++           .andExpect(status().isBadRequest());
++        mvc.perform(post("/api/v1/alerts").contentType(MediaType.APPLICATION_JSON).content("{not json"))
++           .andExpect(status().isBadRequest());
++        verifyNoInteractions(service);
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertServiceTest.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertServiceTest.java
+new file mode 100644
+index 0000000..859b0d2
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/AlertServiceTest.java
+@@ -0,0 +1,80 @@
++package practice.e;
++
++import com.fasterxml.jackson.core.JsonProcessingException;
++import com.fasterxml.jackson.databind.JsonNode;
++import com.fasterxml.jackson.databind.ObjectMapper;
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++import org.mockito.ArgumentCaptor;
++import org.mockito.InOrder;
++import org.springframework.transaction.annotation.Transactional;
++
++import java.time.Clock;
++import java.time.Instant;
++import java.time.ZoneOffset;
++
++import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.ArgumentMatchers.any;
++import static org.mockito.Mockito.*;
++
++/** E - AlertService: Alert + outbox row, one transaction. Plain unit test, mocks only. Run: mvn test */
++class AlertServiceTest {
++
++    static final Clock CLOCK = Clock.fixed(Instant.parse("2026-10-14T10:00:00Z"), ZoneOffset.UTC);
++    static final AlertRequest REQ = new AlertRequest("site-1", Alert.Severity.CRITICAL, "inverter offline");
++
++    final AlertRepository alerts = mock(AlertRepository.class);
++    final OutboxRepository outbox = mock(OutboxRepository.class);
++
++    AlertService service(ObjectMapper mapper) {
++        when(alerts.save(any(Alert.class))).thenAnswer(inv -> inv.getArgument(0));
++        return new AlertService(alerts, outbox, mapper, CLOCK);
++    }
++
++    @Test @DisplayName("saves the Alert with the request fields and the clock time, and returns it")
++    void savesAlert() {
++        Alert result = service(new ObjectMapper()).create(REQ);
++        ArgumentCaptor<Alert> captor = ArgumentCaptor.forClass(Alert.class);
++        verify(alerts).save(captor.capture());
++        Alert saved = captor.getValue();
++        assertEquals("site-1", saved.getSiteId());
++        assertEquals(Alert.Severity.CRITICAL, saved.getSeverity());
++        assertEquals("inverter offline", saved.getMessage());
++        assertEquals(Instant.parse("2026-10-14T10:00:00Z"), saved.getCreatedAt());
++        assertNotNull(saved.getId());
++        assertSame(saved, result);
++    }
++
++    @Test @DisplayName("saves ONE outbox row keyed by siteId whose payload is the alert as JSON; alert is saved first")
++    void savesOutbox() throws Exception {
++        Alert result = service(new ObjectMapper()).create(REQ);
++        ArgumentCaptor<OutboxEvent> captor = ArgumentCaptor.forClass(OutboxEvent.class);
++        verify(outbox, times(1)).save(captor.capture());
++        OutboxEvent e = captor.getValue();
++        assertEquals("site-1", e.getAggregateId());
++        assertEquals(Instant.parse("2026-10-14T10:00:00Z"), e.getCreatedAt());
++        assertNull(e.getSentAt());
++        JsonNode json = new ObjectMapper().readTree(e.getPayload());
++        assertEquals(result.getId().toString(), json.get("id").asText());
++        assertEquals("site-1", json.get("siteId").asText());
++        assertEquals("CRITICAL", json.get("severity").asText());
++        assertEquals("inverter offline", json.get("message").asText());
++        InOrder order = inOrder(alerts, outbox);
++        order.verify(alerts).save(any(Alert.class));
++        order.verify(outbox).save(any(OutboxEvent.class));
++    }
++
++    @Test @DisplayName("if the JSON cannot be written: IllegalStateException and NO outbox row is saved")
++    void jsonFailure() throws Exception {
++        ObjectMapper broken = mock(ObjectMapper.class);
++        when(broken.writeValueAsString(any())).thenThrow(new JsonProcessingException("cannot write") { });
++        assertThrows(IllegalStateException.class, () -> service(broken).create(REQ));
++        verify(outbox, never()).save(any(OutboxEvent.class));
++    }
++
++    @Test @DisplayName("create() runs in a transaction (the annotation is what makes both rows commit or roll back together)")
++    void transactional() throws Exception {
++        assertTrue(AlertService.class.getMethod("create", AlertRequest.class).isAnnotationPresent(Transactional.class)
++                || AlertService.class.isAnnotationPresent(Transactional.class));
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/OutboxRelayTest.java b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/OutboxRelayTest.java
+new file mode 100644
+index 0000000..ce65679
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/e-spring-outbox/src/test/java/practice/e/OutboxRelayTest.java
+@@ -0,0 +1,127 @@
++package practice.e;
++
++import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++import org.springframework.kafka.core.KafkaTemplate;
++import org.springframework.kafka.support.SendResult;
++import org.springframework.scheduling.annotation.Scheduled;
++import org.springframework.transaction.annotation.Transactional;
++
++import java.time.Clock;
++import java.time.Duration;
++import java.time.Instant;
++import java.time.ZoneOffset;
++import java.util.List;
++import java.util.concurrent.CompletableFuture;
++
++import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.ArgumentMatchers.anyString;
++import static org.mockito.ArgumentMatchers.eq;
++import static org.mockito.Mockito.*;
++
++/** E - OutboxRelay: publish in order, stop at the first failure, count failures. Mocks only, no broker. Run: mvn test */
++class OutboxRelayTest {
++
++    static final Instant NOW = Instant.parse("2026-10-14T10:00:00Z");
++    static final Clock CLOCK = Clock.fixed(NOW, ZoneOffset.UTC);
++
++    final OutboxRepository repo = mock(OutboxRepository.class);
++    final SimpleMeterRegistry registry = new SimpleMeterRegistry();
++
++    @SuppressWarnings("unchecked")
++    final KafkaTemplate<String, String> kafka = mock(KafkaTemplate.class);
++
++    OutboxRelay relay(int batchSize) {
++        return new OutboxRelay(kafka, repo, new OutboxProps("alerts", batchSize), CLOCK, registry);
++    }
++
++    static OutboxEvent row(long id, String site) {
++        OutboxEvent e = new OutboxEvent();
++        e.setId(id); e.setAggregateId(site); e.setPayload("{\"n\":" + id + "}"); e.setCreatedAt(NOW.minusSeconds(60));
++        return e;
++    }
++
++    static CompletableFuture<SendResult<String, String>> ok() { return CompletableFuture.completedFuture(null); }
++    static CompletableFuture<SendResult<String, String>> failed() {
++        CompletableFuture<SendResult<String, String>> f = new CompletableFuture<>();
++        f.completeExceptionally(new RuntimeException("broker down"));
++        return f;
++    }
++    double failures() { return registry.get("outbox.relay.failures").counter().count(); }
++
++    @Test @DisplayName("sends every row to the topic with siteId as key and payload as value, then marks sentAt")
++    void allSucceed() {
++        List<OutboxEvent> rows = List.of(row(1, "site-1"), row(2, "site-2"), row(3, "site-1"));
++        when(repo.lockBatch(100)).thenReturn(rows);
++        when(kafka.send(anyString(), anyString(), anyString())).thenAnswer(inv -> ok());
++        relay(100).relay();
++        verify(kafka).send("alerts", "site-1", "{\"n\":1}");
++        verify(kafka).send("alerts", "site-2", "{\"n\":2}");
++        verify(kafka).send("alerts", "site-1", "{\"n\":3}");
++        for (OutboxEvent e : rows) assertEquals(NOW, e.getSentAt());
++        assertEquals(0.0, failures(), 0.0);
++    }
++
++    @Test @DisplayName("asks the repository for batchSize rows")
++    void batchSize() {
++        when(repo.lockBatch(50)).thenReturn(List.of());
++        relay(50).relay();
++        verify(repo).lockBatch(50);
++        verifyNoInteractions(kafka);
++    }
++
++    @Test @DisplayName("first failure stops the batch: earlier rows sent, failing and later rows untouched, counter = 1")
++    void stopsAtFirstFailure() {
++        List<OutboxEvent> rows = List.of(row(1, "site-1"), row(2, "site-2"), row(3, "site-3"));
++        when(repo.lockBatch(100)).thenReturn(rows);
++        when(kafka.send(eq("alerts"), eq("site-2"), anyString())).thenAnswer(inv -> failed());
++        when(kafka.send(eq("alerts"), eq("site-1"), anyString())).thenAnswer(inv -> ok());
++        when(kafka.send(eq("alerts"), eq("site-3"), anyString())).thenAnswer(inv -> ok());
++        relay(100).relay();
++        assertEquals(NOW, rows.get(0).getSentAt());
++        assertNull(rows.get(1).getSentAt());
++        assertNull(rows.get(2).getSentAt());
++        verify(kafka, never()).send(eq("alerts"), eq("site-3"), anyString());
++        assertEquals(1.0, failures(), 0.0);
++    }
++
++    @Test @DisplayName("an ack that never arrives is a failure after about 5 seconds (it does not hang)")
++    void ackTimeout() {
++        List<OutboxEvent> rows = List.of(row(1, "site-1"), row(2, "site-2"));
++        when(repo.lockBatch(100)).thenReturn(rows);
++        when(kafka.send(anyString(), anyString(), anyString())).thenAnswer(inv -> new CompletableFuture<SendResult<String, String>>());
++        assertTimeoutPreemptively(Duration.ofSeconds(9), () -> relay(100).relay());
++        assertNull(rows.get(0).getSentAt());
++        assertNull(rows.get(1).getSentAt());
++        assertEquals(1.0, failures(), 0.0);
++        verify(kafka, times(1)).send(anyString(), anyString(), anyString());
++    }
++
++    @Test @DisplayName("failures accumulate across runs")
++    void counterAccumulates() {
++        when(repo.lockBatch(100)).thenReturn(List.of(row(1, "site-1")));
++        when(kafka.send(anyString(), anyString(), anyString())).thenAnswer(inv -> failed());
++        OutboxRelay r = relay(100);
++        r.relay(); r.relay();
++        assertEquals(2.0, failures(), 0.0);
++    }
++
++    @Test @DisplayName("relay() is @Scheduled every 500 ms and @Transactional (the row locks live for the whole method)")
++    void annotations() throws Exception {
++        var m = OutboxRelay.class.getMethod("relay");
++        Scheduled s = m.getAnnotation(Scheduled.class);
++        assertNotNull(s, "add @Scheduled");
++        long ms = s.fixedDelay() >= 0 ? s.fixedDelay()
++                : s.fixedRate() >= 0 ? s.fixedRate()
++                : millis(s.fixedDelayString().isEmpty() ? s.fixedRateString() : s.fixedDelayString());
++        assertEquals(500L, ms);
++        assertTrue(m.isAnnotationPresent(Transactional.class) || OutboxRelay.class.isAnnotationPresent(Transactional.class),
++                "add @Transactional");
++    }
++
++    static long millis(String text) {
++        if (text.isEmpty()) return -1;
++        try { return Duration.parse(text).toMillis(); } catch (RuntimeException e) { return Long.parseLong(text); }
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/my-designs/F1-smart-charging-schedules.md b/daily-practice/2026-10-14-wed/my-designs/F1-smart-charging-schedules.md
+new file mode 100644
+index 0000000..33a613b
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/my-designs/F1-smart-charging-schedules.md
+@@ -0,0 +1,22 @@
++# F1 - Smart-charging schedules (my answer)
++
++Timer: 15 min. Fill every heading, then say it out loud once. Compare with answers/F-hld-references.md only afterwards.
++
++## 1. Requirements
++- Functional:
++- Non-functional (latency, freshness, availability):
++- Scale numbers (back-of-envelope: searches/s, status changes/s, data size):
++
++## 2. API
++
++## 3. Data model (static vs dynamic)
++
++## 4. High-level diagram (boxes and arrows in text)
++
++## 5. Deep dive: the one hard part
++
++## 6. Failure modes
++
++## 7. Metrics
++
++## 8. How would I make it more efficient? (principal-level)
+diff --git a/daily-practice/2026-10-14-wed/my-designs/F2-prepaid-wallet.md b/daily-practice/2026-10-14-wed/my-designs/F2-prepaid-wallet.md
+new file mode 100644
+index 0000000..9ee9494
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/my-designs/F2-prepaid-wallet.md
+@@ -0,0 +1,22 @@
++# F2 - Prepaid wallet for public charging payments (my answer)
++
++Timer: 15 min. Fill every heading, then say it out loud once. Compare with answers/F-hld-references.md only afterwards.
++
++## 1. Requirements
++- Functional:
++- Non-functional (latency, freshness, availability):
++- Scale numbers (back-of-envelope: searches/s, status changes/s, data size):
++
++## 2. API
++
++## 3. Data model (static vs dynamic)
++
++## 4. High-level diagram (boxes and arrows in text)
++
++## 5. Deep dive: the one hard part
++
++## 6. Failure modes
++
++## 7. Metrics
++
++## 8. How would I make it more efficient? (principal-level)
+diff --git a/daily-practice/2026-10-14-wed/my-designs/G-classes-sketch.md b/daily-practice/2026-10-14-wed/my-designs/G-classes-sketch.md
+new file mode 100644
+index 0000000..bd6e1c2
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/my-designs/G-classes-sketch.md
+@@ -0,0 +1,8 @@
++# G - LLD sketch before coding (5 min)
++
++- Classes and their single responsibility:
++- What is immutable, what is concurrent, who owns which lock:
++- isAllowed() steps in order:
++- nextBoundary() steps in order:
++- Edge cases I must handle (midnight crossing, DST gap and overlap, start == end, no windows, version order):
++- How I will test it:
+diff --git a/daily-practice/2026-10-14-wed/pom.xml b/daily-practice/2026-10-14-wed/pom.xml
+new file mode 100644
+index 0000000..a297457
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/pom.xml
+@@ -0,0 +1,49 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
++  <modelVersion>4.0.0</modelVersion>
++  <groupId>practice</groupId>
++  <artifactId>practice-2026-10-14</artifactId>
++  <version>1.0</version>
++  <name>Daily practice - Wed 14 Oct 2026</name>
++
++  <properties>
++    <maven.compiler.release>21</maven.compiler.release>
++    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++  </properties>
++
++  <dependencyManagement>
++    <dependencies>
++      <dependency>
++        <groupId>org.junit</groupId>
++        <artifactId>junit-bom</artifactId>
++        <version>5.11.3</version>
++        <type>pom</type>
++        <scope>import</scope>
++      </dependency>
++    </dependencies>
++  </dependencyManagement>
++
++  <dependencies>
++    <dependency>
++      <groupId>org.junit.jupiter</groupId>
++      <artifactId>junit-jupiter</artifactId>
++      <scope>test</scope>
++    </dependency>
++  </dependencies>
++
++  <build>
++    <plugins>
++      <plugin>
++        <groupId>org.apache.maven.plugins</groupId>
++        <artifactId>maven-compiler-plugin</artifactId>
++        <version>3.13.0</version>
++      </plugin>
++      <plugin>
++        <groupId>org.apache.maven.plugins</groupId>
++        <artifactId>maven-surefire-plugin</artifactId>
++        <version>3.5.2</version>
++      </plugin>
++    </plugins>
++  </build>
++</project>
+diff --git a/daily-practice/2026-10-14-wed/questions/00-warmup.md b/daily-practice/2026-10-14-wed/questions/00-warmup.md
+new file mode 100644
+index 0000000..99f6b8a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/00-warmup.md
+@@ -0,0 +1,5 @@
++## 0) Warm-up: spaced repetition (10 min)
++
++From a blank page, no peeking: **Coin Change** (state the recurrence first, then code), then **Find Median from Data Stream** (say the heap invariant out loud), then sketch the **token bucket** `take()` method. If you stall on any of them, mark "needed hints" in the score card.
++
++Today's section E is about the "DB commit succeeded but the Kafka send never happened" problem (the dual write), so think of that question again when you reach E.
+diff --git a/daily-practice/2026-10-14-wed/questions/A1-merge-sorted-array.md b/daily-practice/2026-10-14-wed/questions/A1-merge-sorted-array.md
+new file mode 100644
+index 0000000..26b9f53
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/A1-merge-sorted-array.md
+@@ -0,0 +1,6 @@
++> Code: `src/main/java/practice/d20261014/a1/MergeSortedArray.java`. Test: `MergeSortedArrayTest`.
++
++### A1. Merge Sorted Array (in place, fill from the back)
++`nums1` has length `m + n`; its first `m` slots hold a sorted array and the last `n` are zeros. `nums2` has `n` sorted values. Merge `nums2` into `nums1` in place, sorted. `[1,2,3,0,0,0], m=3, [2,5,6], n=3 -> [1,2,2,3,5,6]`.
++
++Interviewer follow-up: why can't you fill from the front without extra space? What if `nums1` had no spare room (you get two sorted lists)? Two sorted files of 50 GB each and 1 GB RAM — how do you merge them? Merge k sorted lists?
+diff --git a/daily-practice/2026-10-14-wed/questions/A2-single-number.md b/daily-practice/2026-10-14-wed/questions/A2-single-number.md
+new file mode 100644
+index 0000000..205d040
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/A2-single-number.md
+@@ -0,0 +1,6 @@
++> Code: `src/main/java/practice/d20261014/a2/SingleNumber.java`. Test: `SingleNumberTest`.
++
++### A2. Single Number (bit manipulation, XOR)
++Every element appears twice except one. Find it in O(n) time and O(1) space. `[4,1,2,1,2] -> 4`.
++
++Interviewer follow-up: two numbers appear once and the rest twice (`[1,2,1,3,2,5] -> [3,5]`). Every element appears three times except one? Why does XOR work? How do you check whether an int is a power of two? (The stub class has `singleNumber`, `twoSingles`, `singleNumberThrice` and `isPowerOfTwo`.)
+diff --git a/daily-practice/2026-10-14-wed/questions/B1-telemetry-streams.md b/daily-practice/2026-10-14-wed/questions/B1-telemetry-streams.md
+new file mode 100644
+index 0000000..1d5541c
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/B1-telemetry-streams.md
+@@ -0,0 +1,14 @@
++> Code: `src/main/java/practice/d20261014/b1/TelemetryStats.java` (record `Reading` is GIVEN). Test: `TelemetryStatsTest`.
++
++### B1. Device telemetry analytics (flatMapping, filtering, nested grouping)
++```java
++record Reading(String deviceId, String metric, double value, Instant ts, Set<String> tags) {}
++```
++Given `List<Reading> readings`:
++1. `Map<String, Reading>` of the latest reading per device, keys sorted.
++2. `Map<String, Map<String, Double>>`: metric -> deviceId -> average value, both levels sorted.
++3. `Map<String, Set<String>>`: metric -> all distinct tags seen for that metric, sorted (one pipeline, no second pass).
++4. Devices with at least 2 `temp` readings above 80.
++5. Given a set of known device ids and a cutoff `Instant`: which known devices have been silent since the cutoff?
++
++Interviewer follow-up: `Collectors.filtering` vs `stream().filter()` before `groupingBy` — what is different (hint: devices with zero matches)? How do you take the top K readings by value without sorting everything? How do you find the reading at or just before time `t` in a time-ordered structure? Why does `Arrays.asList(1,2,3).add(4)` throw? What does `subList` return and what happens if you change the parent?
+diff --git a/daily-practice/2026-10-14-wed/questions/C1-top-k-frequent.md b/daily-practice/2026-10-14-wed/questions/C1-top-k-frequent.md
+new file mode 100644
+index 0000000..b57a17a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/C1-top-k-frequent.md
+@@ -0,0 +1,6 @@
++> Code: `src/main/java/practice/d20261014/c1/TopKFrequent.java`. Test: `TopKFrequentTest`.
++
++### C1. Top K Frequent Elements (hash + bucket sort)
++Return the `k` most frequent values. `[1,1,1,2,2,3], k=2 -> [1,2]`; `[1], k=1 -> [1]`. Must beat O(n log n).
++
++Interviewer follow-up: compare the heap (O(n log k)), quickselect (average O(n)) and bucket (O(n)) approaches — which would you ship? The data is an endless stream of events and you want "top 10 most frequent chargers right now" in bounded memory. The data is spread over 100 machines — can each machine just send its local top K?
+diff --git a/daily-practice/2026-10-14-wed/questions/C2-redundant-connection.md b/daily-practice/2026-10-14-wed/questions/C2-redundant-connection.md
+new file mode 100644
+index 0000000..1cef6b2
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/C2-redundant-connection.md
+@@ -0,0 +1,6 @@
++> Code: `src/main/java/practice/d20261014/c2/Dsu.java`, `RedundantConnection.java`. Tests: `DsuTest`, `RedundantConnectionTest`.
++
++### C2. Redundant Connection (Union-Find / DSU)
++A tree with `n` nodes (labelled 1..n) had one extra edge added. `edges[i] = [a, b]`. Return the edge that can be removed so the graph becomes a tree; if several answers, return the one that occurs last in the input. `[[1,2],[1,3],[2,3]] -> [2,3]`; `[[1,2],[2,3],[3,4],[1,4],[1,5]] -> [1,4]`.
++
++Interviewer follow-up: explain path compression and union by rank, and the resulting complexity. Where else is DSU the right tool (Kruskal's MST, connected components as edges arrive, network partitions)? How would the directed version differ? Count connected components after each edge arrives. (`Dsu` has a `count()` for that last one.)
+diff --git a/daily-practice/2026-10-14-wed/questions/D1-edit-distance.md b/daily-practice/2026-10-14-wed/questions/D1-edit-distance.md
+new file mode 100644
+index 0000000..23e97d8
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/D1-edit-distance.md
+@@ -0,0 +1,6 @@
++> Code: `src/main/java/practice/d20261014/d1/EditDistance.java`. Test: `EditDistanceTest`.
++
++### D1. Edit Distance (2D DP)
++Minimum number of single-character insert, delete or replace operations to turn `word1` into `word2`. `"horse" -> "ros" = 3`; `"intention" -> "execution" = 5`.
++
++Interviewer follow-up: reduce the space to O(min(n, m)). Print the actual operations. Strings are 10^5 long but you only care whether the distance is at most k = 3 — can you beat O(n·m)? Where would you use this at product level (hint: the fuzzy fallback in a typeahead design)?
+diff --git a/daily-practice/2026-10-14-wed/questions/E-outbox-kafka-jwt.md b/daily-practice/2026-10-14-wed/questions/E-outbox-kafka-jwt.md
+new file mode 100644
+index 0000000..07e189a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/E-outbox-kafka-jwt.md
+@@ -0,0 +1,108 @@
++> Code: `e-spring-outbox/` (Spring Boot project: AlertService, OutboxRelay, AlertController, tests with Mockito and MockMvc; no DB, broker or Docker). Test: `AlertServiceTest`, `OutboxRelayTest`, `AlertControllerTest`. The JPA, Kafka-consumer, security and YAML parts below are paper questions: write them in `my-designs/` or a scratch file.
++
++## E) Transactional Outbox + Kafka retry/DLT + JWT security + metrics (25 min)
++
++**Task.** Complete the TODOs without an IDE. A site alerting service. `POST /api/v1/alerts` (requires a JWT with scope `alerts:write`) saves an `Alert` and an `OutboxEvent` in ONE database transaction. A relay job publishes unsent outbox rows to Kafka topic `alerts` keyed by `siteId`, safely across several pods. A consumer processes alerts with retries on a retry topic and a dead-letter topic. Spring Boot 3, Java 17+, Postgres.
++
++```java
++// ---------- Entities ----------
++@Entity @Table(name = "alert")
++public class Alert {
++    // TODO: UUID primary key assigned by the app
++    private UUID id;
++    // TODO: not null
++    private String siteId;
++    // TODO: store enum as string
++    private Severity severity;
++    // TODO: not null, max length 500
++    private String message;
++    private Instant createdAt;
++    public enum Severity { INFO, WARN, CRITICAL }
++}
++
++@Entity @Table(name = "outbox_event")
++// TODO: index to find unsent rows fast
++public class OutboxEvent {
++    // TODO: Long id, auto-generated by the database (IDENTITY)
++    private Long id;
++    private String aggregateId;     // Kafka key = siteId
++    // TODO: JSON string column (jsonb)
++    private String payload;
++    private Instant createdAt;
++    private Instant sentAt;         // null = not yet published
++}
++
++// ---------- Repository ----------
++public interface OutboxRepository /* TODO: extend the right interface */ {
++    // TODO: native query: next :n unsent rows in id order, locked so that other pods SKIP them
++    List<OutboxEvent> lockBatch(int n);
++}
++
++// ---------- DTO ----------
++// TODO: record. siteId not blank, severity not null, message not blank and at most 500 chars
++public class AlertRequest { String siteId; Alert.Severity severity; String message; }
++
++// ---------- Properties ----------
++// TODO: immutable binding of "outbox.topic", "outbox.batch-size" (default 100), validated
++public class OutboxProps { }
++
++// ---------- Service ----------
++@Service
++public class AlertService {
++    // TODO: constructor injection of AlertRepository, OutboxRepository, ObjectMapper, Clock
++    // TODO: one transaction: save Alert + OutboxEvent (payload = JSON of the alert). Why must it be one transaction?
++    public Alert create(AlertRequest r) { return null; }
++}
++
++// ---------- Relay ----------
++@Component
++public class OutboxRelay {
++    // TODO: KafkaTemplate<String,String>, OutboxRepository, OutboxProps, Clock, MeterRegistry
++    // TODO: every 500 ms, in a transaction: lock a batch, send each row (wait up to 5 s for the ack),
++    //       set sentAt on success; on the first failure stop the batch (keeps order) and count it in a
++    //       Micrometer counter "outbox.relay.failures"
++    public void relay() { }
++}
++
++// ---------- Consumer ----------
++@Component
++public class AlertConsumer {
++    // TODO: listen to "alerts", group "alert-notifier"
++    // TODO: up to 4 attempts, 1 s initial backoff doubling, do NOT retry IllegalArgumentException,
++    //       failed messages end up in a dead letter topic
++    public void on(String payload) { }
++    // TODO: handler for the dead letter topic that logs and increments a counter
++}
++
++// ---------- Controller ----------
++// TODO: REST controller
++public class AlertController {
++    // TODO: POST /api/v1/alerts -> 201 + Location header, validated body, requires authority SCOPE_alerts:write
++}
++
++// ---------- Security ----------
++// TODO: stateless JWT resource server. /actuator/health/** public, POST /api/v1/alerts needs SCOPE_alerts:write,
++//       everything else authenticated. Why can CSRF protection be disabled here?
++public class SecurityConfig { }
++```
++```yaml
++# application.yml TODO
++spring:
++  security.oauth2.resourceserver.jwt.issuer-uri: ____
++  jpa.open-in-view: ____
++  kafka:
++    producer:
++      acks: ____
++      properties.enable.idempotence: ____
++    consumer:
++      group-id: alert-notifier
++      auto-offset-reset: ____
++outbox:
++  topic: ____
++  batch-size: ____
++management:
++  endpoints.web.exposure.include: ____      # health, metrics, prometheus
++  endpoint.health.probes.enabled: ____
++```
++
++**Interviewer follow-ups:** The relay sends to Kafka, then crashes before `sentAt` is committed — what happens on restart, and what must the consumer do about it? Why `FOR UPDATE SKIP LOCKED` and what goes wrong without it with 3 pods? The relay holds a DB transaction open during a network call — what is the cost and what is the alternative (CDC with Debezium)? Why stop at the first failure rather than skip it? What is the difference between `@RetryableTopic` (non-blocking, separate topics) and a blocking `DefaultErrorHandler` with backoff, and what does each do to ordering? How do you clean the outbox table?
+diff --git a/daily-practice/2026-10-14-wed/questions/F1-smart-charging-schedules-hld.md b/daily-practice/2026-10-14-wed/questions/F1-smart-charging-schedules-hld.md
+new file mode 100644
+index 0000000..4f81c51
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/F1-smart-charging-schedules-hld.md
+@@ -0,0 +1,15 @@
++> Write your answer in `my-designs/F1-smart-charging-schedules.md`, then say it out loud. No code, no tests.
++
++### F1. Smart-charging schedules for home EV chargers (Enphase-style)
++Users set rules like "only charge Mon to Fri between 23:00 and 06:00" or "pause during the utility's peak-price hours". 1M chargers worldwide, up to 5 rules each, users edit schedules from the mobile app. The charger must obey the schedule even when its internet is down. A charger may be moved to a new time zone; daylight saving transitions must not cause missed or doubled windows. The cloud must know what schedule each charger currently runs, and the app must show "schedule applied" only when the charger has really accepted it.
++
++Think about: where the schedule is evaluated (cloud tick vs the device itself), what you store (local time rule + IANA zone, never a UTC instant), versioned desired-state vs reported-state (AWS IoT device shadow), delivery to offline devices, DST gaps and overlaps, conflicts between user rule, utility tariff and grid-curtailment event, thundering herd when 1M devices wake at 23:00, clock drift on the device.
++
++Frame: requirements (functional, non-functional, scale numbers) -> API -> data model -> high-level diagram -> deep dive on the one hard part -> failure modes -> metrics.
++
++### Principal-level discussion: make F1 more efficient
++1. **Delivery cost**: 1M devices x 5 rules is small data, but a mass edit (utility pushes a new peak-hours template to 400k chargers) is a write storm into the shadow service. How do you fan out with a rate limit, and how do you represent "template + overrides" so one template version change does not require rewriting 400k per-device documents?
++2. **Time zone database drift**: governments change DST rules with a few weeks' notice. How does the charger learn new rules (ship a tz database as part of firmware? as a separately versioned config?), and what happens to chargers that stay on old firmware?
++3. **Safety and correctness**: the charger loses power mid-window and boots at 02:00. It must resume the schedule evaluation from current time, not from a stored "I was in the window" flag. Why is the schedule a pure function of (rules, now) and why does that make it testable?
++4. **Offline for weeks**: the user edited the schedule 5 times while offline. What does the charger see on reconnect, and how does a cloud-side "supersede" avoid replaying stale versions?
++5. **What breaks at 10x chargers**: the status consumer and the `schedule_state` table. Where is the hot partition (hint: devices report at the same minute after a regional DST change), and what do you do (jitter, batching, TTL'd latest-state only)?
+diff --git a/daily-practice/2026-10-14-wed/questions/F2-prepaid-wallet-hld.md b/daily-practice/2026-10-14-wed/questions/F2-prepaid-wallet-hld.md
+new file mode 100644
+index 0000000..ffd07b1
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/F2-prepaid-wallet-hld.md
+@@ -0,0 +1,8 @@
++> Write your answer in `my-designs/F2-prepaid-wallet.md`, then say it out loud. No code, no tests.
++
++### F2. Prepaid wallet for public charging payments
++A driver tops up a wallet with a card or UPI through a payment gateway, then each public charging session debits it. 2M wallets, 300 debits/sec at peak. Balance must never go negative, a top-up must credit exactly once even if the gateway sends its webhook three times, a debit must be exactly once even if the session service retries, and finance must reconcile every rupee against the gateway's settlement file.
++
++Think about: double-entry ledger vs a mutable balance column, immutable entries with an idempotency key, current balance as a derived (cached) value, atomic debit with a conditional update, a hold/capture model for in-progress sessions, webhook signature check and replay safety, reconciliation job, refunds as compensating entries, hot wallet rows (fleet accounts).
++
++Frame: requirements (functional, non-functional, scale numbers) -> API -> data model -> high-level diagram -> deep dive on the one hard part -> failure modes -> metrics.
+diff --git a/daily-practice/2026-10-14-wed/questions/G-schedule-engine-lld.md b/daily-practice/2026-10-14-wed/questions/G-schedule-engine-lld.md
+new file mode 100644
+index 0000000..995bd24
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/G-schedule-engine-lld.md
+@@ -0,0 +1,9 @@
++> Sketch in `my-designs/G-classes-sketch.md` first (5 min), then code in `src/main/java/practice/d20261014/g/` (`Schedule.java`, `AllOf.java`, `ScheduleHolder.java`; `Window` and `ChargingConstraint` are GIVEN). Test: `ScheduleTest`.
++
++## G) LLD of the same question — Schedule engine on the charger / Schedule Service (25 min)
++
++Design the in-process model that answers: "is charging allowed at instant `t`?" and "when does that next change?". Requirements: rules with days of week, start/end local time, windows may cross midnight; one IANA zone per schedule; correct across DST; versioned and immutable; combinable with other constraints (tariff peak, grid curtailment); no real clock inside the logic (testable).
++
++Write the classes, the `isAllowed` flow, the next-boundary computation, and say how DST and midnight are handled. Then discuss patterns, concurrency and tests.
++
++Rules the tests assume: a window belongs to the day it STARTS on; start is inclusive, end is exclusive; compute boundaries from the local date and zone (a gap start shifts forward, an overlap picks the earlier offset, as `LocalDateTime.atZone` does); `nextBoundary` is strictly after `now` and looks at most 8 days ahead; `ScheduleHolder.offer` accepts only a strictly newer version.
+diff --git a/daily-practice/2026-10-14-wed/questions/H1-boxing-traps.md b/daily-practice/2026-10-14-wed/questions/H1-boxing-traps.md
+new file mode 100644
+index 0000000..1bfebb8
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/H1-boxing-traps.md
+@@ -0,0 +1,28 @@
++> Code: read `src/main/java/practice/d20261014/h1/H1Snippets.java`, type your predictions into `H1Predictions.java`. Test: `H1PredictionsTest`.
++
++### H1. Core Java: boxing, caching, ternary typing, erasure
++```java
++Integer i1 = 127, i2 = 127, i3 = 128, i4 = 128;
++System.out.println((i1 == i2) + " " + (i3 == i4) + " " + i3.equals(i4));          // line 1
++
++Long L = 127L;
++System.out.println(L.equals(127) + " " + L.equals(127L) + " " + (L == 127));        // line 2
++
++boolean flag = true; Integer nul = null;
++int r = flag ? nul : 0;                                                            // line 3: what happens?
++Integer r2 = flag ? nul : Integer.valueOf(0);                                      // line 4: and here?
++
++char ch = 'a'; int zero = 0;
++System.out.println((true ? ch : 0) + " " + (true ? ch : zero));                    // line 5
++Object o2 = true ? 1 : 2.0;  System.out.println(o2);                               // line 6
++
++System.out.println(new ArrayList<String>().getClass() == new ArrayList<Integer>().getClass());  // line 7
++short sh = 1; sh += 1;   // compiles?   sh = sh + 1;  // compiles?                 // line 8
++System.out.println((0.1 + 0.2 == 0.3) + " " + Math.abs(Integer.MIN_VALUE) + " " + (Integer.MAX_VALUE + 1));  // line 9
++System.out.println((-7 / 2) + " " + (-7 % 2) + " " + Math.floorMod(-7, 2) + " " + (-7 >> 1) + " " + (-7 >>> 28)); // line 10
++```
++1. Predict every line, with the reason. (In `H1Snippets`, line 3 returns `"NPE"` if it throws and line 4 the printed value; line 8 only runs the `sh += 1` half, the `sh = sh + 1` question is on paper; line 11 is item 4 below.)
++2. Why does the Integer cache exist, what range is guaranteed, and how do you change it?
++3. What is type erasure, what can't you do because of it (name three things), and what is the PECS rule?
++4. `HashMap<Integer,String>` with `get(long)` — what happens and why?
++5. Why is `equals` on `Long` vs `Integer` false even for the same number, and what does that mean for a `Map<Long, ...>` that you query with an `int` literal?
+diff --git a/daily-practice/2026-10-14-wed/questions/H2-init-order-decorator.md b/daily-practice/2026-10-14-wed/questions/H2-init-order-decorator.md
+new file mode 100644
+index 0000000..248b535
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/H2-init-order-decorator.md
+@@ -0,0 +1,24 @@
++> Code: `src/main/java/practice/d20261014/h2/`. Part 1: read `H2Snippets.java`, fill `H2Predictions.java`. Part 2 (item 5): implement `LoggingNotifier`, `RetryingNotifier`, `MetricNotifier`. Test: `H2PredictionsTest`, `NotifierDecoratorTest`.
++
++### H2. OOPS: initialization order and calling overridable methods in a constructor
++```java
++class P {
++    static { System.out.println("P-static"); }
++    { System.out.println("P-inst"); }
++    P() { System.out.println("P-ctor"); show(); }
++    void show() { System.out.println("P-show"); }
++}
++class C extends P {
++    static { System.out.println("C-static"); }
++    int v = 7;
++    { System.out.println("C-inst"); }
++    C() { super(); System.out.println("C-ctor v=" + v); }
++    @Override void show() { System.out.println("C-show v=" + v); }
++}
++new C();
++```
++1. Write the exact output of `new C()` and explain the order. (In the snippets each line is joined with `|`; `firstInstance()` is the first `new C()` in the JVM, `secondInstance()` the next one.)
++2. Why is `v` printed as `0` inside `C-show`? Name the rule this violates and fix it three ways.
++3. Static blocks: when exactly do they run (class initialization, not `new`)? Give two ways a class gets initialized.
++4. An `abstract` class constructor calls an abstract method, and a Spring `@Component` subclass relies on an injected field inside it. What breaks?
++5. Inheritance or composition: your `NotifierBase` has `send()`; now you need logging, retry and metrics around it. Show why a Decorator beats a class hierarchy `LoggingRetryingMetricNotifier extends ...`. (Code it: the three decorators, each implementing `Notifier`.)
+diff --git a/daily-practice/2026-10-14-wed/questions/closing-round.md b/daily-practice/2026-10-14-wed/questions/closing-round.md
+new file mode 100644
+index 0000000..d50e902
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/questions/closing-round.md
+@@ -0,0 +1,7 @@
++## Principal-engineer closing round (10 min, speak out loud)
++
++1. In E, the relay publishes row 41, crashes, restarts and publishes row 41 again. Two alerts for the same site now sit in the topic. Where exactly do you make the consumer safe, what is the idempotency key, and what does it cost? Then: the outbox table has 800M rows and the relay query slows down. What do you change (partial index, partitioning, retention)?
++2. In F1, a government moves the DST date three weeks before the change. 300k chargers are on firmware that has the old rule. List what you can do from the cloud without a firmware release, and what the user sees on the app in the meantime.
++3. In F2, finance finds the wallet service credited 4,000 top-ups twice. The webhook had been retried over 2 days. Reconstruct how it could happen with a unique constraint in place (hint: what was the idempotency key, and was the insert and the response in the same unit of work?), then design the fix and the one-off correction using compensating entries.
++4. In D1, the two strings are 10^6 characters long and you need an answer, not the exact distance, when the distance is likely small. What do you change? Then in C1, the "top 10 chargers right now" over a firehose of 2M events/sec across 50 nodes: which structure, and what accuracy guarantee do you quote?
++5. In your Enphase command/notification pipeline, if the charger loses power mid-firmware or mid-schedule update, what state does the charger boot into, and how does the cloud learn the truth (desired vs reported)?
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a1/MergeSortedArray.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a1/MergeSortedArray.java
+new file mode 100644
+index 0000000..8e139c0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a1/MergeSortedArray.java
+@@ -0,0 +1,10 @@
++package practice.d20261014.a1;
++
++/** A1 - merge b (n sorted values) into a (first m sorted, then n spare slots) in place. O(m+n) time, O(1) space. */
++public final class MergeSortedArray {
++    private MergeSortedArray() {}
++
++    public static void merge(int[] a, int m, int[] b, int n) {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a2/SingleNumber.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a2/SingleNumber.java
+new file mode 100644
+index 0000000..27ee32c
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/a2/SingleNumber.java
+@@ -0,0 +1,17 @@
++package practice.d20261014.a2;
++
++/** A2 - bit manipulation. */
++public final class SingleNumber {
++    private SingleNumber() {}
++
++    /** Every element twice except one. O(n) time, O(1) space. */
++    public static int singleNumber(int[] nums) { throw new UnsupportedOperationException("TODO"); }
++
++    /** Exactly two elements appear once, the rest twice. Return both (any order). */
++    public static int[] twoSingles(int[] nums) { throw new UnsupportedOperationException("TODO"); }
++
++    /** Every element three times except one. */
++    public static int singleNumberThrice(int[] nums) { throw new UnsupportedOperationException("TODO"); }
++
++    public static boolean isPowerOfTwo(int n) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/Reading.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/Reading.java
+new file mode 100644
+index 0000000..bb9ceb3
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/Reading.java
+@@ -0,0 +1,7 @@
++package practice.d20261014.b1;
++
++import java.time.Instant;
++import java.util.Set;
++
++/** GIVEN - do not edit. */
++public record Reading(String deviceId, String metric, double value, Instant ts, Set<String> tags) {}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/TelemetryStats.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/TelemetryStats.java
+new file mode 100644
+index 0000000..60796ae
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/b1/TelemetryStats.java
+@@ -0,0 +1,26 @@
++package practice.d20261014.b1;
++
++import java.time.Instant;
++import java.util.List;
++import java.util.Map;
++import java.util.Set;
++
++/** B1 - one stream pipeline per method (see questions/B1). */
++public final class TelemetryStats {
++    private TelemetryStats() {}
++
++    /** 1. Latest reading per device (by ts), keys sorted (TreeMap). */
++    public static Map<String, Reading> latestPerDevice(List<Reading> readings) { throw new UnsupportedOperationException("TODO"); }
++
++    /** 2. metric -> deviceId -> average value; both levels sorted. */
++    public static Map<String, Map<String, Double>> averageByMetricAndDevice(List<Reading> readings) { throw new UnsupportedOperationException("TODO"); }
++
++    /** 3. metric -> distinct tags seen for that metric; both levels sorted; one pipeline. */
++    public static Map<String, Set<String>> tagsByMetric(List<Reading> readings) { throw new UnsupportedOperationException("TODO"); }
++
++    /** 4. Device ids (sorted) with at least 2 "temp" readings with value strictly above 80. */
++    public static List<String> hotDevices(List<Reading> readings) { throw new UnsupportedOperationException("TODO"); }
++
++    /** 5. Known devices (in the iteration order of known) with no reading strictly after cutoff. */
++    public static List<String> silentSince(Set<String> known, List<Reading> readings, Instant cutoff) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c1/TopKFrequent.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c1/TopKFrequent.java
+new file mode 100644
+index 0000000..1575cce
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c1/TopKFrequent.java
+@@ -0,0 +1,10 @@
++package practice.d20261014.c1;
++
++/** C1 - top K frequent elements, better than O(n log n). Result ordered by frequency, highest first. */
++public final class TopKFrequent {
++    private TopKFrequent() {}
++
++    public static int[] topKFrequent(int[] nums, int k) {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/Dsu.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/Dsu.java
+new file mode 100644
+index 0000000..e3af208
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/Dsu.java
+@@ -0,0 +1,15 @@
++package practice.d20261014.c2;
++
++/** C2 - union-find over nodes 1..n (index 0 unused). Iterative find with path compression, union by rank. */
++public final class Dsu {
++    /** n nodes labelled 1..n, each in its own set. */
++    public Dsu(int n) { throw new UnsupportedOperationException("TODO"); }
++
++    public int find(int x) { throw new UnsupportedOperationException("TODO"); }
++
++    /** Returns false if a and b were already connected (this edge closes a cycle). */
++    public boolean union(int a, int b) { throw new UnsupportedOperationException("TODO"); }
++
++    /** Number of connected components right now (starts at n, drops on every successful union). */
++    public int count() { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/RedundantConnection.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/RedundantConnection.java
+new file mode 100644
+index 0000000..efda844
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/c2/RedundantConnection.java
+@@ -0,0 +1,10 @@
++package practice.d20261014.c2;
++
++/** C2 - the edge that closes the cycle (the last such edge in the input). Use Dsu. */
++public final class RedundantConnection {
++    private RedundantConnection() {}
++
++    public static int[] redundant(int[][] edges) {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/d1/EditDistance.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/d1/EditDistance.java
+new file mode 100644
+index 0000000..a565632
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/d1/EditDistance.java
+@@ -0,0 +1,10 @@
++package practice.d20261014.d1;
++
++/** D1 - Levenshtein distance (insert, delete, replace). Aim for O(n*m) time and O(min(n,m)) space. */
++public final class EditDistance {
++    private EditDistance() {}
++
++    public static int editDistance(String a, String b) {
++        throw new UnsupportedOperationException("TODO");
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/AllOf.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/AllOf.java
+new file mode 100644
+index 0000000..7d1aa12
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/AllOf.java
+@@ -0,0 +1,9 @@
++package practice.d20261014.g;
++
++import java.time.Instant;
++import java.util.List;
++
++/** G - Composite: allowed only if EVERY part allows (an empty list allows). */
++public record AllOf(List<ChargingConstraint> parts) implements ChargingConstraint {
++    @Override public boolean allows(Instant t) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ChargingConstraint.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ChargingConstraint.java
+new file mode 100644
+index 0000000..2119597
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ChargingConstraint.java
+@@ -0,0 +1,8 @@
++package practice.d20261014.g;
++
++import java.time.Instant;
++
++/** GIVEN - do not edit. Specification pattern: one reason charging may or may not be allowed. */
++public interface ChargingConstraint {
++    boolean allows(Instant t);
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Schedule.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Schedule.java
+new file mode 100644
+index 0000000..ce5f2e0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Schedule.java
+@@ -0,0 +1,23 @@
++package practice.d20261014.g;
++
++import java.time.Instant;
++import java.time.ZoneId;
++import java.util.List;
++import java.util.Optional;
++
++/** G - immutable, versioned schedule. Pure functions of (rules, instant): no clock inside. */
++public final class Schedule implements ChargingConstraint {
++
++    /** Copy the list (later changes by the caller must not leak in). */
++    public Schedule(long version, ZoneId zone, List<Window> windows) { throw new UnsupportedOperationException("TODO"); }
++
++    public long version() { throw new UnsupportedOperationException("TODO"); }
++
++    /** Is charging allowed at 'now'? Start inclusive, end exclusive; a window belongs to the day it starts on. */
++    public boolean isAllowed(Instant now) { throw new UnsupportedOperationException("TODO"); }
++
++    @Override public boolean allows(Instant t) { return isAllowed(t); }
++
++    /** Next window start or end strictly after 'now', looking at most 8 days ahead; empty if there are no windows. */
++    public Optional<Instant> nextBoundary(Instant now) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ScheduleHolder.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ScheduleHolder.java
+new file mode 100644
+index 0000000..0d93937
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/ScheduleHolder.java
+@@ -0,0 +1,11 @@
++package practice.d20261014.g;
++
++/** G - what the charger keeps: one active schedule, replaced atomically, late or duplicate deliveries ignored. */
++public final class ScheduleHolder {
++
++    /** Null until the first schedule is accepted. */
++    public Schedule current() { throw new UnsupportedOperationException("TODO"); }
++
++    /** Accept only a strictly newer version than the current one. Returns true if it was accepted. Thread-safe. */
++    public boolean offer(Schedule incoming) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Window.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Window.java
+new file mode 100644
+index 0000000..fd5e88d
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/g/Window.java
+@@ -0,0 +1,15 @@
++package practice.d20261014.g;
++
++import java.time.DayOfWeek;
++import java.time.LocalTime;
++import java.util.Set;
++
++/** GIVEN - do not edit. A weekly window: local start/end time on each of the listed days. It belongs to the day it STARTS on. */
++public record Window(Set<DayOfWeek> days, LocalTime start, LocalTime end) {
++    public Window {
++        days = Set.copyOf(days);
++        if (days.isEmpty()) throw new IllegalArgumentException("no days");
++        if (start.equals(end)) throw new IllegalArgumentException("start == end is ambiguous; use two rules for 24h");
++    }
++    public boolean crossesMidnight() { return end.isBefore(start); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Predictions.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Predictions.java
+new file mode 100644
+index 0000000..d36958a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Predictions.java
+@@ -0,0 +1,21 @@
++package practice.d20261014.h1;
++
++/**
++ * YOUR ANSWERS. Read H1Snippets (or questions/H1-boxing-traps.md), predict what each method returns, and type it here.
++ * Spacing does not matter (the test collapses whitespace). Run H1PredictionsTest to check.
++ */
++public final class H1Predictions {
++    private H1Predictions() {}
++
++    public static final String LINE1 = "TODO";   // Integer cache
++    public static final String LINE2 = "TODO";   // Long.equals(Integer)
++    public static final String LINE3 = "TODO";   // ternary with an int operand and a null Integer
++    public static final String LINE4 = "TODO";   // ternary with two Integers
++    public static final String LINE5 = "TODO";   // char vs int constant vs int variable
++    public static final String LINE6 = "TODO";   // numeric promotion in a ternary
++    public static final String LINE7 = "TODO";   // erasure
++    public static final String LINE8 = "TODO";   // compound assignment
++    public static final String LINE9 = "TODO";   // floating point, abs(MIN_VALUE), overflow
++    public static final String LINE10 = "TODO";  // division, remainder, floorMod, shifts
++    public static final String LINE11 = "TODO";  // get(5L) on Map<Integer,..> and get(5) on Map<Long,..>
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Snippets.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Snippets.java
+new file mode 100644
+index 0000000..eaf9de6
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h1/H1Snippets.java
+@@ -0,0 +1,74 @@
++package practice.d20261014.h1;
++
++import java.util.HashMap;
++import java.util.Map;
++
++/**
++ * GIVEN CODE - do not edit. Each method runs one puzzle from questions/H1 and returns what it "printed".
++ * Read the code, predict the output, and write your prediction into {@link H1Predictions}.
++ */
++public final class H1Snippets {
++    private H1Snippets() {}
++
++    public static String line1() {
++        Integer i1 = 127, i2 = 127, i3 = 128, i4 = 128;
++        return (i1 == i2) + " " + (i3 == i4) + " " + i3.equals(i4);
++    }
++
++    public static String line2() {
++        Long L = 127L;
++        return L.equals(127) + " " + L.equals(127L) + " " + (L == 127);
++    }
++
++    /** Returns "NPE" if the statement throws a NullPointerException, otherwise the value of r. */
++    public static String line3() {
++        boolean flag = true; Integer nul = null;
++        try {
++            int r = flag ? nul : 0;
++            return String.valueOf(r);
++        } catch (NullPointerException e) {
++            return "NPE";
++        }
++    }
++
++    public static String line4() {
++        boolean flag = true; Integer nul = null;
++        Integer r2 = flag ? nul : Integer.valueOf(0);
++        return String.valueOf(r2);
++    }
++
++    public static String line5() {
++        char ch = 'a'; int zero = 0;
++        return (true ? ch : 0) + " " + (true ? ch : zero);
++    }
++
++    public static String line6() {
++        Object o2 = true ? 1 : 2.0;
++        return String.valueOf(o2);
++    }
++
++    public static String line7() {
++        return String.valueOf(new java.util.ArrayList<String>().getClass() == new java.util.ArrayList<Integer>().getClass());
++    }
++
++    /** Only the half that compiles: sh += 1. (Why would "sh = sh + 1" not compile? Answer on paper.) */
++    public static String line8() {
++        short sh = 1; sh += 1;
++        return String.valueOf(sh);
++    }
++
++    public static String line9() {
++        return (0.1 + 0.2 == 0.3) + " " + Math.abs(Integer.MIN_VALUE) + " " + (Integer.MAX_VALUE + 1);
++    }
++
++    public static String line10() {
++        return (-7 / 2) + " " + (-7 % 2) + " " + Math.floorMod(-7, 2) + " " + (-7 >> 1) + " " + (-7 >>> 28);
++    }
++
++    /** Item 4 and 5: a Map<Integer,String> and a Map<Long,String> queried with the "wrong" boxed type. */
++    public static String line11() {
++        Map<Integer, String> mi = new HashMap<>(); mi.put(5, "five");
++        Map<Long, String> ml = new HashMap<>(); ml.put(5L, "five");
++        return mi.get(5L) + " " + mi.get(5) + " " + ml.get(5) + " " + ml.get(5L);
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Predictions.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Predictions.java
+new file mode 100644
+index 0000000..5023e01
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Predictions.java
+@@ -0,0 +1,11 @@
++package practice.d20261014.h2;
++
++/**
++ * YOUR ANSWERS. Lines joined with "|", e.g. "A|B|C". Spacing around "|" does not matter.
++ */
++public final class H2Predictions {
++    private H2Predictions() {}
++
++    public static final String FIRST_INSTANCE = "TODO";
++    public static final String SECOND_INSTANCE = "TODO";
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Snippets.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Snippets.java
+new file mode 100644
+index 0000000..ef7ed6a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/H2Snippets.java
+@@ -0,0 +1,45 @@
++package practice.d20261014.h2;
++
++import java.util.ArrayList;
++import java.util.List;
++
++/**
++ * GIVEN CODE - do not edit. The puzzle from questions/H2, with System.out replaced by a log.
++ * firstInstance() is the FIRST "new Child()" in this JVM, secondInstance() is the next one.
++ * Both return the log lines joined with "|". Predict them in {@link H2Predictions}.
++ */
++public final class H2Snippets {
++    private H2Snippets() {}
++
++    static final List<String> LOG = new ArrayList<>();
++
++    static class Parent {
++        static { LOG.add("P-static"); }
++        { LOG.add("P-inst"); }
++        Parent() { LOG.add("P-ctor"); show(); }
++        void show() { LOG.add("P-show"); }
++    }
++
++    static class Child extends Parent {
++        static { LOG.add("C-static"); }
++        int v = 7;
++        { LOG.add("C-inst"); }
++        Child() { super(); LOG.add("C-ctor v=" + v); }
++        @Override void show() { LOG.add("C-show v=" + v); }
++    }
++
++    private static final String[] RESULTS = run();   // runs once, in this order, so the tests cannot disturb each other
++
++    private static String[] run() {
++        LOG.clear();
++        new Child();
++        String first = String.join("|", LOG);
++        LOG.clear();
++        new Child();
++        String second = String.join("|", LOG);
++        return new String[]{first, second};
++    }
++
++    public static String firstInstance() { return RESULTS[0]; }
++    public static String secondInstance() { return RESULTS[1]; }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/LoggingNotifier.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/LoggingNotifier.java
+new file mode 100644
+index 0000000..6c773e4
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/LoggingNotifier.java
+@@ -0,0 +1,13 @@
++package practice.d20261014.h2;
++
++import java.util.List;
++
++/**
++ * Decorator. Adds "before:<msg>" to the log, calls the inner notifier, then adds "after:<msg>".
++ * If the inner call throws, add "failed:<msg>" instead of "after" and rethrow the SAME exception.
++ */
++public final class LoggingNotifier implements Notifier {
++    public LoggingNotifier(Notifier inner, List<String> log) { throw new UnsupportedOperationException("TODO"); }
++
++    @Override public void send(String message) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/MetricNotifier.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/MetricNotifier.java
+new file mode 100644
+index 0000000..1ae8be1
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/MetricNotifier.java
+@@ -0,0 +1,12 @@
++package practice.d20261014.h2;
++
++/** Decorator. Counts calls that returned normally (sent) and calls that threw (failed); rethrows the exception. */
++public final class MetricNotifier implements Notifier {
++    public MetricNotifier(Notifier inner) { throw new UnsupportedOperationException("TODO"); }
++
++    @Override public void send(String message) { throw new UnsupportedOperationException("TODO"); }
++
++    public int sent() { throw new UnsupportedOperationException("TODO"); }
++
++    public int failed() { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/Notifier.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/Notifier.java
+new file mode 100644
+index 0000000..a211d18
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/Notifier.java
+@@ -0,0 +1,6 @@
++package practice.d20261014.h2;
++
++/** GIVEN - do not edit. */
++public interface Notifier {
++    void send(String message);
++}
+diff --git a/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/RetryingNotifier.java b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/RetryingNotifier.java
+new file mode 100644
+index 0000000..50cd20f
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/main/java/practice/d20261014/h2/RetryingNotifier.java
+@@ -0,0 +1,12 @@
++package practice.d20261014.h2;
++
++/**
++ * Decorator. Calls the inner notifier up to maxAttempts times while it throws a RuntimeException;
++ * after the last failed attempt rethrow that last exception. maxAttempts below 1 -> IllegalArgumentException
++ * (thrown by the constructor).
++ */
++public final class RetryingNotifier implements Notifier {
++    public RetryingNotifier(Notifier inner, int maxAttempts) { throw new UnsupportedOperationException("TODO"); }
++
++    @Override public void send(String message) { throw new UnsupportedOperationException("TODO"); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a1/MergeSortedArrayTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a1/MergeSortedArrayTest.java
+new file mode 100644
+index 0000000..c483036
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a1/MergeSortedArrayTest.java
+@@ -0,0 +1,77 @@
++package practice.d20261014.a1;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++import java.util.Arrays;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class MergeSortedArrayTest {
++
++    static int[] run(int[] a, int m, int[] b) {
++        int[] x = Arrays.copyOf(a, m + b.length);
++        MergeSortedArray.merge(x, m, b.clone(), b.length);
++        return x;
++    }
++
++    @Test @DisplayName("example from the sheet")
++    void example() {
++        assertEquals("[1, 2, 2, 3, 5, 6]", Arrays.toString(run(new int[]{1, 2, 3}, 3, new int[]{2, 5, 6})));
++    }
++
++    @Test @DisplayName("m = 0: everything comes from b")
++    void emptyA() {
++        assertEquals("[1, 2, 3]", Arrays.toString(run(new int[]{}, 0, new int[]{1, 2, 3})));
++    }
++
++    @Test @DisplayName("n = 0: a is untouched")
++    void emptyB() {
++        assertEquals("[4, 5]", Arrays.toString(run(new int[]{4, 5}, 2, new int[]{})));
++    }
++
++    @Test @DisplayName("all of b smaller than a, all of b larger than a")
++    void disjoint() {
++        assertEquals("[1, 2, 7, 8]", Arrays.toString(run(new int[]{7, 8}, 2, new int[]{1, 2})));
++        assertEquals("[1, 2, 7, 8]", Arrays.toString(run(new int[]{1, 2}, 2, new int[]{7, 8})));
++    }
++
++    @Test @DisplayName("duplicates and negatives")
++    void duplicatesNegatives() {
++        assertEquals("[-3, -3, -1, 0, 0, 0, 4]", Arrays.toString(run(new int[]{-3, 0, 0}, 3, new int[]{-3, -1, 0, 4})));
++        assertEquals("[5, 5, 5, 5]", Arrays.toString(run(new int[]{5, 5}, 2, new int[]{5, 5})));
++    }
++
++    @Test @DisplayName("single elements")
++    void single() {
++        assertEquals("[1, 2]", Arrays.toString(run(new int[]{2}, 1, new int[]{1})));
++        assertEquals("[-2147483648, 2147483647]",
++                Arrays.toString(run(new int[]{Integer.MAX_VALUE}, 1, new int[]{Integer.MIN_VALUE})));
++    }
++
++    @Test @DisplayName("random against sort-everything oracle")
++    void random() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 500; t++) {
++            int m = rnd.nextInt(12), n = rnd.nextInt(12);
++            int[] a = rnd.ints(m, -20, 20).sorted().toArray();
++            int[] b = rnd.ints(n, -20, 20).sorted().toArray();
++            int[] expect = new int[m + n];
++            System.arraycopy(a, 0, expect, 0, m); System.arraycopy(b, 0, expect, m, n);
++            Arrays.sort(expect);
++            assertEquals(Arrays.toString(expect), Arrays.toString(run(a, m, b)));
++        }
++    }
++
++    @Test @DisplayName("2 million elements stay linear")
++    void large() {
++        int m = 1_000_000, n = 1_000_000;
++        int[] a = new int[m + n], b = new int[n];
++        for (int i = 0; i < m; i++) a[i] = 2 * i;
++        for (int i = 0; i < n; i++) b[i] = 2 * i + 1;
++        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> MergeSortedArray.merge(a, m, b, n));
++        for (int i = 0; i < m + n; i++) assertEquals((long) i, (long) a[i], "wrong at " + i);
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a2/SingleNumberTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a2/SingleNumberTest.java
+new file mode 100644
+index 0000000..d2be0d0
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/a2/SingleNumberTest.java
+@@ -0,0 +1,95 @@
++package practice.d20261014.a2;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Collections;
++import java.util.List;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class SingleNumberTest {
++
++    static int[] shuffled(List<Integer> xs, long seed) {
++        List<Integer> c = new ArrayList<>(xs);
++        Collections.shuffle(c, new Random(seed));
++        return c.stream().mapToInt(Integer::intValue).toArray();
++    }
++
++    @Test @DisplayName("singleNumber: sheet example, single element, negatives, MIN_VALUE")
++    void single() {
++        assertEquals(4, SingleNumber.singleNumber(new int[]{4, 1, 2, 1, 2}));
++        assertEquals(7, SingleNumber.singleNumber(new int[]{7}));
++        assertEquals(-5, SingleNumber.singleNumber(new int[]{-5, 3, 3}));
++        assertEquals(Integer.MIN_VALUE, SingleNumber.singleNumber(new int[]{Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE}));
++        assertEquals(0, SingleNumber.singleNumber(new int[]{1, 0, 1}));
++    }
++
++    @Test @DisplayName("twoSingles: sheet example, negatives, a pair containing 0")
++    void two() {
++        assertEquals("[3, 5]", sorted(SingleNumber.twoSingles(new int[]{1, 2, 1, 3, 2, 5})));
++        assertEquals("[-4, 9]", sorted(SingleNumber.twoSingles(new int[]{9, -4, 6, 6})));
++        assertEquals("[0, 8]", sorted(SingleNumber.twoSingles(new int[]{0, 8})));
++        assertEquals("[-2147483648, 2147483647]",
++                sorted(SingleNumber.twoSingles(new int[]{Integer.MIN_VALUE, 1, Integer.MAX_VALUE, 1})));
++    }
++
++    static String sorted(int[] r) { int[] c = r.clone(); Arrays.sort(c); return Arrays.toString(c); }
++
++    @Test @DisplayName("singleNumberThrice: sheet-style cases, negatives")
++    void thrice() {
++        assertEquals(3, SingleNumber.singleNumberThrice(new int[]{2, 2, 3, 2}));
++        assertEquals(99, SingleNumber.singleNumberThrice(new int[]{0, 1, 0, 1, 0, 1, 99}));
++        assertEquals(-1, SingleNumber.singleNumberThrice(new int[]{-1, 5, 5, 5}));
++        assertEquals(Integer.MIN_VALUE, SingleNumber.singleNumberThrice(new int[]{Integer.MIN_VALUE, 7, 7, 7}));
++        assertEquals(-3, SingleNumber.singleNumberThrice(new int[]{-3}));
++    }
++
++    @Test @DisplayName("isPowerOfTwo: 1, 2, 1<<30 yes; 0, negatives, MIN_VALUE, 6 no")
++    void pow2() {
++        assertTrue(SingleNumber.isPowerOfTwo(1));
++        assertTrue(SingleNumber.isPowerOfTwo(2));
++        assertTrue(SingleNumber.isPowerOfTwo(1 << 30));
++        assertFalse(SingleNumber.isPowerOfTwo(0));
++        assertFalse(SingleNumber.isPowerOfTwo(-8));
++        assertFalse(SingleNumber.isPowerOfTwo(Integer.MIN_VALUE));
++        assertFalse(SingleNumber.isPowerOfTwo(6));
++        assertFalse(SingleNumber.isPowerOfTwo(Integer.MAX_VALUE));
++    }
++
++    @Test @DisplayName("random inputs against a counting oracle")
++    void random() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 300; t++) {
++            int single = rnd.nextInt(), other = rnd.nextInt();
++            while (other == single) other = rnd.nextInt();
++            java.util.Set<Integer> distinct = new java.util.LinkedHashSet<>();
++            for (int i = 0, k = rnd.nextInt(10); i < k; i++) {
++                int v = rnd.nextInt(2000) - 1000;
++                if (v != single && v != other) distinct.add(v);
++            }
++            List<Integer> twice = new ArrayList<>(), thrice = new ArrayList<>();
++            for (int v : distinct) { twice.add(v); twice.add(v); thrice.add(v); thrice.add(v); thrice.add(v); }
++            List<Integer> a = new ArrayList<>(twice); a.add(single);
++            assertEquals(single, SingleNumber.singleNumber(shuffled(a, t)));
++            List<Integer> b = new ArrayList<>(thrice); b.add(single);
++            assertEquals(single, SingleNumber.singleNumberThrice(shuffled(b, t)));
++            List<Integer> c = new ArrayList<>(twice); c.add(single); c.add(other);
++            int[] expect = {Math.min(single, other), Math.max(single, other)};
++            assertEquals(Arrays.toString(expect), sorted(SingleNumber.twoSingles(shuffled(c, t))));
++        }
++    }
++
++    @Test @DisplayName("a million elements in linear time")
++    void large() {
++        int n = 1_000_000;
++        int[] a = new int[2 * n + 1];
++        for (int i = 0; i < n; i++) { a[2 * i] = i + 1; a[2 * i + 1] = i + 1; }
++        a[2 * n] = -42;
++        assertTimeoutPreemptively(Duration.ofSeconds(2), () -> assertEquals(-42, SingleNumber.singleNumber(a)));
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/b1/TelemetryStatsTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/b1/TelemetryStatsTest.java
+new file mode 100644
+index 0000000..f2bda19
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/b1/TelemetryStatsTest.java
+@@ -0,0 +1,74 @@
++package practice.d20261014.b1;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Instant;
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Map;
++import java.util.Set;
++import java.util.TreeSet;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class TelemetryStatsTest {
++
++    static final Instant T0 = Instant.parse("2026-10-14T10:00:00Z");
++    static Reading r(String dev, String metric, double v, int minute, String... tags) {
++        return new Reading(dev, metric, v, T0.plusSeconds(60L * minute), Set.of(tags));
++    }
++    static List<Reading> sample() {
++        return List.of(
++            r("d1", "temp", 75, 0, "indoor"),
++            r("d2", "temp", 90, 3, "outdoor"),
++            r("d1", "temp", 80, 1, "indoor"),
++            r("d3", "temp", 50, 1, "garage"),
++            r("d2", "temp", 95, 4, "outdoor"),
++            r("d1", "volt", 230, 10, "grid"));
++    }
++
++    @Test @DisplayName("1. latest per device, keys sorted, input order irrelevant")
++    void latest() {
++        Map<String, Reading> m = TelemetryStats.latestPerDevice(sample());
++        assertEquals("[d1, d2, d3]", m.keySet().toString());
++        assertEquals(230.0, m.get("d1").value(), 0.0);
++        assertEquals(95.0, m.get("d2").value(), 0.0);
++        assertEquals(50.0, m.get("d3").value(), 0.0);
++        assertTrue(TelemetryStats.latestPerDevice(List.of()).isEmpty());
++    }
++
++    @Test @DisplayName("2. average per metric and device, both levels sorted")
++    void average() {
++        Map<String, Map<String, Double>> m = TelemetryStats.averageByMetricAndDevice(sample());
++        assertEquals("{temp={d1=77.5, d2=92.5, d3=50.0}, volt={d1=230.0}}", m.toString());
++        assertTrue(TelemetryStats.averageByMetricAndDevice(List.of()).isEmpty());
++    }
++
++    @Test @DisplayName("3. distinct tags per metric, sorted")
++    void tags() {
++        Map<String, Set<String>> m = TelemetryStats.tagsByMetric(sample());
++        assertEquals("{temp=[garage, indoor, outdoor], volt=[grid]}", m.toString());
++    }
++
++    @Test @DisplayName("4. hot devices: at least two temp readings strictly above 80")
++    void hot() {
++        assertEquals("[d2]", TelemetryStats.hotDevices(sample()).toString());
++        List<Reading> more = new ArrayList<>(sample());
++        more.add(r("d1", "temp", 81, 5)); more.add(r("d1", "temp", 82, 6));
++        more.add(r("d9", "volt", 500, 6)); more.add(r("d9", "volt", 600, 7));   // not temp
++        assertEquals("[d1, d2]", TelemetryStats.hotDevices(more).toString());
++        assertEquals("[]", TelemetryStats.hotDevices(List.of()).toString());
++    }
++
++    @Test @DisplayName("5. silent since cutoff: starts from the known ids, so d4 (never reported) is included")
++    void silent() {
++        Set<String> known = new TreeSet<>(List.of("d1", "d2", "d3", "d4"));
++        assertEquals("[d2, d3, d4]", TelemetryStats.silentSince(known, sample(), T0.plusSeconds(300)).toString());
++        // a reading exactly AT the cutoff does not count
++        assertEquals("[d1, d2, d3, d4]", TelemetryStats.silentSince(known, sample(), T0.plusSeconds(600)).toString());
++        assertEquals("[]", TelemetryStats.silentSince(new TreeSet<>(), sample(), T0).toString());
++        // an unknown device that reported is ignored
++        assertEquals("[d1]", TelemetryStats.silentSince(new TreeSet<>(List.of("d1")), List.of(r("zz", "temp", 1, 5)), T0).toString());
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c1/TopKFrequentTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c1/TopKFrequentTest.java
+new file mode 100644
+index 0000000..5a469b6
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c1/TopKFrequentTest.java
+@@ -0,0 +1,75 @@
++package practice.d20261014.c1;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Collections;
++import java.util.List;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class TopKFrequentTest {
++
++    @Test @DisplayName("sheet examples")
++    void examples() {
++        assertEquals("[1, 2]", Arrays.toString(TopKFrequent.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2)));
++        assertEquals("[1]", Arrays.toString(TopKFrequent.topKFrequent(new int[]{1}, 1)));
++    }
++
++    @Test @DisplayName("negatives, zero, k equals the number of distinct values")
++    void negatives() {
++        assertEquals("[-1, 0, 5]", Arrays.toString(TopKFrequent.topKFrequent(new int[]{5, -1, -1, -1, 0, 0, 5, -1}, 3)));
++        assertEquals("[7]", Arrays.toString(TopKFrequent.topKFrequent(new int[]{7, 7, 7}, 1)));
++        assertEquals("[]", Arrays.toString(TopKFrequent.topKFrequent(new int[]{1, 2, 3}, 0)));
++    }
++
++    @Test @DisplayName("ties: any order inside the same frequency, but the right set")
++    void ties() {
++        int[] r = TopKFrequent.topKFrequent(new int[]{4, 4, 4, 1, 1, 2, 2, 3}, 3);
++        assertEquals(4, r[0]);
++        int[] tail = {r[1], r[2]}; Arrays.sort(tail);
++        assertEquals("[1, 2]", Arrays.toString(tail));
++    }
++
++    @Test @DisplayName("random inputs with distinct frequencies against a sort oracle")
++    void random() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 200; t++) {
++            int distinct = 1 + rnd.nextInt(15);
++            List<Integer> vals = new ArrayList<>();
++            for (int i = 0; i < distinct; i++) vals.add(rnd.nextInt(1000) - 500);
++            vals = new ArrayList<>(new java.util.LinkedHashSet<>(vals));
++            List<Integer> data = new ArrayList<>();
++            int[] byFreq = new int[vals.size()];
++            for (int i = 0; i < vals.size(); i++) {           // value i appears i+1 times: all frequencies differ
++                for (int c = 0; c <= i; c++) data.add(vals.get(i));
++                byFreq[vals.size() - 1 - i] = vals.get(i);     // highest frequency first
++            }
++            Collections.shuffle(data, rnd);
++            int k = 1 + rnd.nextInt(vals.size());
++            int[] expect = Arrays.copyOf(byFreq, k);
++            assertEquals(Arrays.toString(expect),
++                    Arrays.toString(TopKFrequent.topKFrequent(data.stream().mapToInt(Integer::intValue).toArray(), k)));
++        }
++    }
++
++    @Test @DisplayName("2 million elements, few distinct: linear")
++    void large() {
++        int[] a = new int[2_000_000];
++        Random rnd = new Random(1);
++        for (int i = 0; i < a.length; i++) a[i] = rnd.nextInt(5) == 0 ? 42 : rnd.nextInt(1000);
++        assertTimeoutPreemptively(Duration.ofSeconds(3), () -> assertEquals(42, TopKFrequent.topKFrequent(a, 1)[0]));
++    }
++
++    @Test @DisplayName("200k distinct values (worst case for buckets and heaps)")
++    void manyDistinct() {
++        int[] a = new int[200_000];
++        for (int i = 0; i < a.length; i++) a[i] = i;
++        a[5] = 199_999; a[6] = 199_999;       // 199999 now appears three times
++        assertTimeoutPreemptively(Duration.ofSeconds(3), () -> assertEquals(199_999, TopKFrequent.topKFrequent(a, 2)[0]));
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/DsuTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/DsuTest.java
+new file mode 100644
+index 0000000..3f4b829
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/DsuTest.java
+@@ -0,0 +1,45 @@
++package practice.d20261014.c2;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class DsuTest {
++
++    @Test @DisplayName("union reports whether it merged; find agrees")
++    void basic() {
++        Dsu d = new Dsu(5);
++        assertTrue(d.union(1, 2));
++        assertTrue(d.union(2, 3));
++        assertFalse(d.union(1, 3));
++        assertEquals(d.find(1), d.find(3));
++        assertFalse(d.find(1) == d.find(4));
++        assertFalse(d.union(4, 4));
++    }
++
++    @Test @DisplayName("count starts at n and drops only on successful unions")
++    void count() {
++        Dsu d = new Dsu(6);
++        assertEquals(6, d.count());
++        d.union(1, 2); d.union(3, 4); d.union(2, 1);
++        assertEquals(4, d.count());
++        d.union(1, 4); d.union(5, 6);
++        assertEquals(2, d.count());
++        d.union(1, 6);
++        assertEquals(1, d.count());
++    }
++
++    @Test @DisplayName("a chain of 300000 unions: no stack overflow (iterative find), fast")
++    void longChain() {
++        int n = 300_000;
++        Dsu d = new Dsu(n);
++        assertTimeoutPreemptively(Duration.ofSeconds(3), () -> {
++            for (int i = 1; i < n; i++) assertTrue(d.union(i, i + 1));
++            assertEquals(d.find(1), d.find(n));
++            assertEquals(1, d.count());
++        });
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/RedundantConnectionTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/RedundantConnectionTest.java
+new file mode 100644
+index 0000000..055e67a
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/c2/RedundantConnectionTest.java
+@@ -0,0 +1,77 @@
++package practice.d20261014.c2;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Collections;
++import java.util.List;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class RedundantConnectionTest {
++
++    @Test @DisplayName("sheet examples")
++    void examples() {
++        assertEquals("[2, 3]", Arrays.toString(RedundantConnection.redundant(new int[][]{{1, 2}, {1, 3}, {2, 3}})));
++        assertEquals("[1, 4]", Arrays.toString(RedundantConnection.redundant(new int[][]{{1, 2}, {2, 3}, {3, 4}, {1, 4}, {1, 5}})));
++    }
++
++    @Test @DisplayName("smallest case: a parallel edge")
++    void parallel() {
++        assertEquals("[1, 2]", Arrays.toString(RedundantConnection.redundant(new int[][]{{1, 2}, {1, 2}})));
++        assertEquals("[2, 1]", Arrays.toString(RedundantConnection.redundant(new int[][]{{1, 2}, {2, 1}})));
++    }
++
++    /** Oracle: scan from the last edge; the first one whose removal leaves a connected graph is the answer. */
++    static int[] brute(int[][] edges) {
++        int n = edges.length;
++        for (int skip = n - 1; skip >= 0; skip--) {
++            List<List<Integer>> g = new ArrayList<>();
++            for (int i = 0; i <= n; i++) g.add(new ArrayList<>());
++            for (int i = 0; i < n; i++) if (i != skip) { g.get(edges[i][0]).add(edges[i][1]); g.get(edges[i][1]).add(edges[i][0]); }
++            boolean[] seen = new boolean[n + 1];
++            List<Integer> stack = new ArrayList<>(List.of(1)); seen[1] = true; int cnt = 1;
++            while (!stack.isEmpty()) {
++                int u = stack.remove(stack.size() - 1);
++                for (int v : g.get(u)) if (!seen[v]) { seen[v] = true; cnt++; stack.add(v); }
++            }
++            if (cnt == n) return edges[skip];
++        }
++        throw new IllegalStateException();
++    }
++
++    static int[][] randomCase(Random rnd, int n) {
++        List<int[]> edges = new ArrayList<>();
++        for (int v = 2; v <= n; v++) edges.add(new int[]{1 + rnd.nextInt(v - 1), v});     // random tree
++        int a = 1 + rnd.nextInt(n), b = 1 + rnd.nextInt(n);
++        while (a == b) { a = 1 + rnd.nextInt(n); b = 1 + rnd.nextInt(n); }
++        edges.add(new int[]{a, b});                                                     // the extra edge (may duplicate a tree edge)
++        Collections.shuffle(edges, rnd);
++        if (rnd.nextBoolean()) for (int[] e : edges) if (rnd.nextBoolean()) { int t = e[0]; e[0] = e[1]; e[1] = t; }
++        return edges.toArray(new int[0][]);
++    }
++
++    @Test @DisplayName("random trees plus one extra edge against the brute-force oracle")
++    void random() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 400; t++) {
++            int[][] edges = randomCase(rnd, 2 + rnd.nextInt(12));
++            assertEquals(Arrays.toString(brute(edges)), Arrays.toString(RedundantConnection.redundant(edges)),
++                    Arrays.deepToString(edges));
++        }
++    }
++
++    @Test @DisplayName("200000 nodes in a path plus a closing edge: linear and no stack overflow")
++    void large() {
++        int n = 200_000;
++        int[][] edges = new int[n][];
++        for (int i = 1; i < n; i++) edges[i - 1] = new int[]{i, i + 1};
++        edges[n - 1] = new int[]{1, n};
++        assertTimeoutPreemptively(Duration.ofSeconds(3),
++                () -> assertEquals("[1, " + n + "]", Arrays.toString(RedundantConnection.redundant(edges))));
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/d1/EditDistanceTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/d1/EditDistanceTest.java
+new file mode 100644
+index 0000000..dd0ecdb
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/d1/EditDistanceTest.java
+@@ -0,0 +1,75 @@
++package practice.d20261014.d1;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.Duration;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.Random;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class EditDistanceTest {
++
++    @Test @DisplayName("sheet examples")
++    void examples() {
++        assertEquals(3, EditDistance.editDistance("horse", "ros"));
++        assertEquals(5, EditDistance.editDistance("intention", "execution"));
++    }
++
++    @Test @DisplayName("empty strings, equal strings, single characters")
++    void edges() {
++        assertEquals(0, EditDistance.editDistance("", ""));
++        assertEquals(3, EditDistance.editDistance("", "abc"));
++        assertEquals(3, EditDistance.editDistance("abc", ""));
++        assertEquals(0, EditDistance.editDistance("same", "same"));
++        assertEquals(1, EditDistance.editDistance("a", "b"));
++        assertEquals(1, EditDistance.editDistance("a", "ab"));
++        assertEquals(2, EditDistance.editDistance("ab", "ba"));
++    }
++
++    @Test @DisplayName("symmetry, and either string can be the longer one")
++    void symmetry() {
++        assertEquals(EditDistance.editDistance("kitten", "sitting"), EditDistance.editDistance("sitting", "kitten"));
++        assertEquals(3, EditDistance.editDistance("kitten", "sitting"));
++        assertEquals(3, EditDistance.editDistance("sunday", "saturday"));
++    }
++
++    static int brute(String a, String b, int i, int j, Map<Long, Integer> memo) {
++        if (i == a.length()) return b.length() - j;
++        if (j == b.length()) return a.length() - i;
++        long key = (long) i * 100 + j;
++        Integer c = memo.get(key);
++        if (c != null) return c;
++        int r = a.charAt(i) == b.charAt(j) ? brute(a, b, i + 1, j + 1, memo)
++                : 1 + Math.min(brute(a, b, i + 1, j + 1, memo), Math.min(brute(a, b, i + 1, j, memo), brute(a, b, i, j + 1, memo)));
++        memo.put(key, r);
++        return r;
++    }
++
++    @Test @DisplayName("random short strings against a memoised recursion")
++    void random() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 1000; t++) {
++            StringBuilder x = new StringBuilder(), y = new StringBuilder();
++            for (int i = 0, n = rnd.nextInt(9); i < n; i++) x.append((char) ('a' + rnd.nextInt(3)));
++            for (int i = 0, n = rnd.nextInt(9); i < n; i++) y.append((char) ('a' + rnd.nextInt(3)));
++            assertEquals(brute(x.toString(), y.toString(), 0, 0, new HashMap<>()),
++                    EditDistance.editDistance(x.toString(), y.toString()), x + " -> " + y);
++        }
++    }
++
++    @Test @DisplayName("5000 x 5000 characters: O(n*m) time and no 25M-cell table")
++    void large() {
++        Random rnd = new Random(3);
++        StringBuilder x = new StringBuilder(), y = new StringBuilder();
++        for (int i = 0; i < 5000; i++) { x.append((char) ('a' + rnd.nextInt(4))); y.append((char) ('a' + rnd.nextInt(4))); }
++        assertTimeoutPreemptively(Duration.ofSeconds(5), () -> {
++            int d = EditDistance.editDistance(x.toString(), y.toString());
++            assertTrue(d > 0 && d <= 5000);
++        });
++        assertTimeoutPreemptively(Duration.ofSeconds(5), () ->
++                assertEquals(0, EditDistance.editDistance("a".repeat(8000), "a".repeat(8000))));
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/g/ScheduleTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/g/ScheduleTest.java
+new file mode 100644
+index 0000000..9201f18
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/g/ScheduleTest.java
+@@ -0,0 +1,270 @@
++package practice.d20261014.g;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.time.DayOfWeek;
++import java.time.Duration;
++import java.time.Instant;
++import java.time.LocalDateTime;
++import java.time.LocalTime;
++import java.time.ZoneId;
++import java.util.ArrayList;
++import java.util.EnumSet;
++import java.util.List;
++import java.util.Optional;
++import java.util.Random;
++import java.util.Set;
++
++import static java.time.DayOfWeek.*;
++import static org.junit.jupiter.api.Assertions.*;
++
++class ScheduleTest {
++
++    static final ZoneId NY = ZoneId.of("America/New_York");
++    static final ZoneId IST = ZoneId.of("Asia/Kolkata");
++
++    static Instant at(ZoneId z, String local) { return LocalDateTime.parse(local).atZone(z).toInstant(); }
++    static Window w(Set<DayOfWeek> days, String start, String end) { return new Window(days, LocalTime.parse(start), LocalTime.parse(end)); }
++    static Schedule sched(ZoneId z, Window... ws) { return new Schedule(1, z, List.of(ws)); }
++
++    // ---------- plain weekly windows (no DST in Asia/Kolkata) ----------
++
++    @Test @DisplayName("start is inclusive, end is exclusive")
++    void boundaries() {
++        Schedule s = sched(IST, w(EnumSet.of(WEDNESDAY), "09:00", "17:00"));     // Wed 14 Oct 2026
++        assertFalse(s.isAllowed(at(IST, "2026-10-14T08:59:59")));
++        assertTrue(s.isAllowed(at(IST, "2026-10-14T09:00:00")));
++        assertTrue(s.isAllowed(at(IST, "2026-10-14T16:59:59")));
++        assertFalse(s.isAllowed(at(IST, "2026-10-14T17:00:00")));
++        assertFalse(s.isAllowed(at(IST, "2026-10-15T10:00:00")));               // Thursday: not a start day
++    }
++
++    @Test @DisplayName("midnight crossing, Mon+Tue 23:00-06:00: Tue 02:00 yes, Wed 02:00 yes, Thu 02:00 no")
++    void midnight() {
++        Schedule s = sched(IST, w(EnumSet.of(MONDAY, TUESDAY), "23:00", "06:00"));
++        assertTrue(s.isAllowed(at(IST, "2026-10-12T23:30")));    // Mon night
++        assertTrue(s.isAllowed(at(IST, "2026-10-13T02:00")));    // Tue 02:00 belongs to the Mon window
++        assertTrue(s.isAllowed(at(IST, "2026-10-14T02:00")));    // Wed 02:00 belongs to the Tue window
++        assertFalse(s.isAllowed(at(IST, "2026-10-15T02:00")));   // Thu 02:00: Wed is not a start day
++        assertFalse(s.isAllowed(at(IST, "2026-10-12T02:00")));   // Mon 02:00: Sunday is not a start day
++        assertFalse(s.isAllowed(at(IST, "2026-10-13T06:00")));   // end exclusive
++        assertTrue(s.isAllowed(at(IST, "2026-10-13T05:59")));
++        assertFalse(s.isAllowed(at(IST, "2026-10-13T12:00")));
++    }
++
++    @Test @DisplayName("several windows are a union; no windows means never allowed")
++    void union() {
++        Schedule s = sched(IST, w(EnumSet.of(FRIDAY), "01:00", "02:00"), w(EnumSet.of(FRIDAY), "01:30", "03:00"));
++        assertTrue(s.isAllowed(at(IST, "2026-10-16T01:15")));
++        assertTrue(s.isAllowed(at(IST, "2026-10-16T02:30")));
++        assertFalse(s.isAllowed(at(IST, "2026-10-16T03:00")));
++        Schedule none = new Schedule(1, IST, List.of());
++        assertFalse(none.isAllowed(at(IST, "2026-10-16T01:15")));
++        assertEquals(Optional.empty(), none.nextBoundary(at(IST, "2026-10-16T01:15")));
++    }
++
++    @Test @DisplayName("the schedule copies its input list and exposes its version")
++    void immutable() {
++        List<Window> ws = new ArrayList<>(List.of(w(EnumSet.of(WEDNESDAY), "09:00", "17:00")));
++        Schedule s = new Schedule(7, IST, ws);
++        ws.clear();
++        assertEquals(7L, s.version());
++        assertTrue(s.isAllowed(at(IST, "2026-10-14T10:00")));
++    }
++
++    @Test @DisplayName("an invalid Window is rejected (GIVEN record)")
++    void windowValidation() {
++        assertThrows(IllegalArgumentException.class, () -> w(EnumSet.of(MONDAY), "12:00", "12:00"));
++        assertThrows(IllegalArgumentException.class, () -> w(EnumSet.noneOf(DayOfWeek.class), "01:00", "02:00"));
++    }
++
++    // ---------- nextBoundary ----------
++
++    @Test @DisplayName("nextBoundary is strictly after now")
++    void nextBoundary() {
++        Schedule s = sched(IST, w(EnumSet.of(MONDAY, TUESDAY), "23:00", "06:00"));
++        assertEquals(at(IST, "2026-10-12T23:00").toString(), s.nextBoundary(at(IST, "2026-10-12T12:00")).get().toString());
++        assertEquals(at(IST, "2026-10-13T06:00").toString(), s.nextBoundary(at(IST, "2026-10-12T23:00")).get().toString());
++        assertEquals(at(IST, "2026-10-13T23:00").toString(), s.nextBoundary(at(IST, "2026-10-13T06:00")).get().toString());
++        // after Wed 06:00 the next start is next Monday 23:00 (5 days ahead)
++        assertEquals(at(IST, "2026-10-19T23:00").toString(), s.nextBoundary(at(IST, "2026-10-14T06:00")).get().toString());
++    }
++
++    @Test @DisplayName("isAllowed does not change between now and the next boundary (random schedules, 1 minute resolution)")
++    void constantUntilBoundary() {
++        Random rnd = new Random(14);
++        for (int t = 0; t < 300; t++) {
++            Schedule s = randomSchedule(rnd, IST, 0, 24);
++            for (int q = 0; q < 10; q++) {
++                Instant now = Instant.parse("2026-10-01T00:00:00Z").plusSeconds(60L * rnd.nextInt(60 * 24 * 40));
++                Instant next = s.nextBoundary(now).orElseThrow();
++                assertTrue(next.isAfter(now));
++                boolean v = s.isAllowed(now);
++                for (Instant p = now; p.isBefore(next); p = p.plusSeconds(60 * 29 + 17))
++                    assertEquals(v, s.isAllowed(p), "changed before the boundary at " + p);
++                assertEquals(v, s.isAllowed(next.minusSeconds(1)));
++            }
++        }
++    }
++
++    // ---------- DST, America/New_York ----------
++
++    @Test @DisplayName("spring forward (Sun 8 Mar 2026): window 01:30-03:30 local is ONE real hour")
++    void springForward() {
++        Schedule s = sched(NY, w(EnumSet.of(SUNDAY), "01:30", "03:30"));
++        assertFalse(s.isAllowed(Instant.parse("2026-03-08T06:29:00Z")));
++        assertTrue(s.isAllowed(Instant.parse("2026-03-08T06:30:00Z")));
++        assertTrue(s.isAllowed(Instant.parse("2026-03-08T07:29:00Z")));
++        assertFalse(s.isAllowed(Instant.parse("2026-03-08T07:30:00Z")));
++    }
++
++    @Test @DisplayName("spring forward: a start inside the gap (02:30) moves forward to 03:30 EDT = 07:30Z")
++    void gapStart() {
++        Schedule s = sched(NY, w(EnumSet.of(SUNDAY), "02:30", "04:00"));
++        assertEquals("2026-03-08T07:30:00Z", s.nextBoundary(Instant.parse("2026-03-08T06:00:00Z")).get().toString());
++        assertFalse(s.isAllowed(Instant.parse("2026-03-08T07:29:00Z")));
++        assertTrue(s.isAllowed(Instant.parse("2026-03-08T07:30:00Z")));
++    }
++
++    static int allowedMinutes(Schedule s, Instant from, Instant to) {
++        int n = 0;
++        for (Instant t = from; t.isBefore(to); t = t.plusSeconds(60)) if (s.isAllowed(t)) n++;
++        return n;
++    }
++
++    @Test @DisplayName("fall back (Sun 1 Nov 2026): window 00:30-02:30 local lasts THREE real hours")
++    void fallBack() {
++        Schedule s = sched(NY, w(EnumSet.of(SUNDAY), "00:30", "02:30"));
++        assertEquals(180, allowedMinutes(s, Instant.parse("2026-11-01T03:00:00Z"), Instant.parse("2026-11-01T10:00:00Z")));
++    }
++
++    @Test @DisplayName("Australia/Lord_Howe (30-minute DST shift, Sun 4 Oct 2026): window 01:45-03:00 is 45 real minutes")
++    void lordHowe() {
++        ZoneId lh = ZoneId.of("Australia/Lord_Howe");
++        Schedule s = sched(lh, w(EnumSet.of(SUNDAY), "01:45", "03:00"));
++        assertEquals(45, allowedMinutes(s, Instant.parse("2026-10-03T14:00:00Z"), Instant.parse("2026-10-03T20:00:00Z")));
++    }
++
++    @Test @DisplayName("a 22:00-06:00 window crossing the spring-forward night: 8 wall-clock hours, 7 real hours")
++    void nightAcrossDst() {
++        Schedule s = sched(NY, w(EnumSet.of(SATURDAY), "22:00", "06:00"));
++        assertEquals(7 * 60, allowedMinutes(s, Instant.parse("2026-03-08T00:00:00Z"), Instant.parse("2026-03-08T14:00:00Z")));
++    }
++
++    // ---------- oracle over a whole year ----------
++
++    static Schedule randomSchedule(Random rnd, ZoneId z, int minHour, int maxHour) {
++        List<Window> ws = new ArrayList<>();
++        for (int i = 0, n = 1 + rnd.nextInt(3); i < n; i++) {
++            Set<DayOfWeek> days = EnumSet.noneOf(DayOfWeek.class);
++            for (DayOfWeek d : DayOfWeek.values()) if (rnd.nextInt(3) == 0) days.add(d);
++            if (days.isEmpty()) days.add(DayOfWeek.of(1 + rnd.nextInt(7)));
++            LocalTime a = LocalTime.of(minHour + rnd.nextInt(maxHour - minHour), rnd.nextInt(60));
++            LocalTime b = LocalTime.of(minHour + rnd.nextInt(maxHour - minHour), rnd.nextInt(60));
++            if (a.equals(b)) b = b.plusMinutes(1).isBefore(LocalTime.of(maxHour - 1, 59)) ? b.plusMinutes(1) : b.minusMinutes(1);
++            ws.add(new Window(days, a, b));
++        }
++        return new Schedule(1, z, ws);
++    }
++
++    /** Wall-clock oracle: valid when no window boundary falls inside a DST gap or overlap. */
++    static boolean oracle(List<Window> ws, ZoneId z, Instant t) {
++        LocalDateTime l = t.atZone(z).toLocalDateTime();
++        for (Window w : ws) {
++            LocalTime now = l.toLocalTime();
++            if (!w.crossesMidnight()) {
++                if (w.days().contains(l.getDayOfWeek()) && !now.isBefore(w.start()) && now.isBefore(w.end())) return true;
++            } else {
++                if (w.days().contains(l.getDayOfWeek()) && !now.isBefore(w.start())) return true;
++                if (w.days().contains(l.getDayOfWeek().minus(1)) && now.isBefore(w.end())) return true;
++            }
++        }
++        return false;
++    }
++
++    @Test @DisplayName("every minute of 2026 in New York against a wall-clock oracle (boundaries kept clear of the DST hour)")
++    void yearOracleNewYork() {
++        Random rnd = new Random(14);
++        for (int round = 0; round < 3; round++) {
++            List<Window> ws = windowsOf(rnd, 4, 24);                    // boundaries between 04:00 and 23:59
++            Schedule s = new Schedule(1, NY, ws);
++            assertTimeoutPreemptively(Duration.ofSeconds(30), () -> {
++                for (Instant t = Instant.parse("2026-01-01T05:00:00Z"); t.isBefore(Instant.parse("2027-01-01T05:00:00Z")); t = t.plusSeconds(60))
++                    assertEquals(oracle(ws, NY, t), s.isAllowed(t), "differs at " + t);
++            });
++        }
++    }
++
++    static List<Window> windowsOf(Random rnd, int minHour, int maxHour) {
++        List<Window> ws = new ArrayList<>();
++        for (int i = 0, n = 1 + rnd.nextInt(3); i < n; i++) {
++            Set<DayOfWeek> days = EnumSet.noneOf(DayOfWeek.class);
++            for (DayOfWeek d : DayOfWeek.values()) if (rnd.nextInt(3) == 0) days.add(d);
++            if (days.isEmpty()) days.add(DayOfWeek.of(1 + rnd.nextInt(7)));
++            int h1 = minHour + rnd.nextInt(maxHour - minHour), h2 = minHour + rnd.nextInt(maxHour - minHour);
++            LocalTime a = LocalTime.of(h1, rnd.nextInt(60)), b = LocalTime.of(h2, rnd.nextInt(60));
++            if (a.equals(b)) b = b.plusMinutes(1);
++            ws.add(new Window(days, a, b));
++        }
++        return ws;
++    }
++
++    @Test @DisplayName("every minute of 2026 in Kolkata against the oracle, any boundaries including midnight")
++    void yearOracleKolkata() {
++        Random rnd = new Random(15);
++        for (int round = 0; round < 3; round++) {
++            List<Window> ws = windowsOf(rnd, 0, 24);
++            Schedule s = new Schedule(1, IST, ws);
++            assertTimeoutPreemptively(Duration.ofSeconds(30), () -> {
++                for (Instant t = Instant.parse("2026-01-01T00:00:00Z"); t.isBefore(Instant.parse("2027-01-01T00:00:00Z")); t = t.plusSeconds(60))
++                    assertEquals(oracle(ws, IST, t), s.isAllowed(t), "differs at " + t);
++            });
++        }
++    }
++
++    // ---------- constraints, holder ----------
++
++    @Test @DisplayName("AllOf: every part must allow; empty allows; a Schedule is itself a constraint")
++    void allOf() {
++        Instant t = Instant.parse("2026-10-14T10:00:00Z");
++        ChargingConstraint yes = x -> true, no = x -> false;
++        assertTrue(new AllOf(List.of(yes, yes)).allows(t));
++        assertFalse(new AllOf(List.of(yes, no, yes)).allows(t));
++        assertTrue(new AllOf(List.of()).allows(t));
++        Schedule s = sched(IST, w(EnumSet.of(WEDNESDAY), "09:00", "17:00"));         // 10:00Z = 15:30 IST: inside
++        assertTrue(new AllOf(List.of(s, yes)).allows(t));
++        assertFalse(new AllOf(List.of(s, no)).allows(t));
++        assertFalse(new AllOf(List.of(s)).allows(Instant.parse("2026-10-14T13:00:00Z")));   // 18:30 IST: outside
++    }
++
++    @Test @DisplayName("holder: only a strictly newer version replaces the current one")
++    void holder() {
++        ScheduleHolder h = new ScheduleHolder();
++        assertNull(h.current());
++        Schedule v2 = new Schedule(2, IST, List.of()), v1 = new Schedule(1, IST, List.of()), v3 = new Schedule(3, IST, List.of());
++        assertTrue(h.offer(v2));
++        assertSame(v2, h.current());
++        assertFalse(h.offer(v1));
++        assertFalse(h.offer(new Schedule(2, IST, List.of())));
++        assertSame(v2, h.current());
++        assertTrue(h.offer(v3));
++        assertSame(v3, h.current());
++    }
++
++    @Test @DisplayName("holder: concurrent deliveries in random order always end on the highest version")
++    void holderConcurrent() throws Exception {
++        ScheduleHolder h = new ScheduleHolder();
++        List<Schedule> all = new ArrayList<>();
++        for (int v = 1; v <= 2000; v++) all.add(new Schedule(v, IST, List.of()));
++        java.util.Collections.shuffle(all, new Random(14));
++        Thread[] ts = new Thread[8];
++        for (int i = 0; i < ts.length; i++) {
++            final int from = i * 250;
++            ts[i] = new Thread(() -> { for (int k = from; k < from + 250; k++) h.offer(all.get(k)); });
++            ts[i].start();
++        }
++        for (Thread t : ts) t.join();
++        assertEquals(2000L, h.current().version());
++    }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h1/H1PredictionsTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h1/H1PredictionsTest.java
+new file mode 100644
+index 0000000..5c38e92
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h1/H1PredictionsTest.java
+@@ -0,0 +1,27 @@
++package practice.d20261014.h1;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class H1PredictionsTest {
++
++    static String norm(String s) { return s.trim().replaceAll("\\s+", " "); }
++    static void check(String predicted, String actual) {
++        assertFalse("TODO".equals(predicted), "fill in your prediction in H1Predictions first");
++        assertEquals(norm(actual), norm(predicted));
++    }
++
++    @Test @DisplayName("line 1: Integer cache") void line1() { check(H1Predictions.LINE1, H1Snippets.line1()); }
++    @Test @DisplayName("line 2: Long.equals(Integer)") void line2() { check(H1Predictions.LINE2, H1Snippets.line2()); }
++    @Test @DisplayName("line 3: ternary unboxing a null") void line3() { check(H1Predictions.LINE3, H1Snippets.line3()); }
++    @Test @DisplayName("line 4: ternary with two Integers") void line4() { check(H1Predictions.LINE4, H1Snippets.line4()); }
++    @Test @DisplayName("line 5: char vs int in a ternary") void line5() { check(H1Predictions.LINE5, H1Snippets.line5()); }
++    @Test @DisplayName("line 6: numeric promotion") void line6() { check(H1Predictions.LINE6, H1Snippets.line6()); }
++    @Test @DisplayName("line 7: erasure") void line7() { check(H1Predictions.LINE7, H1Snippets.line7()); }
++    @Test @DisplayName("line 8: compound assignment") void line8() { check(H1Predictions.LINE8, H1Snippets.line8()); }
++    @Test @DisplayName("line 9: floating point and overflow") void line9() { check(H1Predictions.LINE9, H1Snippets.line9()); }
++    @Test @DisplayName("line 10: division and shifts") void line10() { check(H1Predictions.LINE10, H1Snippets.line10()); }
++    @Test @DisplayName("line 11: Long vs Integer map keys") void line11() { check(H1Predictions.LINE11, H1Snippets.line11()); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/H2PredictionsTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/H2PredictionsTest.java
+new file mode 100644
+index 0000000..5dffc30
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/H2PredictionsTest.java
+@@ -0,0 +1,21 @@
++package practice.d20261014.h2;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class H2PredictionsTest {
++
++    static String norm(String s) { return s.replaceAll("\\s*\\|\\s*", "|").trim(); }
++    static void check(String predicted, String actual) {
++        assertFalse("TODO".equals(predicted), "fill in your prediction in H2Predictions first");
++        assertEquals(norm(actual), norm(predicted));
++    }
++
++    @Test @DisplayName("first new Child(): statics run, v is 0 inside show()")
++    void first() { check(H2Predictions.FIRST_INSTANCE, H2Snippets.firstInstance()); }
++
++    @Test @DisplayName("second new Child(): no static blocks any more")
++    void second() { check(H2Predictions.SECOND_INSTANCE, H2Snippets.secondInstance()); }
++}
+diff --git a/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/NotifierDecoratorTest.java b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/NotifierDecoratorTest.java
+new file mode 100644
+index 0000000..94f937c
+--- /dev/null
++++ b/daily-practice/2026-10-14-wed/src/test/java/practice/d20261014/h2/NotifierDecoratorTest.java
+@@ -0,0 +1,97 @@
++package practice.d20261014.h2;
++
++import org.junit.jupiter.api.DisplayName;
++import org.junit.jupiter.api.Test;
++
++import java.util.ArrayList;
++import java.util.List;
++
++import static org.junit.jupiter.api.Assertions.*;
++
++class NotifierDecoratorTest {
++
++    /** Fails the first 'failures' calls with an IllegalStateException, then succeeds. Records every call. */
++    static final class Flaky implements Notifier {
++        final List<String> calls = new ArrayList<>(); final int failures;
++        Flaky(int failures) { this.failures = failures; }
++        @Override public void send(String message) {
++            calls.add(message);
++            if (calls.size() <= failures) throw new IllegalStateException("boom " + calls.size());
++        }
++    }
++
++    @Test @DisplayName("logging: before and after around a successful call")
++    void loggingOk() {
++        List<String> log = new ArrayList<>();
++        new LoggingNotifier(new Flaky(0), log).send("hi");
++        assertEquals("[before:hi, after:hi]", log.toString());
++    }
++
++    @Test @DisplayName("logging: failed instead of after, and the same exception is rethrown")
++    void loggingFail() {
++        List<String> log = new ArrayList<>();
++        IllegalStateException e = assertThrows(IllegalStateException.class, () -> new LoggingNotifier(new Flaky(1), log).send("hi"));
++        assertEquals("boom 1", e.getMessage());
++        assertEquals("[before:hi, failed:hi]", log.toString());
++    }
++
++    @Test @DisplayName("retrying: succeeds on the third attempt")
++    void retrySucceeds() {
++        Flaky f = new Flaky(2);
++        new RetryingNotifier(f, 3).send("x");
++        assertEquals("[x, x, x]", f.calls.toString());
++    }
++
++    @Test @DisplayName("retrying: gives up after maxAttempts and rethrows the LAST exception")
++    void retryGivesUp() {
++        Flaky f = new Flaky(10);
++        IllegalStateException e = assertThrows(IllegalStateException.class, () -> new RetryingNotifier(f, 3).send("x"));
++        assertEquals("boom 3", e.getMessage());
++        assertEquals(3, f.calls.size());
++    }
++
++    @Test @DisplayName("retrying: no retry after success, and maxAttempts must be at least 1")
++    void retryEdges() {
++        Flaky f = new Flaky(0);
++        new RetryingNotifier(f, 5).send("x");
++        assertEquals(1, f.calls.size());
++        assertThrows(IllegalArgumentException.class, () -> new RetryingNotifier(f, 0));
++    }
++
++    @Test @DisplayName("metric: counts sent and failed, rethrows")
++    void metric() {
++        MetricNotifier m = new MetricNotifier(new Flaky(1));
++        assertThrows(IllegalStateException.class, () -> m.send("a"));
++        m.send("b"); m.send("c");
++        assertEquals(2, m.sent());
++        assertEquals(1, m.failed());
++    }
++
++    @Test @DisplayName("composition order matters: Metric(Retry(Logging(real)))")
++    void metricOutside() {
++        List<String> log = new ArrayList<>();
++        MetricNotifier m = new MetricNotifier(new RetryingNotifier(new LoggingNotifier(new Flaky(2), log), 3));
++        m.send("n1");
++        assertEquals("[before:n1, failed:n1, before:n1, failed:n1, before:n1, after:n1]", log.toString());
++        assertEquals(1, m.sent());
++        assertEquals(0, m.failed());
++    }
++
++    @Test @DisplayName("composition order matters: Retry(Metric(Logging(real))) sees every attempt")
++    void metricInside() {
++        List<String> log = new ArrayList<>();
++        MetricNotifier m = new MetricNotifier(new LoggingNotifier(new Flaky(2), log));
++        new RetryingNotifier(m, 3).send("n1");
++        assertEquals(1, m.sent());
++        assertEquals(2, m.failed());
++    }
++
++    @Test @DisplayName("Logging outside Retry logs ONE before and ONE failed when all attempts fail")
++    void loggingOutside() {
++        List<String> log = new ArrayList<>();
++        Flaky f = new Flaky(10);
++        assertThrows(IllegalStateException.class, () -> new LoggingNotifier(new RetryingNotifier(f, 2), log).send("z"));
++        assertEquals("[before:z, failed:z]", log.toString());
++        assertEquals(2, f.calls.size());
++    }
++}
+-- 
+2.43.0
+
