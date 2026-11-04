@@ -1,0 +1,5 @@
+# F2. HLD: notification service (12 min out loud + 5 min review)
+
+A feature of a big app: other services call "notify user U about event E" and the platform delivers push, email, SMS and in-app messages.
+Requirements to clarify: 100 M users, 500 M notifications/day with 10x bursts (flash sale, breaking news), per-user channel preferences and quiet hours, deduplication (the same order-shipped event must not notify twice), throttling per user (max 3 marketing messages/day), provider failover (SMS vendor A down -> B), delivery tracking (sent, delivered, opened), templates and localisation, transactional (OTP, within 5 s) vs marketing (best effort) priorities.
+Cover: API and idempotency key, queue topology per channel and priority (so a marketing burst cannot delay OTPs), fan-out for broadcast, preference/quiet-hour checks and where the data lives, retry with backoff and a dead-letter queue, provider abstraction with circuit breaker, delivery receipts via webhooks, rate limits towards providers, and data retention.

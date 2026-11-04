@@ -1,0 +1,5 @@
+# F1. HLD: feature flag / experiment service (12 min out loud + 5 min review)
+
+A feature of a big app: engineers toggle features and gradual rollouts without a deploy; every service and client asks "is flag X on for this user?".
+Requirements to clarify: 2 000 services / 50 M DAU, 2 M flag evaluations per second at peak, flag change visible everywhere within 10 s, flag service outage must NOT break callers, targeting by user id, attributes (country, plan, app version) and percentage rollout, kill switch, audit trail and who-changed-what, 5 000 flags.
+Cover: API (management plane vs evaluation plane), where evaluation happens (server-side per request vs SDK with a local rules cache vs client-side), how updates propagate (poll with ETag, streaming/SSE, push + periodic full sync), sticky and consistent bucketing, safe defaults when the store is down, rollout safety (staged percentages, automatic rollback on error rate), flag hygiene (expiry, owners), and experiments (exposure logging, assignment that does not change mid-test).
