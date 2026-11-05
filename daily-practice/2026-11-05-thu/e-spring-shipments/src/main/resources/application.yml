@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: shipments
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:shipments
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      auto-offset-reset: earliest
+shipments:
+  topic: shipments.events
+  carrier-topic: carrier.updates
+  max-page-size: 50
