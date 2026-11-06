@@ -1,0 +1,2 @@
+# H2 - OOP: typed in-process event bus (20 min)
+Files: `h2/EventBus.java`, `Subscription.java`, `DeadEvent.java`. Observer pattern with type-based routing: handlers for a supertype/interface also get subclass events; delivery in subscription order on the caller's thread; a throwing handler must not stop the rest; handlers may subscribe/cancel/publish during delivery; no match -> `DeadEvent`; thread-safe. Discuss: copy-on-write vs locking, memory leaks from forgotten subscriptions (weak references?), ordering and re-entrancy guarantees, sync vs async delivery.

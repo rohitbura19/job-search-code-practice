@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: profiles
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:profiles
+  # TODO(E7): cap the page size a client may ask for at 50 and default to 20 (spring.data.web.pageable.*)

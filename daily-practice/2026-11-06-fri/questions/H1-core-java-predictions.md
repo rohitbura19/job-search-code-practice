@@ -1,0 +1,2 @@
+# H1 - Core Java: predict the output (15 min)
+`h1/H1Snippets.java` holds six snippets (field hiding + virtual call from a super constructor, try-with-resources + suppressed, lazy streams, conditional operator typing, arithmetic/concatenation, collection traps). Write the exact returned String of each in `H1Predictions` by hand-tracing; the test compares with the real result. Do not run the snippets first; note which ones you got wrong and name the JLS rule.
