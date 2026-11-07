@@ -1,0 +1,3 @@
+# H2 - OOP: Specification pattern with generics (20 min) - `h2/Spec.java`
+
+Implement the default and static methods of `Spec<T>` (a composable business rule): `and`, `or`, `not`, `allOf`, `anyOf`, `where`, `of`. The Javadoc lists the rules: left-to-right short-circuit, operands never mutated, fully parenthesised `describe()` (`"(adult AND NOT banned)"`, `"NOT adult"`, `"TRUE"` / `"FALSE"` for empty `allOf` / `anyOf`), contravariant parameters (`Spec<? super T>`, so a `Spec<Object>` combines with a `Spec<String>`), defensive copy of varargs, fail-fast `NullPointerException` at composition time. Tests: `SpecTest`. Be ready to explain why `and(Spec<? super T>)` is PECS-correct and why `allOf` needs `@SafeVarargs` on a static (or final/private) method only.

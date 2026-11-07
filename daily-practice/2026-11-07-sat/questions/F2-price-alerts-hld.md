@@ -1,0 +1,3 @@
+# F2 - HLD: price-drop alerts / wishlist notifications (12 min out loud + 5 min review)
+
+Users watch products ("tell me when it drops below 999"). Sellers change prices continuously: 5M price updates/hour at peak, 80M active watches, a typical product has a few hundred watchers but a viral one has 2M. Notifications go out by push/email within 1 minute, at most once per (user, product, drop), and respect user quiet hours and a daily cap. Cover: requirements, APIs, data model, how a price change is matched to watches (index by product, threshold structure), fan-out for hot products, dedupe/idempotency, ordering and flapping prices (999 -> 1100 -> 999), backpressure, and failure modes. Fill `my-designs/F2-price-alerts.md`.

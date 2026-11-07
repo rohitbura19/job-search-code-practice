@@ -1,0 +1,3 @@
+# G - LLD of F1: in-memory cart (30 min: sketch 8, code 22) - `g/` (+ `my-designs/G-classes-sketch.md`)
+
+Implement `CartService` and `ThresholdPercentRule` (`CartLine`, `CartView`, `PriceCatalog`, `DiscountRule` are given). The Javadoc on `CartService` is the specification: validation, per-line and per-cart limits (cart unchanged on violation), sliding TTL on mutations only, current catalog prices at view, discounts summed and capped at the subtotal, guest merge with caps. It must be thread-safe: same-owner mutations must not lose updates and two threads merging in opposite directions (`a->b`, `b->a`) must not deadlock. Sketch the classes, the lock strategy and the invariants first, then code until `CartServiceTest` is green.

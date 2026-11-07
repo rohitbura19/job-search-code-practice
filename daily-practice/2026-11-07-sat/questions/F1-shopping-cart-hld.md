@@ -1,0 +1,4 @@
+# F1 - HLD: shopping cart service of an e-commerce app (12 min out loud + 5 min review)
+
+Design the cart: guests and logged-in users add/remove/change quantities of items; the cart shows current prices and discounts; a guest cart merges into the user's cart at login; carts survive a browser/app restart for ~30 days; checkout hands the cart to the order service.
+Scale: 50M DAU, peak 20k cart writes/s, 100k reads/s, p99 < 100 ms. Cover: requirements, APIs, data model (what you store per line: sku + qty only, or a price snapshot?), where the cart lives (Redis / DynamoDB / SQL) and why, price/stock revalidation at view and at checkout, merge on login, TTL and cleanup, concurrency (two devices), multi-region, and failure modes (catalog down, cart store down). Fill `my-designs/F1-shopping-cart.md`.
