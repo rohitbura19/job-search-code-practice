@@ -1,0 +1,3 @@
+# H1 - Predict the output (15 min) - `h1/H1Predictions.java`
+
+Read `h1/H1Snippets.java` (do not run it). Type the exact String each `sN()` returns into `H1Predictions`. Topics: s1 static/instance initialisation order and a virtual call from a super constructor; s2 `try/finally` with `return`, `continue`, mutable results; s3 `Integer` cache, `equals` across wrapper types, `NaN`/`-0.0`; s4 mutable `HashMap` keys, fail-fast iteration, case-insensitive `TreeMap`; s5 `char` arithmetic, string concatenation, interning, `split`, casts; s6 overload resolution (widening vs boxing vs varargs) and varargs with `null`. `H1PredictionsTest` compares with the real output.
