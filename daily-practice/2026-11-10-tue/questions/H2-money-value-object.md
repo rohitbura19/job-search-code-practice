@@ -1,0 +1,4 @@
+# H2 - OOP: immutable `Money` value object (20 min) - `h2/Money.java`
+
+Implement `Money` (final, immutable, private constructor, static factories). The full contract is in the class Javadoc and checked by `MoneyTest`: factories with ISO-4217 validation (`java.util.Currency` gives 2 digits for USD, 0 for JPY, 3 for KWD), exact `parse`/`toString` without `double`, `plus/minus/times` with overflow detection, `times(BigDecimal, RoundingMode)`, `allocate(ratios...)` / `split(n)` whose parts sum EXACTLY to the original (leftover minor units go to the first parts one at a time, also for negative amounts, never to zero-ratio parts), `compareTo`, `equals`/`hashCode`.
+Think about: why `long` minor units and not `double`/`BigDecimal` fields, why a currency mismatch is an exception and not a conversion, why `Money` must not be a `Number`.
