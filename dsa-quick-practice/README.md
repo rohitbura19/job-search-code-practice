@@ -8,22 +8,25 @@ Every DSA question from `daily-practice/`, one file per problem, grouped by patt
 - **IntelliJ:** right-click `dsa-quick-practice` → *Mark Directory as → Sources Root*, then use the green run arrow next to `main`.
 - Timer: Easy 10 min, Medium 20 min, Hard 30 min. Answers live in `daily-practice/<day>/answers/` if you get stuck.
 
-## Questions (57)
+## Questions (207)
 
 | Pattern | Easy | Medium | Hard |
 |---|---|---|---|
-| **arrays** | MoveZeroes, MergeSortedArray, MajorityElement, IntersectionOfArraysII, PascalsTriangle, BestTimeToBuySellStock | RemoveDuplicatesII, SortColors, ProductExceptSelf, MajorityElementII | TrappingRainWater |
-| **hashing** | ContainsDuplicateII | SubarraySumEqualsK | |
-| **strings** | ValidPalindrome, ValidPalindromeII, AddBinary, ExcelColumnTitle | | |
-| **slidingwindow** | | LongestSubstringNoRepeat | SlidingWindowMaximum, MinimumWindowSubstring |
-| **stack** | ValidParentheses | MinAddToMakeValid, MinStack | LargestRectangleHistogram |
-| **linkedlist** | ReverseLinkedList, LinkedListCycle | LinkedListCycleII | |
-| **binarysearch** | SearchInsertPosition | ShipWithinDays, SearchRotatedArray | FindMinRotatedII, MedianOfTwoSortedArrays |
-| **trees** | DiameterOfBinaryTree, InvertBinaryTree, SymmetricTree | BuildTreePreorderInorder | |
-| **graphs** | | NumberOfIslands, CourseScheduleII, RottingOranges, ShortestPathBinaryMatrix, AccountsMerge | |
-| **heap** | | KthLargestElement, TopKFrequentWords | MedianFinder |
-| **intervals** | | MergeIntervals, MeetingRoomsII | |
-| **backtracking** | | CombinationSum, WordSearch | |
-| **dp** | | CoinChange, CoinChangeII, HouseRobber, HouseRobberII, LongestIncreasingSubsequence, DecodeWays | RussianDollEnvelopes, EditDistance, JobScheduling |
+| **arrays** | BestTimeToBuySellStock, CanPlaceFlowers, IntersectionOfArraysII, MajorityElement, MergeSortedArray, MissingNumber, MoveZeroes, PascalsTriangle, PivotIndex, PlusOne, RemoveElement, SingleNumber, SortedSquares, SummaryRanges, ThirdMaximum, ToeplitzMatrix | BestTimeToBuySellStockII, ContainerWithMostWater, FindAllDuplicates, FindDuplicateNumber, MajorityElementII, MaxCircularSubarray, MaxConsecutiveOnesII, MaximumProductSubarray, MaximumSubarray, NextPermutation, ProductExceptSelf, RemoveDuplicatesII, RotateArray, RotateImage, SetMatrixZeroes, SingleNumberII, SingleNumberIII, SortColors, SpiralMatrix, ThreeSum, ThreeSumClosest, TwoSumSorted, ValidSudoku | FirstMissingPositive, MaximumGap, TrappingRainWater |
+| **hashing** | ContainsDuplicateII, FirstUniqueChar, IsomorphicStrings, TwoSum, ValidAnagram | ContiguousArray, GroupAnagrams, LongestConsecutiveSequence, SubarraySumEqualsK, SubarraysDivisibleByK, TopKFrequentElements |  |
+| **strings** | AddBinary, AddStrings, BackspaceCompare, ExcelColumnNumber, ExcelColumnTitle, IsSubsequence, LongestCommonPrefix, RomanToInteger, StrStr, ValidIPv4, ValidPalindrome, ValidPalindromeII | CountAndSay, IntegerToRoman, ReverseWords, StringCompression, ZigzagConversion | ShortestPalindrome |
+| **math** | CountingBits, GcdLcm, HappyNumber, Sqrt | CountPrimes, Pow, ReverseInteger |  |
+| **slidingwindow** |  | FindAllAnagrams, LongestRepeatingReplacement, LongestSubstringNoRepeat, MinSizeSubarraySum | MinimumWindowSubstring, SlidingWindowMaximum, SlidingWindowMedian |
+| **stack** | QueueUsingStacks, ValidParentheses | DailyTemperatures, EvalRPN, MinAddToMakeValid, MinStack, NextGreaterElementII, RemoveDuplicatesK | LargestRectangleHistogram, LongestValidParentheses |
+| **design** | KthLargestInStream, MovingAverage, RecentCounter | ImplementTrie, RandomizedSet, RangeSumMutable, TimeMap, WordDictionary | SearchAutocomplete |
+| **linkedlist** | LinkedListCycle, MergeTwoSortedLists, MiddleOfList, PalindromeLinkedList, ReverseLinkedList | LinkedListCycleII, RemoveNthFromEnd, ReverseLinkedListII |  |
+| **binarysearch** | SearchInsertPosition | FindMinRotated, FirstLastPosition, KokoEatingBananas, SearchRotatedArray, ShipWithinDays | CountSmallerAfterSelf, FindMinRotatedII, MedianOfTwoSortedArrays, SplitArrayLargestSum |
+| **trees** | BalancedBinaryTree, DiameterOfBinaryTree, InvertBinaryTree, PathSum, SortedArrayToBST, SymmetricTree | BuildTreePreorderInorder, GoodNodes, HouseRobberIII, KthSmallestBST, LevelOrderTraversal, LowestCommonAncestorBST, RightSideView, ValidateBST, ZigzagLevelOrder | MaxPathSum, SerializeDeserialize |
+| **graphs** |  | AccountsMerge, CheapestFlightsKStops, CourseSchedule, CourseScheduleII, EventualSafeNodes, IsGraphBipartite, MaxAreaOfIsland, MinimumEffortPath, NearestZeroMatrix, NetworkDelayTime, NumberOfIslands, NumberOfProvinces, OpenTheLock, PacificAtlantic, ParallelCourses, PossibleBipartition, RedundantConnection, RottingOranges, ShortestPathBinaryMatrix | LongestIncreasingPath, ReconstructItinerary, TrappingRainWaterII |
+| **heap** |  | KClosestPoints, KthLargestElement, MergeKSortedArrays, ReorganizeString, TaskScheduler, TopKFrequentWords | MedianFinder |
+| **intervals** |  | InsertInterval, MeetingRoomsII, MergeIntervals, NonOverlappingIntervals | SkylineProblem |
+| **greedy** |  | GasStation, JumpGameII, PartitionLabels |  |
+| **backtracking** |  | CombinationSum, GenerateParentheses, PermutationsII, SubsetsII, WordSearch | NQueensII |
+| **dp** | ClimbingStairs, MinCostClimbingStairs, Tribonacci | CoinChange, CoinChangeII, DecodeWays, HouseRobber, HouseRobberII, LongestCommonSubsequence, LongestIncreasingSubsequence, LongestPalindromicSubstring, MaximalSquare, MinPathSum, PalindromicSubstrings, PartitionEqualSubsetSum, PerfectSquares, StockWithCooldown, TargetSum, WordBreak | BurstBalloons, EditDistance, JobScheduling, MaximalRectangle, RegexMatching, RussianDollEnvelopes |
 
-Questions that appeared on more than one day (Valid Parentheses, Course Schedule II, Coin Change, Sliding Window Maximum) are included once.
+Questions that appeared on more than one day are included once.
