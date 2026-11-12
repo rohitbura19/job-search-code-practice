@@ -44,6 +44,8 @@ Each sheet ends with a principal-engineer review: how to change the design to ma
 ## Quick DSA practice
 
 - [dsa-quick-practice/](dsa-quick-practice/) - all DSA questions from the daily kits as single-file templates (short statement + empty method + examples), grouped by pattern. No tests.
+- [streams-quick-practice/](streams-quick-practice/) - all 27 Java streams / collections questions: starter code + a plain-Java `*Check` that runs your pipelines on sample data.
+- [sql-quick-practice/](sql-quick-practice/) - plain SQL (banking schema + 6 queries, SKIP LOCKED outbox) and 22 Spring Data repository / JPQL query sets.
 
 ## Company prep
 
