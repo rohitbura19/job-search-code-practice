@@ -1,0 +1,4 @@
+# H1 - Core Java: predict the output (15 min) - `h1/H1Predictions.java`
+
+Read `H1Snippets` (do not run it). For `s1`..`s6` write the exact string each method returns into `H1Predictions`; `H1PredictionsTest` compares with the real result.
+Topics: s1 class initialisation triggers (compile-time constants do not trigger it); s2 string literals, `intern`, constant folding with `final` locals, `+` associativity with `char`/`int`; s3 array covariance (`ArrayStoreException`), erasure and heap pollution (`ClassCastException` at the use site); s4 `List.remove(int)` vs `remove(Object)`, `Arrays.asList`, `subList` views, fail-fast iterators and the "second-to-last element" quirk, `List.of` null handling, `HashMap` with a null value; s5 stream laziness and `findFirst` short-circuit, eager `orElse` vs lazy `orElseGet`, lambda captures; s6 try-with-resources close order, suppressed exceptions, a close failure with no primary exception.

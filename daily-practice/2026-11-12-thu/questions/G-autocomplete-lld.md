@@ -1,0 +1,4 @@
+# G - LLD of F1: in-memory `AutocompleteService` (sketch 8 min, code 22 min) - `g/AutocompleteService.java`, sketch in `my-designs/G-classes-sketch.md`
+
+Implement the typeahead core as a thread-safe in-memory component. The full contract (normalisation, ranking, blocking, ignore rules) is in the class Javadoc: `record(q)`, `suggest(prefix, k)`, `block/unblock`, `count`, `distinctQueries`. Ranking: count descending, then alphabetical; blocked queries are hidden but keep their count.
+Tests: ranking and normalisation examples, ignore rules, blocking, model-based comparison against a brute-force map on random operations, 8-thread concurrent recording (no lost updates), 200k records plus 2000 suggests under a timeout. Be ready to say why a trie beats scanning all queries and how you would make `suggest` O(L + k).

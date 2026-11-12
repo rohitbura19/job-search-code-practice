@@ -1,0 +1,4 @@
+# F2 - Outbound webhook delivery for a payments platform (HLD, 12 min out loud + 5 min self-review) - `my-designs/F2-webhooks.md`
+
+Merchants register HTTPS endpoints and subscribe to events (`payment.succeeded`, `refund.created`, ...). Design the service that delivers each event to each subscribed endpoint: at-least-once, signed, retried with backoff for up to 3 days, per-endpoint ordering NOT guaranteed but a slow/broken merchant must not delay others. 20k events/s peak, endpoints respond in 50 ms to 30 s or never.
+Cover: API (register, rotate secret, replay, delivery log), data model, queueing and fan-out, retry schedule and dead-letter handling, HMAC signature + timestamp (replay protection), SSRF protection, per-endpoint rate limits and circuit breaker, idempotency for merchants (event id), observability, failure modes.
